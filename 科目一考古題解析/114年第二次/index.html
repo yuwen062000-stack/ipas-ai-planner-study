@@ -1,0 +1,1585 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <!--
+    本檔案負責呈現「114 年第二次 AI 應用規劃師中級－科目一」50 題完整原題與考古題解析。
+    官方答案取自公告試題；解題依據以科目一官方學習指引為主，補充說明會明確標記。
+  -->
+  <meta charset="utf-8">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23102a43%22/%3E%3Cpath d=%22M17 17h30v30H17z%22 fill=%22none%22 stroke=%22%231aa6a6%22 stroke-width=%224%22/%3E%3Cpath d=%22M23 25h18M23 32h18M23 39h12%22 stroke=%22%23e9b949%22 stroke-width=%224%22 stroke-linecap=%22round%22/%3E%3C/svg%3E">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="114 年第二次 iPAS AI 應用規劃師中級科目一完整原題與逐題解析">
+  <title>114 年第二次｜科目一完整原題與逐題解析</title>
+  <style>
+    :root {
+      --navy:#102a43; --blue:#176b87; --cyan:#1aa6a6; --gold:#e9b949;
+      --ink:#203247; --muted:#64748b; --paper:#f3f7fa; --surface:#fff;
+      --line:#d9e4ec; --good:#147d64; --good-bg:#e8f7f1; --bad:#b34b4b;
+      --bad-bg:#fff1f1; --warn:#855f00; --warn-bg:#fff7d6; --radius:16px;
+      --shadow:0 14px 36px rgba(16,42,67,.08);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);background:var(--paper);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;font-size:16px;line-height:1.7}
+    button,input,select{font:inherit} button{cursor:pointer}
+    .layout{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh}
+    aside{position:sticky;top:0;height:100vh;padding:28px 20px;color:#e9f4f7;background:var(--navy);overflow:auto}
+    .brand{padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.16)}
+    .brand small{display:block;color:#8bc2ce;font-size:.74rem;letter-spacing:.08em}.brand strong{display:block;margin-top:5px;font-size:1.04rem}
+    .score{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:20px 0}.score div{padding:12px;border-radius:12px;background:rgba(255,255,255,.08)}.score b{display:block;color:var(--gold);font-size:1.45rem}.score span{font-size:.73rem;color:#c9e0e5}
+    .side-title{margin:22px 8px 8px;color:#82b8c3;font-size:.72rem;font-weight:800;letter-spacing:.1em}
+    .topic-nav{display:grid;gap:4px}.topic-nav button{padding:9px 11px;border:0;border-radius:9px;color:#dcecef;background:transparent;text-align:left}.topic-nav button:hover,.topic-nav button.active{color:#fff;background:rgba(255,255,255,.11)}
+    .side-note{margin-top:24px;padding:13px;border:1px solid rgba(233,185,73,.35);border-radius:12px;color:#dcecef;background:rgba(233,185,73,.08);font-size:.78rem}
+    main{width:min(1120px,100%);margin:0 auto;padding:46px 42px 90px}
+    .hero{position:relative;overflow:hidden;padding:40px;border-radius:26px;color:#fff;background:linear-gradient(135deg,#102a43,#145873 68%,#178f96);box-shadow:var(--shadow)}
+    .hero:after{content:"50";position:absolute;right:12px;bottom:-58px;color:rgba(255,255,255,.07);font-size:12rem;font-weight:900;line-height:1}
+    .eyebrow{margin:0;color:#8ee1df;font-size:.8rem;font-weight:900;letter-spacing:.1em}.hero h1{position:relative;z-index:1;margin:8px 0 14px;font-size:clamp(2rem,4vw,3.4rem);line-height:1.2;letter-spacing:-.04em}.hero p{position:relative;z-index:1;max-width:760px;margin:0;color:#dbf0f2}.chips{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}.chip{padding:6px 10px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(255,255,255,.08);font-size:.78rem}
+    .notice{margin:20px 0 26px;padding:14px 16px;border-left:5px solid var(--gold);border-radius:0 12px 12px 0;background:var(--warn-bg);font-size:.88rem}.notice strong{color:var(--warn)}
+    .controls{position:sticky;top:10px;z-index:10;display:grid;grid-template-columns:minmax(230px,1fr) 190px 190px;gap:9px;margin:24px 0;padding:12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.95);box-shadow:0 10px 28px rgba(16,42,67,.09);backdrop-filter:blur(10px)}
+    .controls input,.controls select{min-width:0;padding:10px 12px;border:1px solid var(--line);border-radius:9px;color:var(--ink);background:#fff}.controls input:focus,.controls select:focus{outline:3px solid rgba(26,166,166,.15);border-color:var(--cyan)}
+    .controls button{padding:9px 12px;border:0;border-radius:9px;color:#fff;background:var(--blue);font-size:.84rem;font-weight:800}.controls button.secondary{color:var(--navy);background:#e9f2f5}
+    .result-line{display:flex;justify-content:space-between;gap:15px;margin:0 3px 14px;color:var(--muted);font-size:.84rem}.result-line strong{color:var(--blue)}
+    .question-list{display:grid;gap:14px}.group-heading{display:flex;align-items:center;justify-content:space-between;margin:22px 2px 2px;padding-bottom:8px;border-bottom:2px solid #b8d7df;color:var(--navy);font-size:1.25rem}.group-heading span{color:var(--muted);font-size:.78rem;font-weight:700}
+    .question{overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:0 7px 22px rgba(16,42,67,.045)}
+    .question-header{display:grid;grid-template-columns:58px minmax(0,1fr) auto;align-items:center;gap:13px;padding:17px 18px;border-bottom:1px solid var(--line);background:#fbfdfe}
+    .qno{display:grid;width:44px;height:44px;place-items:center;border-radius:12px;color:#fff;background:var(--blue);font-weight:900}.summary-text b{display:block;color:var(--navy);font-size:1rem}.summary-text span{display:block;margin-top:2px;color:var(--muted);font-size:.8rem}.answer-badge{padding:6px 10px;border-radius:999px;color:var(--good);background:var(--good-bg);font-size:.8rem;font-weight:900}
+    .question-body{padding:0 20px 22px;border-top:1px solid var(--line)}
+    .original-block{margin:18px 0;padding:17px;border:1px solid #cadbe4;border-radius:13px;background:#f8fbfc}.section-label{display:block;margin-bottom:7px;color:var(--blue);font-size:.75rem;font-weight:900;letter-spacing:.08em}.original-stem{margin:0;color:var(--navy);font-size:1.02rem;font-weight:750;white-space:pre-line}.source-table{width:100%;margin-top:13px;border-collapse:collapse;background:#fff;font-size:.88rem}.source-table th,.source-table td{padding:8px 10px;border:1px solid var(--line);text-align:left}.source-table th{color:var(--navy);background:#eaf3f6}.analysis-title{margin:20px 0 9px;color:var(--navy);font-size:.98rem}.stem{margin:0 0 13px;color:var(--ink)}
+    .key{margin:0 0 16px;padding:12px 14px;border-left:4px solid var(--gold);background:var(--warn-bg);font-size:.88rem}.key strong{color:var(--warn)}
+    .options{display:grid;gap:9px}.option{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;padding:12px 13px;border:1px solid var(--line);border-radius:12px}.option.correct{border-color:#99d3c0;background:var(--good-bg)}.option.wrong{background:#fff}.letter{display:grid;width:30px;height:30px;place-items:center;border-radius:9px;font-weight:900}.correct .letter{color:#fff;background:var(--good)}.wrong .letter{color:var(--bad);background:var(--bad-bg)}.option p{margin:0}.option .choice{display:block;color:var(--ink);font-weight:750;white-space:pre-line}.option .reason{display:block;margin-top:7px;padding-top:6px;border-top:1px dashed rgba(100,116,139,.28);color:var(--muted);font-size:.86rem}.correct .reason{color:#286b59}.reason strong{color:inherit}
+    .meta-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:15px}.tag{padding:4px 8px;border-radius:999px;color:#426176;background:#edf4f7;font-size:.72rem;font-weight:750}.tag.supplement{color:#785d12;background:var(--warn-bg)}
+    .empty{display:none;padding:40px;text-align:center;color:var(--muted);background:#fff;border-radius:14px}
+    footer{margin-top:42px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.8rem}
+    @media(max-width:900px){.layout{display:block}aside{position:relative;height:auto}.topic-nav{grid-template-columns:repeat(2,1fr)}.side-note{display:none}main{padding:30px 20px 70px}.controls{grid-template-columns:1fr 1fr}.controls input{grid-column:1/-1}}
+    @media(max-width:600px){.hero{padding:28px 22px}.controls{grid-template-columns:1fr}.controls input{grid-column:auto}.question-header{grid-template-columns:48px minmax(0,1fr)}.answer-badge{grid-column:2}.topic-nav{grid-template-columns:1fr}.option{grid-template-columns:30px minmax(0,1fr)}}
+    @media print{@page{size:A4;margin:12mm 11mm}body{background:#fff;font-size:9.5pt;line-height:1.52}.layout{display:block}aside,.controls{display:none!important}main{width:100%;max-width:none;padding:0}.hero{padding:28px;box-shadow:none;break-after:page}.hero:after{font-size:9rem}.notice{margin:0 0 15px}.question-list{gap:10px}.question{break-inside:avoid;box-shadow:none!important}.question-header{padding:11px 13px}.question-body{padding:0 14px 14px}.original-block{margin:12px 0;padding:11px}.analysis-title{margin:13px 0 7px}.key{margin-bottom:10px;padding:8px 10px}.options{gap:6px}.option{padding:8px 10px}.meta-row{margin-top:10px}.answer-badge{border:1px solid #99d3c0}.result-line{display:none}footer{break-before:page}}
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside>
+      <div class="brand"><small>iPAS AI 應用規劃師中級</small><strong>科目一・考古題解析</strong></div>
+      <div class="score"><div><b>50</b><span>選擇題</span></div><div><b>114</b><span>年第二次</span></div></div>
+      <div class="side-title">依主題篩選</div>
+      <div id="topicNav" class="topic-nav"></div>
+      <div class="side-note">官方試題提供答案但沒有解析。本頁用官方講義觀念逐項說明，補充內容會另外標示。</div>
+    </aside>
+    <main>
+      <header class="hero">
+        <p class="eyebrow">114 年第二次・公告試題</p>
+        <h1>第一科<br>逐題答案解析</h1>
+        <p>完整保留公告試題的題幹與四個選項，再另外標出題目考點、各選項的判斷重點與易混淆概念。</p>
+        <div class="chips"><span class="chip">原題完整保留</span><span class="chip">官方答案</span><span class="chip">A～D 逐項解析</span><span class="chip">原順序／主題排序</span></div>
+      </header>
+      <div class="notice"><strong>閱讀方式：</strong>50 題已全部直接展開。每題先列出原題與完整選項；「題目重點」及每個選項下方的「判斷重點」是另外加上的研讀標注，不會取代原文。</div>
+      <div class="controls">
+        <input id="search" type="search" placeholder="搜尋題號、名詞或情境，例如：LoRA、漂移、Q21">
+        <select id="topicFilter" aria-label="依主題篩選"></select>
+        <select id="sortMode" aria-label="題目排序方式"><option value="original">依原題號排序</option><option value="topic">依主題分組</option></select>
+      </div>
+      <div class="result-line"><span id="resultCount">顯示 50 題</span><strong id="activeTopic">全部主題</strong></div>
+      <div id="questionList" class="question-list"></div>
+      <div id="empty" class="empty">找不到符合條件的題目。</div>
+      <footer>
+        <p><strong>試題與答案來源：</strong>114 年第二次 AI 應用規劃師中級能力鑑定公告試題，第一科：人工智慧技術應用與規劃。</p>
+        <p><strong>觀念依據：</strong>《AI 應用規劃師（中級）學習指引－科目 1 人工智慧技術應用規劃》。本頁為學習整理，並非官方解析。</p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // 解析資料：官方答案照錄公告試題；摘要、題目重點與選項判斷均另列，不取代原題。
+    const questions = [
+          {
+                "id": 1,
+                "answer": "B",
+                "topic": "NLP",
+                "title": "情感分析的主要目的",
+                "stem": "從社群貼文與商品評論判斷顧客對產品的正面、負面或中性情感。",
+                "clue": "題幹直接出現 Sentiment Analysis；核心是辨識文本表達的情感傾向，不是翻譯、摘要或只分析語氣。",
+                "source": "講義 3.1｜情感分析｜講義第 3-30～3-31 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "預測顧客使用的語言風格與語氣；",
+                            "語言風格與語氣可作為特徵，但不是情感分析的主要輸出。"
+                      ],
+                      "B": [
+                            "判斷文本中所表達的情感傾向；",
+                            "正確。情感分析用於辨識文本的正面、負面或中性等情感傾向。"
+                      ],
+                      "C": [
+                            "將顧客留言自動翻譯成企業內部指定語言；",
+                            "這是機器翻譯任務。"
+                      ],
+                      "D": [
+                            "產生顧客評論的自動化摘要內容",
+                            "這是文本摘要任務。"
+                      ]
+                }
+          },
+          {
+                "id": 2,
+                "answer": "A",
+                "topic": "NLP",
+                "title": "Transformer 的長距離建模",
+                "stem": "Transformer 改善長篇文件翻譯，關鍵在自注意力能直接建立序列中遠距詞彙的關聯。",
+                "clue": "看到 Transformer、長篇與翻譯品質，要連結 Self-Attention 與長距離依賴。",
+                "source": "講義 3.1｜Transformer｜講義第 3-25～3-26 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "透過自注意力機制（Self-Attention Mechanism）捕捉長距離語境依賴關係；",
+                            "正確。自注意力讓各 token 直接關聯並依重要性加權，可捕捉長距離語境。"
+                      ],
+                      "B": [
+                            "透過卷積運算（Convolution Operation）加速訓練過程；",
+                            "卷積不是 Transformer 改善長篇翻譯的核心機制。"
+                      ],
+                      "C": [
+                            "透過強化學習（Reinforcement Learning）自動調整語句生成策略；",
+                            "強化學習可能用於後續對齊，但不是此架構提升翻譯的主要原因。"
+                      ],
+                      "D": [
+                            "透過資料增強（Data Augmentation）平衡多語語料比例",
+                            "資料平衡有助訓練，卻不是 Transformer 本身的技術特性。"
+                      ]
+                }
+          },
+          {
+                "id": 3,
+                "answer": "B",
+                "topic": "NLP",
+                "title": "BERT 的 MLM 訓練策略",
+                "stem": "MLM 隨機遮蔽部分詞語，再利用左右雙向上下文預測被遮蔽內容。",
+                "clue": "BERT 的關鍵字是雙向編碼；MLM 不是由左到右生成。",
+                "source": "講義 3.1｜BERT 與 MLM｜講義第 3-27 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "依序遮罩句尾詞語，讓模型從左到右逐步生成完整句子；",
+                            "由左至右生成屬自迴歸語言模型，不是 BERT 的 MLM。"
+                      ],
+                      "B": [
+                            "隨機遮罩部分詞語，並讓模型根據雙向上下文（Bidirectional Context）預測被遮罩的詞；",
+                            "正確。隨機遮蔽 token，並以雙向上下文恢復原詞。"
+                      ],
+                      "C": [
+                            "透過對抗訓練（Adversarial Training）生成語意相似的擾動樣本以提升泛化性；",
+                            "對抗訓練不是 MLM 的預訓練目標。"
+                      ],
+                      "D": [
+                            "以未遮罩的詞為條件，使用解碼器（Decoder）結構重建整句內容",
+                            "BERT 主要使用 Encoder；MLM 也不是以 Decoder 重建整句。"
+                      ]
+                }
+          },
+          {
+                "id": 4,
+                "answer": "C",
+                "topic": "NLP",
+                "title": "Word2Vec 與 GloVe",
+                "stem": "Word2Vec 由局部上下文預測學習詞向量；GloVe 利用全域詞彙共現統計。",
+                "clue": "記憶對比：Word2Vec 是 predictive，GloVe 是 count/co-occurrence based。",
+                "source": "講義 3.1｜詞嵌入｜講義第 3-20～3-21 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "Word2Vec 以詞頻權重訓練詞向量，而 GloVe 以隨機初始化向量進行學習；",
+                            "兩者都需要初始化與學習；這不是主要差異。"
+                      ],
+                      "B": [
+                            "Word2Vec 以全局統計矩陣為基礎，而 GloVe 採用神經網路進行上下文預測；",
+                            "描述完全顛倒：全域共現是 GloVe，神經預測是 Word2Vec。"
+                      ],
+                      "C": [
+                            "Word2Vec 為基於預測的模型，而 GloVe 為基於共現統計的模型；",
+                            "正確。這是兩者訓練依據的核心差異。"
+                      ],
+                      "D": [
+                            "Word2Vec 僅能用於靜態文本語料，而 GloVe 可應用於即時語料更新",
+                            "兩者都可在既有語料訓練，是否即時更新不是本質分界。"
+                      ]
+                }
+          },
+          {
+                "id": 5,
+                "answer": "A",
+                "topic": "NLP",
+                "title": "長文本中的 TF-IDF 偏差",
+                "stem": "長文本累積較高詞頻，若未妥善正規化，常見詞權重可能被放大而掩蓋關鍵詞。",
+                "clue": "題目問長篇幅造成的限制；焦點在 TF 項受文件長度影響，不是 IDF 無法計算。",
+                "source": "講義 3.1｜TF-IDF｜講義第 3-17～3-18 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "長文本中的詞頻偏高，導致常見詞權重被過度放大；",
+                            "正確。長文件的原始詞頻容易偏高，使常見詞權重被過度放大。"
+                      ],
+                      "B": [
+                            "長文本中缺乏明確句子邊界，造成 TF-IDF 無法計算詞頻；",
+                            "TF-IDF 依詞與文件統計，不需要句子邊界。"
+                      ],
+                      "C": [
+                            "TF-IDF 無法同時處理多份文件；",
+                            "IDF 正是跨多份文件計算，並非不能同時處理。"
+                      ],
+                      "D": [
+                            "長文本會改變 IDF（Inverse Document Frequency）的計算，使所有詞權重趨於相近",
+                            "文件變長主要影響 TF；IDF 由詞出現在多少文件中決定。"
+                      ]
+                }
+          },
+          {
+                "id": 6,
+                "answer": "B",
+                "topic": "NLP",
+                "title": "N-gram 的長距離限制",
+                "stem": "N-gram 只依固定長度的鄰近前序詞估計機率，片段可合理但難以維持長篇語意。",
+                "clue": "固定視窗、馬可夫假設與長距離依賴是題目要考的因果關係。",
+                "source": "講義 3.1｜N-gram｜講義第 3-18～3-19 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "N-gram 模型在訓練過程中需要龐大計算量，導致長句無法收斂；",
+                            "計算量不是句子缺乏整體連貫性的主要原因。"
+                      ],
+                      "B": [
+                            "N-gram 模型僅根據固定長度的前序詞建立機率估計，難以捕捉長距離依賴關係（Long-range Dependencies）；",
+                            "正確。固定長度上下文無法捕捉超出視窗的長距離關聯。"
+                      ],
+                      "C": [
+                            "N-gram 模型缺乏語意嵌入（Semantic Embedding）層，因此無法表徵詞語間的語意相似度；",
+                            "缺少語意嵌入是特性之一，但題幹的長篇連貫問題更直接來自有限上下文。"
+                      ],
+                      "D": [
+                            "N-gram 模型假設詞與詞之間相互獨立，導致無法建構上下文語意關聯",
+                            "N-gram 並非假設所有詞完全獨立，而是假設只依賴有限前文。"
+                      ]
+                }
+          },
+          {
+                "id": 7,
+                "answer": "A",
+                "topic": "電腦視覺與評估",
+                "title": "IoU 閾值的意義",
+                "stem": "IoU 閾值越高，預測框必須與真實框重疊得更完整，才會被算作正確偵測。",
+                "clue": "高 IoU threshold 代表判定標準更嚴格，不代表誤差更大或 mAP 必然上升。",
+                "source": "講義 3.2｜物件偵測評估｜講義第 3-52 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "預測邊界框與真實邊界框的重疊程度越高，模型偵測結果越精準；",
+                            "正確。更高閾值要求預測框和真實框具有更高重疊程度。"
+                      ],
+                      "B": [
+                            "預測邊界框與真實邊界框的誤差越大，導致 mAP 數值上升；",
+                            "誤差越大會使 IoU 降低，不會因此提高 mAP。"
+                      ],
+                      "C": [
+                            "模型整體精確率（Precision）降低，但召回率（Recall）上升；",
+                            "提高 IoU 閾值可能使召回率下降，並非題述固定關係。"
+                      ],
+                      "D": [
+                            "預測邊界框的評估結果不受真實框大小影響",
+                            "IoU 明確依預測框與真實框的交集及聯集計算。"
+                      ]
+                }
+          },
+          {
+                "id": 8,
+                "answer": "C",
+                "topic": "電腦視覺與評估",
+                "title": "Softmax 與 Max-Pooling",
+                "stem": "Softmax 將全部輸入轉成總和為 1 的比例；Max-Pooling 每個區域只保留最大值。",
+                "clue": "一個是機率正規化，一個是局部下採樣，功能不能互換。",
+                "source": "講義 3.2｜CNN 基礎｜講義第 3-48～3-49 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "Softmax 與 Max-Pooling 都會將特徵張量壓縮為單一最大值；",
+                            "Softmax 不會只保留最大值。"
+                      ],
+                      "B": [
+                            "Max-Pooling 會對輸入進行機率分佈的轉換；",
+                            "機率分布轉換是 Softmax 的工作。"
+                      ],
+                      "C": [
+                            "Softmax 會保留所有輸入資訊，但以比例表示；Max-Pooling 只保留區域最大值；",
+                            "正確。Softmax 保留各項相對比例；Max-Pooling 丟棄非最大值。"
+                      ],
+                      "D": [
+                            "Softmax 主要用於特徵降維，而 Max-Pooling 用於分類輸出",
+                            "用途顛倒：Softmax 常用於分類輸出，Max-Pooling 用於特徵下採樣。"
+                      ]
+                }
+          },
+          {
+                "id": 9,
+                "answer": "B",
+                "topic": "模型開發與評估",
+                "title": "資料增強需維持分布與語意",
+                "stem": "不適當的增強會讓資料分布或標籤語意偏離原資料，反而傷害泛化能力。",
+                "clue": "資料增強不是越多越好；有效前提是增強後仍符合任務語意與真實分布。",
+                "source": "講義｜資料增強｜講義第 5-2～5-7 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "增強樣本未經隨機初始化，導致模型梯度更新不穩定，應重新設計訓練啟動流程；",
+                            "隨機初始化屬模型訓練設定，不是增強樣本的必要屬性。"
+                      ],
+                      "B": [
+                            "增強後資料的特徵分佈與原始資料不一致，影響模型的泛化能力，應檢查並調整增強策略以維持語意一致性；",
+                            "正確。應檢查增強策略，避免產生不合理分布或改變標籤語意。"
+                      ],
+                      "C": [
+                            "增強樣本的比例過高，造成模型對特定資料產生偏好，應適度提高增強比例並調整學習率；",
+                            "既然比例過高造成偏差，改善方向應是降低或校正，不是再提高。"
+                      ],
+                      "D": [
+                            "增強後資料的標註可信度下降，導致訓練訊號偏差，應以半監督學習方式重新校正資料",
+                            "標註可信度可能是問題，但題目所列的半監督校正並非最直接通用對策。"
+                      ]
+                }
+          },
+          {
+                "id": 10,
+                "answer": "D",
+                "topic": "模型開發與評估",
+                "title": "F1 綜合 Precision 與 Recall",
+                "stem": "F1 是 Precision 與 Recall 的調和平均，適合需要兼顧兩者時使用。",
+                "clue": "看到「同時兼顧精確率與召回率」，直接對應 F1 Score。",
+                "source": "講義｜分類評估指標｜講義第 5-14～5-15 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "準確率（Accuracy）；",
+                            "Accuracy 衡量整體判對比例，不直接平衡 Precision 與 Recall。"
+                      ],
+                      "B": [
+                            "均方根誤差（RMSE）；",
+                            "RMSE 是迴歸誤差指標。"
+                      ],
+                      "C": [
+                            "均方誤差（MSE）；",
+                            "MSE 是迴歸誤差指標。"
+                      ],
+                      "D": [
+                            "F1 分數（F1 Score）",
+                            "正確。F1 對 Precision 與 Recall 取調和平均。"
+                      ]
+                }
+          },
+          {
+                "id": 11,
+                "answer": "C",
+                "topic": "機器學習",
+                "title": "DBSCAN 的兩個核心參數",
+                "stem": "DBSCAN 以鄰域半徑 ε 與形成稠密區域所需的最小點數 MinPts 決定群集與雜訊。",
+                "clue": "DBSCAN 是密度式分群；不是 K-means，因此沒有 K 值。",
+                "source": "講義｜非監督式學習 DBSCAN｜講義第 5-9～5-10 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "特徵數與學習率；",
+                            "特徵數與學習率不是 DBSCAN 的聚類超參數。"
+                      ],
+                      "B": [
+                            "K 值與距離閾值；",
+                            "K 值屬 K-means 類方法，DBSCAN 不預先指定群數。"
+                      ],
+                      "C": [
+                            "鄰域半徑（Epsilon ε）與最小點數（MinPts）；",
+                            "正確。ε 決定鄰域，MinPts 決定核心點所需密度。"
+                      ],
+                      "D": [
+                            "交叉熵（Cross Entropy）與權重初始化",
+                            "交叉熵與權重初始化用於神經網路訓練。"
+                      ]
+                }
+          },
+          {
+                "id": 12,
+                "answer": "B",
+                "topic": "資料與特徵工程",
+                "title": "PCA 處理高度相關特徵",
+                "stem": "PCA 將相關原始特徵轉換成彼此正交的主成分，可緩解多重共線性造成的係數不穩定。",
+                "clue": "題幹同時出現高度相關與係數不穩定；優先想到降維或正則化。此題選項中 PCA 最直接。",
+                "source": "講義｜PCA 與降維｜講義第 5-5～5-6 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "繼續保留所有特徵，不進行任何處理；",
+                            "保留所有高度相關特徵無法處理共線性。"
+                      ],
+                      "B": [
+                            "使用主成分分析（PCA）將相關特徵轉換為彼此獨立的主成分；",
+                            "正確。PCA 以正交主成分重新表示資料，降低特徵間相關。"
+                      ],
+                      "C": [
+                            "新增更多原始變數以提升模型表現；",
+                            "新增更多原始變數可能使共線性更嚴重。"
+                      ],
+                      "D": [
+                            "改用分類模型進行預測",
+                            "房價是連續值，改成分類模型不符合任務。"
+                      ]
+                }
+          },
+          {
+                "id": 13,
+                "answer": "B",
+                "topic": "MLOps 與部署",
+                "title": "Kubernetes 的核心角色",
+                "stem": "Kubernetes 負責容器化服務的部署、調度、擴展、自我修復與運行環境協調。",
+                "clue": "Kubernetes 是容器編排平台，不是模型訓練器、資料庫或 GPU 本身。",
+                "source": "講義｜模型部署與 Kubernetes｜講義第 5-16 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "自動化管理模型的訓練流程與參數調校；",
+                            "模型訓練流程與參數調校通常由訓練或管線工具負責。"
+                      ],
+                      "B": [
+                            "管理與協調模型服務的部署、擴展與運行環境；",
+                            "正確。部署、擴縮、調度與運行管理是 Kubernetes 核心功能。"
+                      ],
+                      "C": [
+                            "提供 AI 模型的資料儲存與版本控管功能；",
+                            "資料儲存與模型版本管理需其他儲存及 Registry 工具。"
+                      ],
+                      "D": [
+                            "負責深度學習推論的 GPU 加速運算",
+                            "GPU 執行運算由硬體與推論框架完成，Kubernetes 主要負責資源調度。"
+                      ]
+                }
+          },
+          {
+                "id": 14,
+                "answer": "A",
+                "topic": "模型開發與評估",
+                "title": "用交叉驗證選超參數",
+                "stem": "在多組超參數間反覆評估時，交叉驗證能檢查設定在不同資料切分上的穩定性，降低只適配單一驗證集的風險。",
+                "clue": "題目問的是避免「過度調整超參數」；應用多個驗證摺評估設定的穩定性。",
+                "source": "講義｜交叉驗證與超參數調校｜講義第 5-14 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "採用交叉驗證（Cross-Validation）於多組參數組合間反覆評估，選擇在驗證資料上表現最穩定的設定；",
+                            "正確。多摺驗證可降低單一切分造成的偶然偏差，選出較穩定設定。"
+                      ],
+                      "B": [
+                            "使用早期停止機制（Early Stopping）監控訓練誤差並在收斂前停止訓練，以防模型學習過度；",
+                            "Early Stopping 通常監控驗證損失；選項寫監控訓練誤差且未直接處理反覆選參問題。"
+                      ],
+                      "C": [
+                            "對輸入特徵進行標準化以減少特徵值差異帶來的過擬合風險；",
+                            "標準化改善尺度問題，不能單獨防止超參數搜尋過擬合。"
+                      ],
+                      "D": [
+                            "提高模型複雜度並使用更多超參數搜尋範圍，以確保模型能充分學習資料特徵",
+                            "增加複雜度與搜尋範圍反而提高過擬合風險。"
+                      ]
+                }
+          },
+          {
+                "id": 15,
+                "answer": "C",
+                "topic": "MLOps 與部署",
+                "title": "Model Registry 的用途",
+                "stem": "Model Registry 集中保存模型版本、訓練資訊、審核與部署狀態，支援生命週期管理。",
+                "clue": "Registry 關鍵字要聯想到模型版本與階段狀態，不是 Feature Store 或線上監控。",
+                "source": "講義｜MLOps 模型管理｜講義第 5-19～5-20 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "用於設定運算資源與執行環境以確保訓練穩定；",
+                            "運算環境通常由容器、工作流或基礎設施工具設定。"
+                      ],
+                      "B": [
+                            "用於建立可重複使用的資料與特徵版本；",
+                            "資料與特徵版本較接近資料版本控制或 Feature Store。"
+                      ],
+                      "C": [
+                            "用於集中管理模型版本、訓練紀錄與部署狀態；",
+                            "正確。Model Registry 用於集中管理模型版本、相關紀錄與部署階段。"
+                      ],
+                      "D": [
+                            "用於追蹤模型上線後的表現與漂移情況",
+                            "上線效能與漂移屬模型監控系統的職責。"
+                      ]
+                }
+          },
+          {
+                "id": 16,
+                "answer": "D",
+                "topic": "NLP",
+                "title": "Seq2Seq 的典型應用",
+                "stem": "Seq2Seq 將一段輸入序列映射成另一段輸出序列，典型任務是機器翻譯與摘要。",
+                "clue": "輸入和輸出都是可變長度序列，是 Seq2Seq 的辨識重點。",
+                "source": "講義 3.1｜Seq2Seq｜講義第 3-24～3-26 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "預測銷售趨勢曲線，輸出未來數值序列；",
+                            "時間序列預測也可用序列模型，但題目所列最典型的 Seq2Seq NLP 情境是文字到文字。"
+                      ],
+                      "B": [
+                            "辨識文本中出現的人名、地名與組織名稱等實體資訊；",
+                            "NER 是逐 token 序列標註，不是一般的輸入序列到另一段文字生成。"
+                      ],
+                      "C": [
+                            "對輸入文本中的關鍵字進行頻率統計與可視化；",
+                            "關鍵字頻率統計不需要 Seq2Seq。"
+                      ],
+                      "D": [
+                            "將輸入文字轉換成語意等價的另一段文字，如自動翻譯或摘要生成",
+                            "正確。翻譯與摘要都把文字序列轉為另一文字序列。"
+                      ]
+                }
+          },
+          {
+                "id": 17,
+                "answer": "D",
+                "topic": "NLP",
+                "title": "RAG 檢索的相關性挑戰",
+                "stem": "檢索階段最重要的是找到真正能回答查詢意圖的內容，而不只是向量距離相近的文件。",
+                "clue": "語意相似不等於答案相關；RAG 的生成品質受檢索相關性直接限制。",
+                "source": "講義 3.1｜RAG｜講義第 3-29 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "確保檢索到的文件能被完整納入語言模型的上下文視窗（Context Window）中進行生成；",
+                            "上下文視窗與文件整理屬檢索後的內容組裝與生成限制。"
+                      ],
+                      "B": [
+                            "選擇使用 Faiss 或 ScaNN 等近似最近鄰搜尋函式庫；",
+                            "函式庫選型是實作手段，不是最關鍵品質挑戰。"
+                      ],
+                      "C": [
+                            "降低嵌入模型（Embedding Model）在高維空間中的計算成本與記憶體占用；",
+                            "計算成本重要，但不如檢索結果是否真正相關直接決定回答品質。"
+                      ],
+                      "D": [
+                            "避免向量檢索結果僅具語意相似但與查詢意圖無實質關聯的情況",
+                            "正確。需避免只表面相似、卻與查詢意圖無實質關聯的結果。"
+                      ]
+                }
+          },
+          {
+                "id": 18,
+                "answer": "D",
+                "topic": "生成式與多模態",
+                "title": "改善注意力過度平均",
+                "stem": "對注意力權重加入稀疏化約束，可促使模型集中權重於少數關鍵位置。",
+                "clue": "Attention Collapse 題幹已說無法聚焦；改善方向是讓權重更尖銳或稀疏。",
+                "source": "講義｜Transformer 注意力｜講義第 3-25～3-26 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "提高 Query-Key 點積（Dot Product）的縮放常數；",
+                            "提高縮放常數通常使 logits 更平滑，未必能改善聚焦問題。"
+                      ],
+                      "B": [
+                            "在 Softmax 前加入高斯雜訊（Gaussian Noise）；",
+                            "加入雜訊可能增加不穩定，不能直接保證聚焦。"
+                      ],
+                      "C": [
+                            "使用 ReLU 函數取代 Softmax；",
+                            "ReLU 不會產生正規化的注意力分布。"
+                      ],
+                      "D": [
+                            "對注意力權重施加稀疏化約束（Sparsity Constraint）",
+                            "正確。稀疏化約束降低不重要位置權重，使注意力更集中。"
+                      ]
+                }
+          },
+          {
+                "id": 19,
+                "answer": "B",
+                "topic": "NLP",
+                "title": "低資源語言的反向翻譯",
+                "stem": "反向翻譯利用另一語言的單語資料產生偽平行語料，能在不新增真實標註語料下擴充訓練資料。",
+                "clue": "題目限制是資料少、不能新增真實語料且要改善泛化；資料增強比擴大模型更合理。",
+                "source": "講義 3.1｜低資源 NLP｜講義第 3-33～3-36 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "將 Transformer 的隱藏層維度擴增至 1024，以提升表徵能力；",
+                            "資料只有一萬筆時擴大模型容量通常加劇過擬合。"
+                      ],
+                      "B": [
+                            "採用反向翻譯（Back-Translation）技術，以生成額外目標語句的偽平行語料（Pseudo‑Parallel Corpus）；",
+                            "正確。Back-Translation 可建立額外偽平行語料，擴充訓練訊號。"
+                      ],
+                      "C": [
+                            "對詞嵌入矩陣（Embedding Matrix），施加 L1 正則化以壓縮模型參數；",
+                            "L1 可稀疏化參數，但不如增加合理語料直接改善低資源泛化。"
+                      ],
+                      "D": [
+                            "將多語言 BERT（mBERT）中所有 Transformer 層全部凍結以保留預訓練知識",
+                            "全部凍結會限制對目標語言的適配，且不是資料增強方法。"
+                      ]
+                }
+          },
+          {
+                "id": 20,
+                "answer": "B",
+                "topic": "生成式與多模態",
+                "title": "GAN 模式崩潰與 WGAN",
+                "stem": "WGAN 以 Wasserstein 距離改善生成器的梯度訊號與訓練穩定性，是處理 Mode Collapse 的常見方法。",
+                "clue": "模式崩潰是生成器只產出少數樣式；題目問最常用的整體損失改良。",
+                "source": "講義 3.3｜GAN｜講義第 3-62～3-63 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "在鑑別器中加入梯度懲罰（Gradient Penalty）以穩定訓練過程；",
+                            "梯度懲罰常與 WGAN-GP 搭配，可穩定訓練，但此題官方答案聚焦 WGAN 損失。"
+                      ],
+                      "B": [
+                            "採用 Wasserstein 距離（WGAN 損失）替代原始的 GAN 損失函數；",
+                            "正確。Wasserstein 距離提供較平滑且有意義的訓練訊號，常用來緩解模式崩潰。"
+                      ],
+                      "C": [
+                            "對生成器輸入的潛在向量加入隨機擾動；",
+                            "單純擾動潛在向量不保證生成器會覆蓋更多模式。"
+                      ],
+                      "D": [
+                            "使用多尺度鑑別器架構以提高對多樣性的判別能力",
+                            "多尺度鑑別器可改善細節，但不是最典型的 Mode Collapse 解法。"
+                      ]
+                }
+          },
+          {
+                "id": 21,
+                "answer": "B",
+                "topic": "生成式與多模態",
+                "title": "缺失模態感知訓練",
+                "stem": "在訓練中模擬某些模態缺失，讓模型學會只依現有模態仍能完成任務，是最穩健的策略。",
+                "clue": "重點是讓模型在訓練與推論都能適應模態缺失，而不是臨時用固定值硬補。",
+                "source": "講義 3.3｜多模態模型｜講義第 3-74～3-81 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "以零向量或固定向量填充缺失模態輸入；",
+                            "固定零向量容易造成訓練與推論分布不一致，也不代表真實缺失語意。"
+                      ],
+                      "B": [
+                            "訓練具備模態缺失感知能力的模型，使其適應缺失狀況；",
+                            "正確。模態缺失感知訓練讓模型直接學會不同可用模態組合。"
+                      ],
+                      "C": [
+                            "利用生成模型（如 GAN 或自迴歸模型）預測並補全缺失模態資料；",
+                            "生成補全可能引入錯誤與額外成本，通常不如直接訓練缺失韌性可靠。"
+                      ],
+                      "D": [
+                            "直接捨棄缺少模態的樣本，避免干擾訓練或推論",
+                            "丟棄樣本浪費資料，且無法處理上線時的缺失情況。"
+                      ]
+                }
+          },
+          {
+                "id": 22,
+                "answer": "D",
+                "topic": "MLOps 與部署",
+                "title": "以 KL 散度偵測資料漂移",
+                "stem": "比較目前輸入特徵與訓練資料的機率分布差異，KL Divergence 可量化分布改變。",
+                "clue": "題目問的是「偵測並確認」，不是問題發生後的重訓或提升模型容量。",
+                "source": "講義｜資料漂移監控｜講義第 4-30～4-31、4-43 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "定期重新訓練模型以應對外部變化；",
+                            "定期重訓是應對措施，不是漂移偵測方法。"
+                      ],
+                      "B": [
+                            "提升模型複雜度以捕捉更多資料變異性；",
+                            "增加複雜度不會證明輸入分布是否改變。"
+                      ],
+                      "C": [
+                            "增加測試資料量以提高評估準確度；",
+                            "增加測試量可能改善估計，但仍需分布差異指標。"
+                      ],
+                      "D": [
+                            "計算輸入特徵分佈間的 KL 散度（KL Divergence）",
+                            "正確。KL 散度可量化兩個機率分布的差異。"
+                      ]
+                }
+          },
+          {
+                "id": 23,
+                "answer": "A",
+                "topic": "MLOps 與部署",
+                "title": "醫療系統的漸進式部署",
+                "stem": "先在單一專科或特定病房小範圍啟用，再依回饋與風險逐步擴展，是可控制且具代表性的 rollout。",
+                "clue": "漸進式部署的核心是縮小影響範圍、設置可觀察階段並逐步擴大。",
+                "source": "講義｜Phased Rollout｜講義第 4-13～4-14 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "從單一專科（如放射科）或特定病房開始啟用，逐步擴展至全院；",
+                            "正確。先限定組織範圍，能控制臨床風險並累積實際回饋。"
+                      ],
+                      "B": [
+                            "先部署於病例量較高的急診單位，加速收集高頻使用回饋；",
+                            "急診屬高風險、高壓情境，不適合當第一階段。"
+                      ],
+                      "C": [
+                            "僅在夜班或離峰時段啟用，避免影響主要臨床工作負載；",
+                            "只限制時段未必限制影響對象，也可能缺乏完整流程驗證。"
+                      ],
+                      "D": [
+                            "在使用者界面啟用提示模式，讓全院同步體驗但不影響診斷流程",
+                            "全院同步仍擴大了接觸範圍，不符合逐步擴展。"
+                      ]
+                }
+          },
+          {
+                "id": 24,
+                "answer": "D",
+                "topic": "負責任 AI 與安全",
+                "title": "對抗性攻擊與網路防火牆",
+                "stem": "對抗性攻擊以細微輸入擾動欺騙模型；網路防火牆處理未授權連線，無法修正模型對擾動的脆弱性。",
+                "clue": "題目問「並非」針對此攻擊型態；區分模型層輸入攻擊與網路層入侵。",
+                "source": "講義｜AI 安全與對抗攻擊｜講義第 4-30～4-36 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "強化資料前處理，用以過濾掉格式不符或數值極端異常的輸入；",
+                            "輸入檢查可攔截部分異常樣本，屬輸入防護措施。"
+                      ],
+                      "B": [
+                            "在模型訓練階段導入對抗樣本訓練，以提升模型對惡意特徵擾動的辨識與防禦能力；",
+                            "對抗訓練直接讓模型學習抵抗惡意擾動。"
+                      ],
+                      "C": [
+                            "於推論後階段使用規則引擎，以確保模型的預測結果不違反既有的業務硬性規定；",
+                            "規則引擎可在輸出後加入業務安全護欄。"
+                      ],
+                      "D": [
+                            "在模型部署環境中強化網路防火牆，以阻擋來自未授權來源的網路連線",
+                            "正確答案。防火牆阻擋未授權網路連線，不能解決合法管道送入的對抗樣本。"
+                      ]
+                }
+          },
+          {
+                "id": 25,
+                "answer": "B",
+                "topic": "負責任 AI 與安全",
+                "title": "從資料源頭降低著作權風險",
+                "stem": "建立訓練資料授權驗證與篩選機制，排除未授權來源，能在源頭預防侵權。",
+                "clue": "法律風險預防的優先順序是確認資料使用權，而不是只處理輸出或可追溯性。",
+                "source": "講義｜智慧財產權與資料治理｜講義第 3-35～3-36、4-32 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "對生成內容進行語意相似度比對，自動標註可能涉及既有著作的輸出結果，以降低侵權風險；",
+                            "相似度比對是輸出端偵測，無法消除訓練資料未授權問題。"
+                      ],
+                      "B": [
+                            "建立訓練資料篩選與授權驗證機制，排除未授權或高風險資料來源；",
+                            "正確。從訓練資料來源與授權管理著手最能預防侵權。"
+                      ],
+                      "C": [
+                            "在訓練與微調過程中採用差分隱私技術，避免模型記憶特定受著作權保護的樣本；",
+                            "差分隱私著重個資與記憶洩漏，不等於取得著作權授權。"
+                      ],
+                      "D": [
+                            "在模型輸出端嵌入浮水印（Watermarking）或數位指紋（Digital Fingerprint）技術，以確保生成內容可追溯",
+                            "浮水印提升可追溯性，但不會使侵權內容變成合法。"
+                      ]
+                }
+          },
+          {
+                "id": 26,
+                "answer": "D",
+                "topic": "機器學習",
+                "title": "LASSO 緩解多重共線性",
+                "stem": "LASSO 的 L1 正則化會壓縮部分係數甚至使其為零，可降低高度相關特徵造成的估計不穩定。",
+                "clue": "題目明確問房價迴歸與參數估計；在選項中應選帶正則化的迴歸模型。",
+                "source": "講義｜迴歸與正則化｜講義第 5-5～5-6 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "不受多重共線性影響的決策樹模型；",
+                            "決策樹對共線性較不敏感，但不直接提供題目所關注的穩定線性參數估計。"
+                      ],
+                      "B": [
+                            "傳統線性迴歸模型，不含正則化項；",
+                            "未正則化線性迴歸正是容易受共線性影響的模型。"
+                      ],
+                      "C": [
+                            "支持向量機搭配線性核函數；",
+                            "線性 SVM 主要用於分類或間隔學習，非此房價迴歸首選。"
+                      ],
+                      "D": [
+                            "含 L1 正則化的 LASSO 迴歸模型",
+                            "正確。L1 懲罰能壓縮或選除冗餘係數，緩解共線性。"
+                      ]
+                }
+          },
+          {
+                "id": 27,
+                "answer": "C",
+                "topic": "資料與特徵工程",
+                "title": "巢狀 JSON 的時序特徵工程",
+                "stem": "先遞迴展開巢狀欄位，再依時間窗口聚合事件與數值，是保留結構資訊又可供模型使用的做法。",
+                "clue": "不能只把 JSON 當純文字；要保留巢狀欄位語意並依時間整理。",
+                "source": "講義｜半結構化資料處理｜講義第 5-3～5-5、5-15 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "先將 JSON 資料扁平化轉成 CSV，再對欄位計算統計量（如均值、 次數）作為特徵；",
+                            "直接扁平化成 CSV 可能丟失陣列與巢狀關係，複雜 JSON 不一定能完整表達。"
+                      ],
+                      "B": [
+                            "使用遞歸神經網路（RNN）直接輸入原始 JSON 字串進行時序特徵抽取；",
+                            "把原始 JSON 字串直接送入 RNN 缺乏結構解析，實務效率與可解釋性較差。"
+                      ],
+                      "C": [
+                            "設計遞迴函式展開巢狀欄位，並基於時間窗口（Time Window）進行聚合與特徵萃取；",
+                            "正確。遞迴展開保留欄位，時間窗口聚合則產生可用時序特徵。"
+                      ],
+                      "D": [
+                            "只保留時間戳記欄位，忽略其他巢狀內容以簡化特徵工程",
+                            "只保留時間戳會丟失故障預測最重要的內容訊號。"
+                      ]
+                }
+          },
+          {
+                "id": 28,
+                "answer": "C",
+                "topic": "資料與特徵工程",
+                "title": "混合型特徵的適當處理",
+                "stem": "連續特徵標準化、類別特徵適當編碼，再建立合理交互特徵，可同時保留兩類資訊。",
+                "clue": "不同資料型態應分別處理；避免把名目類別強加無意義順序。",
+                "source": "講義｜特徵工程｜講義第 5-4～5-6 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "將類別型特徵使用標籤編碼（Label Encoding）轉換後，與連續特徵直接合併進行模型訓練；",
+                            "Label Encoding 可能替無序類別引入人為大小關係，直接合併也未處理連續尺度。"
+                      ],
+                      "B": [
+                            "將連續特徵進行離散化（Discretization）或分桶（Binning）轉為類別型特徵，統一以類別方式處理；",
+                            "將所有連續值離散化會損失數值細節。"
+                      ],
+                      "C": [
+                            "對連續特徵做標準化（Standardization），類別特徵採用目標編碼（Target Encoding），並生成交互特徵提升模型表現；",
+                            "正確。依型態採標準化與類別編碼，並建立交互特徵。"
+                      ],
+                      "D": [
+                            "只保留連續特徵，忽略類別型變量以簡化模型",
+                            "丟棄類別特徵會損失可能有用的資訊。"
+                      ]
+                }
+          },
+          {
+                "id": 29,
+                "answer": "B",
+                "topic": "MLOps 與部署",
+                "title": "CI 的核心實踐",
+                "stem": "每次提交程式碼就自動執行建置、單元測試與靜態分析，能及早發現整合問題。",
+                "clue": "CI 關鍵是頻繁整合與自動驗證，不是固定時間人工合併或排程部署。",
+                "source": "講義｜CI/CD｜講義第 5-19 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "在主分支（Main Branch）每日固定時間手動合併並執行完整測試流程；",
+                            "每日手動合併回饋太慢，也不符合自動化核心。"
+                      ],
+                      "B": [
+                            "每次程式碼提交（Commit）後自動觸發建置、單元測試及靜態程式碼分析；",
+                            "正確。每次 Commit 自動驗證可縮短錯誤被發現的時間。"
+                      ],
+                      "C": [
+                            "於模型訓練完成後，定期安排開發團隊回顧並合併程式碼；",
+                            "等模型訓練完成才定期合併，不是持續整合。"
+                      ],
+                      "D": [
+                            "透過自動化部署腳本，將模型在特定時間點批次釋出到測試環境",
+                            "自動部署屬 CD，且固定時間批次釋出不是 CI 核心。"
+                      ]
+                }
+          },
+          {
+                "id": 30,
+                "answer": "A",
+                "topic": "負責任 AI 與安全",
+                "title": "不可否認性的數位證據",
+                "stem": "推論輸入與輸出先產生雜湊，再使用數位簽章，可證明紀錄完整性與簽署來源，支援稽核追蹤。",
+                "clue": "不可否認性要回答「誰做的、內容有沒有被改」，不是效能或可用性。",
+                "source": "講義｜資訊安全與稽核｜講義第 4-33～4-36 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "為每筆 AI 模型推論記錄其輸入與輸出結果的加密雜湊值 （Hash），並簽署數位簽章以確保不可竄改性；",
+                            "正確。Hash 驗證完整性，數位簽章提供來源驗證與不可否認性。"
+                      ],
+                      "B": [
+                            "優化模型效能以降低平均推論延遲至 100ms 以下，提升使用者體驗；",
+                            "推論延遲與不可否認性無關。"
+                      ],
+                      "C": [
+                            "增加主機備援數量，以確保系統在故障時持續可用；",
+                            "備援提升可用性，不提供法律證據。"
+                      ],
+                      "D": [
+                            "將模型推論請求導入負載平衡器，避免單點壅塞導致服務延遲",
+                            "負載平衡改善效能與可用性，不證明交易紀錄來源。"
+                      ]
+                }
+          },
+          {
+                "id": 31,
+                "answer": "B",
+                "topic": "MLOps 與部署",
+                "title": "高流量推論的水平擴展",
+                "stem": "容器化多個服務實例並以 Auto Scaling 依流量水平擴展，可支撐高 RPS 且避免單點故障。",
+                "clue": "高可用與巨大流量通常需要 scale out，不應依賴單機 scale up。",
+                "source": "講義｜推論服務擴展｜講義第 5-16 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "依賴單台超高效能伺服器進行垂直擴展，提升硬體規格；",
+                            "單機垂直擴展有硬體上限，也形成單點故障。"
+                      ],
+                      "B": [
+                            "採用容器化部署並水平擴展服務實例，結合自動彈性伸縮機制 （Auto Scaling）；",
+                            "正確。水平擴展與自動伸縮可依負載增加實例並提供高可用。"
+                      ],
+                      "C": [
+                            "限制最大併發連線數，以避免系統過載；",
+                            "限制連線會拒絕或排隊請求，不能達成需求。"
+                      ],
+                      "D": [
+                            "增加批次處理大小，一次同時處理上千筆請求",
+                            "超大批次會增加單筆等待時間，不適合每次約一秒的即時高流量服務。"
+                      ]
+                }
+          },
+          {
+                "id": 32,
+                "answer": "D",
+                "topic": "MLOps 與部署",
+                "title": "PSI 作為效能衰退前兆",
+                "stem": "PSI 直接比較線上輸入特徵與訓練分布，可在標籤與實際效能回收前提早發現漂移風險。",
+                "clue": "題目問「最具預測效力」；資源與延遲反映系統健康，PSI 反映模型資料條件已改變。",
+                "source": "講義｜持續監控與漂移｜講義第 4-43、5-19～5-20 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "系統 CPU 與記憶體使用率波動幅度；",
+                            "CPU、記憶體屬基礎設施指標，不能直接預測模型準確度衰退。"
+                      ],
+                      "B": [
+                            "模型推論結果的置信度（Confidence）分佈變化趨勢；",
+                            "置信度變化可提供線索，但可能受校準影響，且不直接測量輸入分布差異。"
+                      ],
+                      "C": [
+                            "API 平均回應時間與延遲百分位數變化；",
+                            "API 延遲衡量服務效能，不代表模型判斷品質。"
+                      ],
+                      "D": [
+                            "輸入特徵與訓練資料分布差異的 PSI（Population Stability Index）指數",
+                            "正確。PSI 可量化特徵分布相對訓練基準的偏移。"
+                      ]
+                }
+          },
+          {
+                "id": 33,
+                "answer": "C",
+                "topic": "NLP",
+                "title": "Skip-gram 對低頻詞較有利",
+                "stem": "Skip-gram 用中心詞預測周圍詞，讓低頻中心詞產生多個訓練配對，通常比 CBOW 更能學習罕見詞。",
+                "clue": "題目同時給龐大語料與罕見詞；典型取捨是 Skip-gram 品質、CBOW 速度。",
+                "source": "講義 3.1｜Word2Vec｜講義第 3-20～3-21 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "採用 Skip-gram 模型，但以隨機初始化權重加快高頻詞的訓練收斂；",
+                            "隨機初始化不是 Skip-gram 強化低頻詞的理由。"
+                      ],
+                      "B": [
+                            "採用 CBOW 模型（Continuous Bag of Words Model）並結合 TF-IDF 權重以強化低頻詞表示；",
+                            "CBOW 加 TF-IDF 不是標準 Word2Vec 訓練策略。"
+                      ],
+                      "C": [
+                            "採用 Skip-gram 模型，利用中心詞預測周圍詞語，能更有效學習低頻詞關係；",
+                            "正確。Skip-gram 的預測方向有利於累積低頻詞的上下文訊號。"
+                      ],
+                      "D": [
+                            "採用 CBOW 模型（Continuous Bag of Words Model），利用周圍詞預測中心詞，能提升罕見詞的語意穩定度",
+                            "CBOW 偏向平滑常見詞表示，對罕見詞通常不如 Skip-gram。"
+                      ]
+                }
+          },
+          {
+                "id": 34,
+                "answer": "D",
+                "topic": "電腦視覺與評估",
+                "title": "全景分割同時處理類別與個體",
+                "stem": "Panoptic Segmentation 結合語義分割與實例分割，既標示每個像素類別，也區分可數物件個體。",
+                "clue": "題目要求 Stuff 的像素類別與 Thing 的實例身分同時存在，答案是全景分割。",
+                "source": "講義 3.2｜影像分割｜講義第 3-46、3-51 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "語義分割（Semantic Segmentation）；",
+                            "語義分割逐像素分類，但不區分同類別的不同個體。"
+                      ],
+                      "B": [
+                            "物件偵測（Object Detection）；",
+                            "物件偵測以邊界框定位，不提供完整像素標記。"
+                      ],
+                      "C": [
+                            "實例分割（Instance Segmentation）；",
+                            "實例分割可區分物件個體，但通常不涵蓋道路、天空等所有背景類別。"
+                      ],
+                      "D": [
+                            "全景分割（Panoptic Segmentation）",
+                            "正確。全景分割把語義與實例分割合併到同一完整場景標註。"
+                      ]
+                }
+          },
+          {
+                "id": 35,
+                "answer": "A",
+                "topic": "生成式與多模態",
+                "title": "CLIP 的零樣本能力",
+                "stem": "CLIP 用圖文對比學習將影像與文字投射到共同嵌入空間，可用文字提示與影像相似度做零樣本分類。",
+                "clue": "關鍵詞是 CLIP、Text Prompt、無新增標註資料與 zero-shot。",
+                "source": "講義 3.3｜CLIP｜講義第 3-76～3-77 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "透過圖文對比式學習（Contrastive Learning）將影像與文字映射至共同嵌入空間（Shared Embedding Space），可直接以語意相似度進行零樣本分類；",
+                            "正確。共同嵌入空間使圖像可直接與類別文字提示比較相似度。"
+                      ],
+                      "B": [
+                            "透過影像增強與特徵擴散降低標訓資料需求；",
+                            "影像增強不是 CLIP 零樣本辨識的核心。"
+                      ],
+                      "C": [
+                            "以監督式學習結合多層感知器（Multilayer Perceptron, MLP） 進行影像特徵分類；",
+                            "傳統監督式分類需要新標註資料，不符合題目。"
+                      ],
+                      "D": [
+                            "以自迴歸生成模型（Autoregressive Model）逐步生成文字標籤描述影像內容",
+                            "CLIP 本身是對比式表徵模型，不是逐字生成標籤的自迴歸模型。"
+                      ]
+                }
+          },
+          {
+                "id": 36,
+                "answer": "B",
+                "topic": "模型開發與評估",
+                "title": "Grid Search 系統化搜尋",
+                "stem": "對事先列出的學習率、樹深度與正則化係數組合逐一評估，最符合網格搜尋。",
+                "clue": "「多種設定＋系統化測試所有組合」是 Grid Search 的辨識語句。",
+                "source": "講義｜超參數搜尋｜講義第 5-14 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "使用交叉驗證（Cross Validation）反覆評估模型以降低過擬合風險；",
+                            "交叉驗證是評估方式，可搭配搜尋，但本身不定義如何列舉參數組合。"
+                      ],
+                      "B": [
+                            "透過網格搜尋（Grid Search）在多組超參數設定中進行系統化搜尋與評估；",
+                            "正確。Grid Search 依指定網格系統化測試各組合。"
+                      ],
+                      "C": [
+                            "以隨機搜尋（Random Search）快速探索部分參數空間以提升搜尋效率；",
+                            "Random Search 只抽樣部分組合，不是完整系統化列舉。"
+                      ],
+                      "D": [
+                            "採用貝葉斯優化（Bayesian Optimization）根據歷次結果動態調整搜尋方向",
+                            "Bayesian Optimization 依先前結果決定下一組，題幹未描述動態調整。"
+                      ]
+                }
+          },
+          {
+                "id": 37,
+                "answer": "B",
+                "topic": "模型開發與評估",
+                "title": "降低單張 GPU 記憶體用量",
+                "stem": "縮小每張 GPU 的 Batch Size，並將資料分片給多張 GPU，可直接降低單卡保存的樣本與中間張量。",
+                "clue": "模型架構、硬體不能改且要維持品質，優先調整每卡批次與分散負載。",
+                "source": "講義｜分散式模型訓練｜講義第 5-14～5-18 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "減少訓練資料量以降低記憶體使用；",
+                            "減少資料量可能傷害泛化，且不是主要的單卡記憶體控制方法。"
+                      ],
+                      "B": [
+                            "採用較小的批次大小（Batch Size）並搭配資料分片（Data Sharding）分散訓練負載；",
+                            "正確。小批次降低單卡記憶體，資料分片把訓練負載分散到多 GPU。"
+                      ],
+                      "C": [
+                            "增加學習率（Learning Rate）以加快收斂速度；",
+                            "提高學習率不會降低張量記憶體，還可能造成訓練不穩。"
+                      ],
+                      "D": [
+                            "改用測試資料集（Test Set）進行部分訓練以節省空間",
+                            "測試集不可用於訓練，否則造成資料洩漏。"
+                      ]
+                }
+          },
+          {
+                "id": 38,
+                "answer": "B",
+                "topic": "生成式與多模態",
+                "title": "擴散模型的取樣步數與品質",
+                "stem": "增加去雜訊取樣步數並選擇較好的 sampler，可改善細節與紋理還原，但會增加生成時間。",
+                "clue": "題目限定只能在生成階段調整；步數與取樣器是直接控制項。",
+                "source": "講義 3.3｜Stable Diffusion｜講義第 3-68 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "降低取樣步數，以縮短生成時間；",
+                            "降低步數通常加快生成，但更容易損失細節。"
+                      ],
+                      "B": [
+                            "增加取樣步數並選擇高品質取樣器，以強化細節還原度；",
+                            "正確。更多取樣步驟與合適取樣器通常能提升畫面細節。"
+                      ],
+                      "C": [
+                            "提高 CFG（Classifier-Free Guidance）值，使生成結果更具創意與多樣性；",
+                            "過高 CFG 常導致失真或過度強化提示，不等於提升解析度與自然細節。"
+                      ],
+                      "D": [
+                            "改用低解析度輸入以降低計算成本",
+                            "低解析度輸入不會改善 4K 邊緣與紋理。"
+                      ]
+                }
+          },
+          {
+                "id": 39,
+                "answer": "C",
+                "topic": "模型開發與評估",
+                "title": "ARIMA 殘差仍有自相關",
+                "stem": "若殘差在多個 Lag 仍顯著相關且呈週期波動，表示模型未捕捉完整時間結構，存在配適不足。",
+                "clue": "好的時間序列模型殘差應接近白噪音；有規律就代表仍有可建模訊號。",
+                "source": "講義｜時間序列模型診斷｜講義第 5-8～5-10 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "模型殘差符合白噪音（White Noise）假設，預測表現穩定；",
+                            "顯著自相關與週期波動違反白噪音假設。"
+                      ],
+                      "B": [
+                            "模型殘差雖有輕微異常，但可視為隨機誤差忽略不計；",
+                            "殘差不是隨機，不能直接忽略。"
+                      ],
+                      "C": [
+                            "模型存在配適不足（Underfitting）問題，需重新調整 p 或 q 參數以捕捉時間依賴性；",
+                            "正確。需重新檢視 p、q，實務上也可能評估季節項以捕捉時間依賴。"
+                      ],
+                      "D": [
+                            "殘差特性不影響預測結果，無須進一步修正",
+                            "殘差結構顯示模型遺漏資訊，會影響預測。"
+                      ]
+                }
+          },
+          {
+                "id": 40,
+                "answer": "A",
+                "topic": "生成式與多模態",
+                "title": "VAE、GAN、Diffusion 的生成差異",
+                "stem": "VAE 顯式建模潛在分布；GAN 以對抗損失學分布映射；Diffusion 以逐步加噪與條件去噪生成高保真樣本。",
+                "clue": "先抓三個模型的核心訓練機制，再判斷跨模態對齊與品質特性。",
+                "source": "講義 3.3｜生成模型｜講義第 3-62～3-64 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "VAE 透過顯式潛在變數建模實現跨模態對齊，適合捕捉整體語意結構但生成解析度有限；GAN 透過對抗損失（Adversarial Loss）在不同模態間學習分佈映射，生成品質高但穩定性差；擴散模型則以條件化噪聲反推（Conditional Denoising）方式實現高保真跨模態生成，兼具穩定性與多樣性；",
+                            "正確。選項分別對應 VAE 潛在變數、GAN 對抗訓練與擴散去雜訊。"
+                      ],
+                      "B": [
+                            "VAE 與 Diffusion Ｍodel 均屬隱式生成架構，主要依賴對抗式訓練實現跨模態對齊；GAN 則以顯式後驗估計方式提升樣本一致性；",
+                            "VAE 與 Diffusion 並非都依賴對抗式訓練，GAN 也非顯式後驗估計。"
+                      ],
+                      "C": [
+                            "VAE 與 GAN 均使用馬爾可夫鏈（Markov Chain）進行跨模態轉換； Diffusion Model 則透過 KL 散度最小化學習語意對應。；",
+                            "VAE、GAN 不以馬可夫鏈作為共同生成機制；描述錯置。"
+                      ],
+                      "D": [
+                            "三者在多模態應用中皆依賴同一潛在表徵空間（Shared Latent Space），僅在解碼器結構不同而已",
+                            "三者的生成與訓練機制有根本差異，不只是解碼器不同。"
+                      ]
+                }
+          },
+          {
+                "id": 41,
+                "answer": "A",
+                "topic": "模型開發與評估",
+                "title": "超參數搜尋造成驗證洩漏",
+                "stem": "反覆用同一組 K-Fold 結果選參，會讓設定間接適配驗證摺，使最終分數過度樂觀；應以巢狀交叉驗證或獨立測試集估計。",
+                "clue": "驗證資料同時被用來選模型與報告效能，就不再是獨立評估。",
+                "source": "講義｜交叉驗證與資料洩漏｜講義第 5-14 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "模型的交叉驗證結果出現過度樂觀偏差（Over-optimistic Bias），因測試摺資料間接參與參數選擇，造成資料洩漏（Data Leakage）；",
+                            "正確。驗證摺參與參數選擇，導致選擇偏差與過度樂觀估計。"
+                      ],
+                      "B": [
+                            "模型會在每一摺（Fold）內反覆調整參數，導致訓練不穩與過度正則化；",
+                            "問題不是過度正則化，而是評估資料被重複用於決策。"
+                      ],
+                      "C": [
+                            "因交叉驗證資料被重複使用，造成效能方差增大，無法獲得穩定估計；",
+                            "重複使用可能影響估計，但主要風險是偏差，不是單純方差增大。"
+                      ],
+                      "D": [
+                            "K-Fold 交叉驗證的假設與超參數搜尋相衝突，導致驗證過程失效",
+                            "K-Fold 可用於調參，只需把模型選擇與最終評估正確分層。"
+                      ]
+                }
+          },
+          {
+                "id": 42,
+                "answer": "D",
+                "topic": "MLOps 與部署",
+                "title": "用潛在空間監控輸入偏移",
+                "stem": "VAE 可學習訓練資料的潛在分布；線上樣本的潛在表示或重建行為改變，可作為分布偏移訊號。",
+                "clue": "題目已確定輸入分布改變；選項中只有潛在分布監控直接針對這個問題。",
+                "source": "講義｜生成模型與漂移偵測｜講義第 4-30～4-31、4-43 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "改用生成對抗網路（GAN）生成新樣本並混入訓練集；",
+                            "GAN 生成樣本可能用於再訓練，但不是最直接的線上偏移偵測。"
+                      ],
+                      "B": [
+                            "改用邏輯迴歸模型（Logistic Regression）以提升穩定性；",
+                            "換成 Logistic Regression 不會消除分布偏移。"
+                      ],
+                      "C": [
+                            "增加模型容量（Model Capacity），以學習更多樣本差異；",
+                            "增加容量不能解決訓練與線上分布不一致。"
+                      ],
+                      "D": [
+                            "使用變分自編碼器（VAE）監控潛在空間分佈，偵測輸入資料偏移",
+                            "正確。VAE 的潛在空間可建立資料分布基準並偵測異常偏移。"
+                      ]
+                }
+          },
+          {
+                "id": 43,
+                "answer": "B",
+                "topic": "模型開發與評估",
+                "title": "比較生成式與鑑別式的資料效率",
+                "stem": "逐步降低標註比例並比較 F1，能觀察兩條路徑在低資源情境下如何利用資料與維持泛化。",
+                "clue": "若要突顯本質差異，不能只在完整資料比較；要改變標註資源量。",
+                "source": "講義｜生成式與鑑別式模型｜講義第 5-8～5-12 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "在完整資料集上分別訓練兩者，並比較其分類準確率 （Accuracy）與推論時間；",
+                            "完整資料上的單點比較難看出資料利用效率。"
+                      ],
+                      "B": [
+                            "在低資源情境（Low-resource Setting）下，逐步減少標註比例 （100%、50%、10%），比較其 F1-score；",
+                            "正確。學習曲線式比較能顯示低標註條件下的效能與泛化差異。"
+                      ],
+                      "C": [
+                            "使用 GAN 自動生成文本樣本補足資料，觀察兩模型在資料增強後的精確率（Precision）差異；",
+                            "加入 GAN 資料增強會引入第三個因素，無法公平比較原模型。"
+                      ],
+                      "D": [
+                            "在相同訓練資料上固定輸入維度，僅調整模型參數量，比較其對過擬合的敏感度",
+                            "只配平參數量不能直接衡量標註資料效率。"
+                      ]
+                }
+          },
+          {
+                "id": 44,
+                "answer": "C",
+                "topic": "生成式與多模態",
+                "title": "同時預測與生成的模型",
+                "stem": "VAE 或 GAN 能學習資料分布並產生虛擬樣本，可再搭配下游預測器滿足分類與情境模擬需求。",
+                "clue": "Random Forest 與 Logistic Regression 能預測但不能生成新樣本；題目同時要求兩者。",
+                "source": "講義 3.3｜生成模型應用｜講義第 3-62～3-64 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "使用傳統隨機森林（Random Forest）；",
+                            "Random Forest 可分類，但不以學習生成分布與產生樣本為目的。"
+                      ],
+                      "B": [
+                            "使用邏輯迴歸（Logistic Regression）模型；",
+                            "Logistic Regression 可預測流失機率，不能生成多樣虛擬資料。"
+                      ],
+                      "C": [
+                            "使用變分自編碼器（Variational Autoencoder, VAE）或生成對抗網路（Generative Adversarial Network, GAN）；",
+                            "正確。VAE／GAN 可生成樣本，並可與預測任務結合。"
+                      ],
+                      "D": [
+                            "使用強化學習代理（Reinforcement Learning Agent）",
+                            "RL Agent 用於序列決策，不是此類表格資料生成的直接選擇。"
+                      ]
+                }
+          },
+          {
+                "id": 45,
+                "answer": "D",
+                "topic": "資料與特徵工程",
+                "title": "PCA 後使用 SVM 的合理效益",
+                "stem": "PCA 可用較少主成分保留主要變異，降低 SVM 訓練成本與高維噪聲造成的過擬合風險，但不保證準確率必然提升。",
+                "clue": "關鍵在「可能降低成本與風險」，避免使用必然、完全無意義等絕對語句。",
+                "source": "講義｜PCA 與維度縮減｜講義第 5-5～5-6 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "PCA 保留的主成分必然能提升 SVM 的分類準確率；",
+                            "PCA 是非監督降維，保留最大變異不保證保留最具分類力的方向。"
+                      ],
+                      "B": [
+                            "使用原始高維資料通常更能保留資訊，因此 PCA 沒有實際意義；",
+                            "原始高維也可能含冗餘與噪聲；PCA 有實務價值。"
+                      ],
+                      "C": [
+                            "PCA 可讓 SVM 自動適用於非線性（Nonlinear）資料集；",
+                            "PCA 是線性轉換，不會讓 SVM 自動具備非線性能力。"
+                      ],
+                      "D": [
+                            "降維後可降低訓練時間並減少過擬合（Overfitting）風險",
+                            "正確。維度降低可減少計算量，並可能降低高維過擬合風險。"
+                      ]
+                }
+          },
+          {
+                "id": 46,
+                "answer": "A",
+                "topic": "MLOps 與部署",
+                "title": "主動監控資料與概念漂移",
+                "stem": "線上資料分布改變並造成準確率下降時，應持續監控 Data Drift 與 Concept Drift 並設定預警。",
+                "clue": "系統沒有錯誤但模型品質變差，是模型監控問題，不是效能優化問題。",
+                "source": "講義｜MLOps 持續監控｜講義第 4-30～4-31、4-43 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "建立即時的資料漂移（Data Drift）與概念漂移（Concept Drift）監測機制；",
+                            "正確。資料與概念漂移監控能在品質惡化時主動告警。"
+                      ],
+                      "B": [
+                            "將模型轉換為量化版本以降低延遲；",
+                            "量化改善延遲，不處理資料分布改變。"
+                      ],
+                      "C": [
+                            "增加模型超參數調整次數以強化適應性；",
+                            "增加調參次數不是線上漂移偵測機制。"
+                      ],
+                      "D": [
+                            "使用固定隨機種子（Random Seed）確保訓練穩定",
+                            "固定隨機種子只改善訓練可重現性。"
+                      ]
+                }
+          },
+          {
+                "id": 47,
+                "answer": "C",
+                "topic": "模型開發與評估",
+                "title": "多任務損失權重失衡",
+                "stem": "共享模型同時最佳化兩個任務時，若 Loss 權重不平衡，某任務的梯度會主導更新，造成另一任務效能下降。",
+                "clue": "架構與資料已排除，且兩任務呈此消彼長；優先檢查 Multi-task Loss balancing。",
+                "source": "講義｜多任務學習｜講義第 3-25～3-27 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "模型架構無法同時支援文字分類與序列標註任務（Sequence Labeling）；",
+                            "Transformer 可透過不同輸出頭同時支援分類與序列標註。"
+                      ],
+                      "B": [
+                            "文檔分類任務不需要語意化表徵（Contextualized Representation）；",
+                            "文檔分類同樣需要語境化表徵。"
+                      ],
+                      "C": [
+                            "損失函數（Loss Function）未進行權重平衡，導致任務間競爭；",
+                            "正確。損失權重失衡會導致梯度競爭與負遷移。"
+                      ],
+                      "D": [
+                            "所使用的 BERT 模型無法支援多任務輸出頭（Multi-Head Outputs）",
+                            "BERT 可接多個任務輸出頭，並非架構本身不支援。"
+                      ]
+                }
+          },
+          {
+                "id": 48,
+                "answer": "B",
+                "topic": "機器學習",
+                "title": "以空間索引加速 DBSCAN",
+                "stem": "KD-Tree、Ball Tree 等距離索引能加速鄰域查詢，改善 DBSCAN 在大量資料上的時間與記憶體效率。",
+                "clue": "題目要求不改核心邏輯；應優化最耗時的鄰居搜尋。",
+                "source": "講義｜DBSCAN 與距離索引｜講義第 5-9～5-10 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "改用以平均連結（Average Linkage）為基礎的階層式群集法 （Hierarchical Clustering）；",
+                            "改用階層式分群已更換演算法，且在百萬筆資料上未必更省。"
+                      ],
+                      "B": [
+                            "採用高效率的距離索引結構（Distance Index Structure），例如 KD-Tree 或 Ball Tree；",
+                            "正確。高效率索引能降低反覆鄰域查詢的成本。"
+                      ],
+                      "C": [
+                            "將 ε（Epsilon）參數調得極小，以減少鄰近點的數量；",
+                            "任意縮小 ε 會改變聚類結果，不是正確的效能優化。"
+                      ],
+                      "D": [
+                            "在資料前處理時增加標準化後的特徵維度數",
+                            "增加維度會加重距離計算與維度災難。"
+                      ]
+                }
+          },
+          {
+                "id": 49,
+                "answer": "A",
+                "topic": "負責任 AI 與安全",
+                "title": "情感模型偏誤的真正來源",
+                "stem": "跨語言與族群風格表現不一致，主要應檢查訓練資料代表性、文化語境與分布不平衡；單純詞嵌入正規化不是根本解法。",
+                "clue": "題目問「不正確」；找出把公平性問題錯歸因於一般向量數值處理的選項。",
+                "source": "講義｜AI 偏誤與公平性｜講義第 3-33～3-36、4-38～4-40 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "模型未啟用詞嵌入正規化（Embedding Normalization）可能造成語意距離不穩定，導致預測誤差；",
+                            "正確答案。Embedding Normalization 可能影響數值尺度，但不是造成文化與語氣偏誤的主要治理原因。"
+                      ],
+                      "B": [
+                            "訓練語料若偏向特定文化或語氣特徵，可能使模型產生內隱偏誤 （Implicit Bias）；",
+                            "訓練語料偏向特定文化，確實可能形成內隱偏誤。"
+                      ],
+                      "C": [
+                            "模型若訓練資料來源不平衡，容易導致對不同語言或族群風格的情緒判斷不準確；",
+                            "不同語言或族群資料不平衡會導致群體間效能差異。"
+                      ],
+                      "D": [
+                            "Transformer 架構能捕捉上下文語意，但若訓練資料偏差仍存在， 模型仍可能學習到偏誤判斷",
+                            "即使 Transformer 能理解上下文，偏差資料仍會讓模型學到偏誤。"
+                      ]
+                }
+          },
+          {
+                "id": 50,
+                "answer": "C",
+                "topic": "生成式與多模態",
+                "title": "CLIP 圖文對齊不足",
+                "stem": "文字與影像表示若在共同嵌入空間對齊不充分，模型可能掌握大致場景，卻在品牌色彩、手部等細節產生跨模態落差。",
+                "clue": "題幹要求從多模態機制分析；核心是文字條件與影像內容的語意對齊。",
+                "source": "講義 3.3｜CLIP 與多模態生成｜講義第 3-76～3-78 頁",
+                "basis": "官方講義觀念對應",
+                "options": {
+                      "A": [
+                            "擴散式生成模型的去雜訊過程出現隨機梯度漂移，導致影像像素錯誤；",
+                            "擴散生成含隨機性，但「隨機梯度漂移」不是推論去雜訊的標準原因描述。"
+                      ],
+                      "B": [
+                            "提示語過長造成 Transformer 的位置編碼超出上下文限制，導致生成混亂；",
+                            "提示語很短，沒有超過 Transformer 上下文限制。"
+                      ],
+                      "C": [
+                            "CLIP 模型中的文字編碼器與影像編碼器在語意嵌入空間未充分對齊，導致跨模態理解偏差；",
+                            "正確。圖文編碼對齊不足會造成文字條件與生成影像細節理解偏差。"
+                      ],
+                      "D": [
+                            "模型未採用對比學習（Contrastive Learning）損失函數，無法建立多模態語意關聯",
+                            "CLIP 本身正是以對比學習建立圖文關聯；未採用對比損失與題設不符。"
+                      ]
+                }
+          }
+    ];
+
+    // 官方公告試題的完整題幹與四個選項。解析資料與原題分開保存，避免整理時改寫原文。
+    const originalQuestions = [{"id":1,"answer":"B","stem":"某電商企業希望利用自然語言處理（NLP）技術，分析顧客在社群平台與商品評論中的文字內容，以即時掌握顧客對產品的滿意度變化。 若採用情感分析（Sentiment Analysis）模型，其主要目的為何？","options":{"A":"預測顧客使用的語言風格與語氣；","B":"判斷文本中所表達的情感傾向；","C":"將顧客留言自動翻譯成企業內部指定語言；","D":"產生顧客評論的自動化摘要內容"}},{"id":2,"answer":"A","stem":"某跨國金融科技公司導入 Transformer 架構開發多語客服系統，以提升長篇金融文件的自動翻譯品質。下列何者為該模型能顯著改善翻譯準確度的主要原因？","options":{"A":"透過自注意力機制（Self-Attention Mechanism）捕捉長距離語境依賴關係；","B":"透過卷積運算（Convolution Operation）加速訓練過程；","C":"透過強化學習（Reinforcement Learning）自動調整語句生成策略；","D":"透過資料增強（Data Augmentation）平衡多語語料比例"}},{"id":3,"answer":"B","stem":"某企業計畫應用 BERT（Bidirectional Encoder Representations from Transformers）模型分析大量顧客意見，以強化客服自動回覆系統。在 BERT 的預訓練過程中， 「遮罩語言模型（Masked Language Model, MLM） 」的主要訓練策略為何？","options":{"A":"依序遮罩句尾詞語，讓模型從左到右逐步生成完整句子；","B":"隨機遮罩部分詞語，並讓模型根據雙向上下文（Bidirectional Context）預測被遮罩的詞；","C":"透過對抗訓練（Adversarial Training）生成語意相似的擾動樣本以提升泛化性；","D":"以未遮罩的詞為條件，使用解碼器（Decoder）結構重建整句內容"}},{"id":4,"answer":"C","stem":"在詞向量（Word Embedding）訓練方法中，GloVe（Global Vectors for Word Representation）與 Word2Vec 的主要差異為何？","options":{"A":"Word2Vec 以詞頻權重訓練詞向量，而 GloVe 以隨機初始化向量進行學習；","B":"Word2Vec 以全局統計矩陣為基礎，而 GloVe 採用神經網路進行上下文預測；","C":"Word2Vec 為基於預測的模型，而 GloVe 為基於共現統計的模型；","D":"Word2Vec 僅能用於靜態文本語料，而 GloVe 可應用於即時語料更新"}},{"id":5,"answer":"A","stem":"某企業以詞頻–逆文件頻率（Term Frequency–Inverse Document Frequency, TF-IDF）方法分析顧客意見內容，但發現模型在處理篇幅較長的回饋文本時，無法準確反映關鍵詞的重要性。下列何者為造成此現象的主要原因？","options":{"A":"長文本中的詞頻偏高，導致常見詞權重被過度放大；","B":"長文本中缺乏明確句子邊界，造成 TF-IDF 無法計算詞頻；","C":"TF-IDF 無法同時處理多份文件；","D":"長文本會改變 IDF（Inverse Document Frequency）的計算，使所有詞權重趨於相近"}},{"id":6,"answer":"B","stem":"某企業嘗試以 N-gram 語言模型（N-gram Language Model）建立客服自動回覆系統，但發現模型生成的句子雖在片段上合理，卻缺乏整體語意連貫性。此問題最可能源自 N-gram 模型的哪一項限制？","options":{"A":"N-gram 模型在訓練過程中需要龐大計算量，導致長句無法收斂；","B":"N-gram 模型僅根據固定長度的前序詞建立機率估計，難以捕捉長距離依賴關係（Long-range Dependencies）；","C":"N-gram 模型缺乏語意嵌入（Semantic Embedding）層，因此無法表徵詞語間的語意相似度；","D":"N-gram 模型假設詞與詞之間相互獨立，導致無法建構上下文語意關聯"}},{"id":7,"answer":"A","stem":"在企業導入的智慧監控系統中，模型以物件偵測（Object Detection）方式自動辨識影像中的人物與車輛。若評估指標採用平均精確率（Mean Average Precision, mAP），其中 IoU （Intersection over Union）閾值設定較高時，代表下列哪一項意義？","options":{"A":"預測邊界框與真實邊界框的重疊程度越高，模型偵測結果越精準；","B":"預測邊界框與真實邊界框的誤差越大，導致 mAP 數值上升；","C":"模型整體精確率（Precision）降低，但召回率（Recall）上升；","D":"預測邊界框的評估結果不受真實框大小影響"}},{"id":8,"answer":"C","stem":"關於 Softmax 與 Max-Pooling，下列敘述何者正確？","options":{"A":"Softmax 與 Max-Pooling 都會將特徵張量壓縮為單一最大值；","B":"Max-Pooling 會對輸入進行機率分佈的轉換；","C":"Softmax 會保留所有輸入資訊，但以比例表示；Max-Pooling 只保留區域最大值；","D":"Softmax 主要用於特徵降維，而 Max-Pooling 用於分類輸出"}},{"id":9,"answer":"B","stem":"某企業在訓練生成式 AI 模型時，導入資料增強（Data Augmentation）技術以擴充訓練資料，但觀察到模型效能反而下降。 下列哪一項最可能的原因與對應改善策略最為正確？","options":{"A":"增強樣本未經隨機初始化，導致模型梯度更新不穩定，應重新設計訓練啟動流程；","B":"增強後資料的特徵分佈與原始資料不一致，影響模型的泛化能力，應檢查並調整增強策略以維持語意一致性；","C":"增強樣本的比例過高，造成模型對特定資料產生偏好，應適度提高增強比例並調整學習率；","D":"增強後資料的標註可信度下降，導致訓練訊號偏差，應以半監督學習方式重新校正資料"}},{"id":10,"answer":"D","stem":"如果希望同時兼顧「精確率（Precision） 」和「召回率（Recall） 」， 下列哪一個指標可以作為綜合評估的標準？","options":{"A":"準確率（Accuracy）；","B":"均方根誤差（RMSE）；","C":"均方誤差（MSE）；","D":"F1 分數（F1 Score）"}},{"id":11,"answer":"C","stem":"企業資料分析團隊使用 DBSCAN（Density-Based Spatial Clustering of Applications with Noise）演算法進行顧客行為分群，並希望模型能自動區分主要群集與雜訊資料。 在此演算法中，決定聚類結果的兩個主要超參數為下列何者？","options":{"A":"特徵數與學習率；","B":"K 值與距離閾值；","C":"鄰域半徑（Epsilon ε）與最小點數（MinPts）；","D":"交叉熵（Cross Entropy）與權重初始化"}},{"id":12,"answer":"B","stem":"某金融科技公司建立房價預測模型，使用多項特徵（如建坪、房齡、 樓層、總價等）進行線性迴歸分析（Linear Regression Analysis）。資料分析師發現多個特徵之間存在高度相關性，導致模型係數不穩定、預測誤差上升。為解決此問題，下列哪一種方法最適合？","options":{"A":"繼續保留所有特徵，不進行任何處理；","B":"使用主成分分析（PCA）將相關特徵轉換為彼此獨立的主成分；","C":"新增更多原始變數以提升模型表現；","D":"改用分類模型進行預測"}},{"id":13,"answer":"B","stem":"下列何者為 Kubernetes 在 AI 模型部署與運行中的核心功能？","options":{"A":"自動化管理模型的訓練流程與參數調校；","B":"管理與協調模型服務的部署、擴展與運行環境；","C":"提供 AI 模型的資料儲存與版本控管功能；","D":"負責深度學習推論的 GPU 加速運算"}},{"id":14,"answer":"A","stem":"在調整模型超參數（Hyperparameters）時，若希望避免因過度調整參數而導致過擬合，下列哪一種做法最有效提升模型的泛化能力？","options":{"A":"採用交叉驗證（Cross-Validation）於多組參數組合間反覆評估，選擇在驗證資料上表現最穩定的設定；","B":"使用早期停止機制（Early Stopping）監控訓練誤差並在收斂前停止訓練，以防模型學習過度；","C":"對輸入特徵進行標準化以減少特徵值差異帶來的過擬合風險；","D":"提高模型複雜度並使用更多超參數搜尋範圍，以確保模型能充分學習資料特徵"}},{"id":15,"answer":"C","stem":"在企業導入的 MLOps（Machine Learning Operations）流程中， Model Registry 最常用於哪一個階段？","options":{"A":"用於設定運算資源與執行環境以確保訓練穩定；","B":"用於建立可重複使用的資料與特徵版本；","C":"用於集中管理模型版本、訓練紀錄與部署狀態；","D":"用於追蹤模型上線後的表現與漂移情況"}},{"id":16,"answer":"D","stem":"下列哪一種情境中最適合使用「序列到序列（Seq2Seq） 」模型？","options":{"A":"預測銷售趨勢曲線，輸出未來數值序列；","B":"辨識文本中出現的人名、地名與組織名稱等實體資訊；","C":"對輸入文本中的關鍵字進行頻率統計與可視化；","D":"將輸入文字轉換成語意等價的另一段文字，如自動翻譯或摘要生成"}},{"id":17,"answer":"D","stem":"在自然語言處理中，檢索增強生成（Retrieval-Augmented Generation, RAG）是一種結合語言模型與向量搜尋的技術，可有效減少模型知識過時與產生幻覺的問題。若要建立一套高效能的 RAG 系統，下列何者為在「檢索階段」最關鍵的挑戰？","options":{"A":"確保檢索到的文件能被完整納入語言模型的上下文視窗（Context Window）中進行生成；","B":"選擇使用 Faiss 或 ScaNN 等近似最近鄰搜尋函式庫；","C":"降低嵌入模型（Embedding Model）在高維空間中的計算成本與記憶體占用；","D":"避免向量檢索結果僅具語意相似但與查詢意圖無實質關聯的情況"}},{"id":18,"answer":"D","stem":"當 Transformer 模型發生「注意力分布過於平均（Attention Collapse） 」的情形時，導致模型無法有效聚焦於關鍵資訊，下列哪一項策略可有效改善此問題？","options":{"A":"提高 Query-Key 點積（Dot Product）的縮放常數；","B":"在 Softmax 前加入高斯雜訊（Gaussian Noise）；","C":"使用 ReLU 函數取代 Softmax；","D":"對注意力權重施加稀疏化約束（Sparsity Constraint）"}},{"id":19,"answer":"B","stem":"某研究團隊正在訓練一個針對低資源語言（如少數民族語言）的語言模型，但該語言僅有約 1 萬筆語料可用。在訓練過程中出現明顯的過擬合現象，若希望在不新增真實語料的前提下提升模型的泛化能力， 採用下列哪一種方法最為適合？","options":{"A":"將 Transformer 的隱藏層維度擴增至 1024，以提升表徵能力；","B":"採用反向翻譯（Back-Translation）技術，以生成額外目標語句的偽平行語料（Pseudo‑Parallel Corpus）；","C":"對詞嵌入矩陣（Embedding Matrix），施加 L1 正則化以壓縮模型參數；","D":"將多語言 BERT（mBERT）中所有 Transformer 層全部凍結以保留預訓練知識"}},{"id":20,"answer":"B","stem":"在使用生成對抗網路（GAN）進行人臉影像生成時，若出現「模式崩潰」 （Mode Collapse）現象，下列哪一種方法最常被用來有效解決此問題？","options":{"A":"在鑑別器中加入梯度懲罰（Gradient Penalty）以穩定訓練過程；","B":"採用 Wasserstein 距離（WGAN 損失）替代原始的 GAN 損失函數；","C":"對生成器輸入的潛在向量加入隨機擾動；","D":"使用多尺度鑑別器架構以提高對多樣性的判別能力"}},{"id":21,"answer":"B","stem":"在多模態 AI 模型訓練或推論過程中，遇到某一模態資料缺失（例如僅有影像資料但缺少文本說明），下列哪一種策略最有效維持模型效能？","options":{"A":"以零向量或固定向量填充缺失模態輸入；","B":"訓練具備模態缺失感知能力的模型，使其適應缺失狀況；","C":"利用生成模型（如 GAN 或自迴歸模型）預測並補全缺失模態資料；","D":"直接捨棄缺少模態的樣本，避免干擾訓練或推論"}},{"id":22,"answer":"D","stem":"某電商平台開發的顧客流失預測模型在上線數月後，預測準確率明顯下降。專案團隊懷疑顧客行為模式改變，導致模型輸入特徵的分佈與原始訓練資料不同，出現典型的資料漂移（Data Drift）問題。為了偵測並確認資料分佈是否發生變化，下列哪一種作法最合適？","options":{"A":"定期重新訓練模型以應對外部變化；","B":"提升模型複雜度以捕捉更多資料變異性；","C":"增加測試資料量以提高評估準確度；","D":"計算輸入特徵分佈間的 KL 散度（KL Divergence）"}},{"id":23,"answer":"A","stem":"某大型醫院即將部署一套輔助診斷的 AI 系統，為降低對臨床流程的衝擊，同時確保風險可控與回饋可收斂，應採取何種『漸進式部署』 （Phased Rollout）策略最為合適？","options":{"A":"從單一專科（如放射科）或特定病房開始啟用，逐步擴展至全院；","B":"先部署於病例量較高的急診單位，加速收集高頻使用回饋；","C":"僅在夜班或離峰時段啟用，避免影響主要臨床工作負載；","D":"在使用者界面啟用提示模式，讓全院同步體驗但不影響診斷流程"}},{"id":24,"answer":"D","stem":"某金融機構的 AI 風控系統遭受對抗性攻擊，駭客透過對輸入特徵進行微小但惡意的擾動，成功欺騙了模型。為了從根本上解決模型自身對這類攻擊的脆弱性，下列何者並非針對此種攻擊型態的技術手段？","options":{"A":"強化資料前處理，用以過濾掉格式不符或數值極端異常的輸入；","B":"在模型訓練階段導入對抗樣本訓練，以提升模型對惡意特徵擾動的辨識與防禦能力；","C":"於推論後階段使用規則引擎，以確保模型的預測結果不違反既有的業務硬性規定；","D":"在模型部署環境中強化網路防火牆，以阻擋來自未授權來源的網路連線"}},{"id":25,"answer":"B","stem":"某企業部署生成式 AI 系統協助行銷與內容產出，但近期遭質疑部分生成內容可能涉及著作權侵權。為降低企業在法律層面的潛在責任與風險，下列哪一項策略最能有效預防侵權問題產生？","options":{"A":"對生成內容進行語意相似度比對，自動標註可能涉及既有著作的輸出結果，以降低侵權風險；","B":"建立訓練資料篩選與授權驗證機制，排除未授權或高風險資料來源；","C":"在訓練與微調過程中採用差分隱私技術，避免模型記憶特定受著作權保護的樣本；","D":"在模型輸出端嵌入浮水印（Watermarking）或數位指紋（Digital Fingerprint）技術，以確保生成內容可追溯"}},{"id":26,"answer":"D","stem":"在房價預測任務中，若發現特徵如「房間數」與「坪數」存在高度多重共線性（Multicollinearity），為降低共線性對模型參數估計的負面影響，應優先選擇下列哪種模型？","options":{"A":"不受多重共線性影響的決策樹模型；","B":"傳統線性迴歸模型，不含正則化項；","C":"支持向量機搭配線性核函數；","D":"含 L1 正則化的 LASSO 迴歸模型"}},{"id":27,"answer":"C","stem":"某企業需分析半結構化的系統日誌（JSON 格式），以提取關鍵的時序特徵供故障預測模型使用。考量日誌結構複雜且包含巢狀欄位 （Nested Fields），下列哪一種策略最有效且實務可行？","options":{"A":"先將 JSON 資料扁平化轉成 CSV，再對欄位計算統計量（如均值、 次數）作為特徵；","B":"使用遞歸神經網路（RNN）直接輸入原始 JSON 字串進行時序特徵抽取；","C":"設計遞迴函式展開巢狀欄位，並基於時間窗口（Time Window）進行聚合與特徵萃取；","D":"只保留時間戳記欄位，忽略其他巢狀內容以簡化特徵工程"}},{"id":28,"answer":"C","stem":"在一個同時包含連續型特徵與類別型特徵的資料集中，若希望透過適當的特徵工程流程來提升模型整體表現，下列哪一種作法最為合適？","options":{"A":"將類別型特徵使用標籤編碼（Label Encoding）轉換後，與連續特徵直接合併進行模型訓練；","B":"將連續特徵進行離散化（Discretization）或分桶（Binning）轉為類別型特徵，統一以類別方式處理；","C":"對連續特徵做標準化（Standardization），類別特徵採用目標編碼（Target Encoding），並生成交互特徵提升模型表現；","D":"只保留連續特徵，忽略類別型變量以簡化模型"}},{"id":29,"answer":"B","stem":"某 AI 開發團隊為提升模型開發效率及品質控制，計畫實施持續整合 （Continuous Integration, CI）流程。下列哪一項做法最符合 CI 的核心實踐，且能有效減少整合風險？","options":{"A":"在主分支（Main Branch）每日固定時間手動合併並執行完整測試流程；","B":"每次程式碼提交（Commit）後自動觸發建置、單元測試及靜態程式碼分析；","C":"於模型訓練完成後，定期安排開發團隊回顧並合併程式碼；","D":"透過自動化部署腳本，將模型在特定時間點批次釋出到測試環境"}},{"id":30,"answer":"A","stem":"某銀行計劃將 AI 詐欺偵測模組整合至核心交易系統，主管機關要求全流程必須符合金融監管對「不可否認性（Non-repudiation） 」的資訊安全規範，以確保日後能進行法務追蹤與稽核。下列哪一項措施最能確保此要求的落實？","options":{"A":"為每筆 AI 模型推論記錄其輸入與輸出結果的加密雜湊值 （Hash），並簽署數位簽章以確保不可竄改性；","B":"優化模型效能以降低平均推論延遲至 100ms 以下，提升使用者體驗；","C":"增加主機備援數量，以確保系統在故障時持續可用；","D":"將模型推論請求導入負載平衡器，避免單點壅塞導致服務延遲"}},{"id":31,"answer":"B","stem":"某 AI 服務系統每次推論請求需約 1 秒完成，且必須支撐高達 10,000 次請求每秒（RPS）的流量。為確保系統具備高可用性且能穩定應付流量峰值，下列哪一種架構方案最為合適？","options":{"A":"依賴單台超高效能伺服器進行垂直擴展，提升硬體規格；","B":"採用容器化部署並水平擴展服務實例，結合自動彈性伸縮機制 （Auto Scaling）；","C":"限制最大併發連線數，以避免系統過載；","D":"增加批次處理大小，一次同時處理上千筆請求"}},{"id":32,"answer":"D","stem":"某企業已將 AI 模型部署於生產環境，為確保系統持續穩定運作，並能提前偵測模型效能可能衰退，技術團隊希望透過監控指標進行預警。 下列哪一項監控指標最具預測效力，能提早發現模型效能下滑風險？","options":{"A":"系統 CPU 與記憶體使用率波動幅度；","B":"模型推論結果的置信度（Confidence）分佈變化趨勢；","C":"API 平均回應時間與延遲百分位數變化；","D":"輸入特徵與訓練資料分布差異的 PSI（Population Stability Index）指數"}},{"id":33,"answer":"C","stem":"企業團隊在使用 Word2Vec 模型訓練客服文本語料時，若訓練資料量龐大且希望模型能更有效捕捉罕見詞的語意關聯，下列哪一種訓練策略最為適合？","options":{"A":"採用 Skip-gram 模型，但以隨機初始化權重加快高頻詞的訓練收斂；","B":"採用 CBOW 模型（Continuous Bag of Words Model）並結合 TF-IDF 權重以強化低頻詞表示；","C":"採用 Skip-gram 模型，利用中心詞預測周圍詞語，能更有效學習低頻詞關係；","D":"採用 CBOW 模型（Continuous Bag of Words Model），利用周圍詞預測中心詞，能提升罕見詞的語意穩定度"}},{"id":34,"answer":"D","stem":"在自駕車影像辨識系統中，開發團隊希望模型能同時辨識每個像素所屬的物件類別（例如道路、建築、行人），又能區分出同類物件的不同個體（例如多位行人）。此時最適合採用下列哪一項電腦視覺技術？","options":{"A":"語義分割（Semantic Segmentation）；","B":"物件偵測（Object Detection）；","C":"實例分割（Instance Segmentation）；","D":"全景分割（Panoptic Segmentation）"}},{"id":35,"answer":"A","stem":"某媒體公司計畫導入 CLIP（Contrastive Language–Image Pre-training）模型，以協助大量影像自動標註與搜尋，並希望在無需新增標訓資料的情況下，僅透過文字提示（Text Prompt）即可識別影像內容。請問此應用情境中，CLIP 能夠達成的關鍵技術特性為何？","options":{"A":"透過圖文對比式學習（Contrastive Learning）將影像與文字映射至共同嵌入空間（Shared Embedding Space），可直接以語意相似度進行零樣本分類；","B":"透過影像增強與特徵擴散降低標訓資料需求；","C":"以監督式學習結合多層感知器（Multilayer Perceptron, MLP） 進行影像特徵分類；","D":"以自迴歸生成模型（Autoregressive Model）逐步生成文字標籤描述影像內容"}},{"id":36,"answer":"B","stem":"某資料科學團隊在開發預測模型時，針對多種模型設定（如學習率、 樹深度、正則化係數等）進行系統化測試，希望找出在驗證資料上表現最穩定的組合。此過程最可能採用下列哪一種方法？","options":{"A":"使用交叉驗證（Cross Validation）反覆評估模型以降低過擬合風險；","B":"透過網格搜尋（Grid Search）在多組超參數設定中進行系統化搜尋與評估；","C":"以隨機搜尋（Random Search）快速探索部分參數空間以提升搜尋效率；","D":"採用貝葉斯優化（Bayesian Optimization）根據歷次結果動態調整搜尋方向"}},{"id":37,"answer":"B","stem":"某公司正在訓練一個大型語音合成模型，開發團隊使用多台 GPU 進行訓練，但經常出現 GPU 記憶體不足問題。由於模型架構已固定且無法更換硬體，團隊希望在維持模型效能與收斂品質的前提下，下列哪一種方法最有效降低單張 GPU 的記憶體壓力？","options":{"A":"減少訓練資料量以降低記憶體使用；","B":"採用較小的批次大小（Batch Size）並搭配資料分片（Data Sharding）分散訓練負載；","C":"增加學習率（Learning Rate）以加快收斂速度；","D":"改用測試資料集（Test Set）進行部分訓練以節省空間"}},{"id":38,"answer":"B","stem":"某影像設計團隊在使用 Stable Diffusion 生成 4K 級產品圖時，發現影像邊緣與細節存在顆粒化與模糊現象。 若僅能在生成階段進行調整，希望提升畫面清晰度與紋理層次，同時避免過度平滑，下列哪一項作法最適合？","options":{"A":"降低取樣步數，以縮短生成時間；","B":"增加取樣步數並選擇高品質取樣器，以強化細節還原度；","C":"提高 CFG（Classifier-Free Guidance）值，使生成結果更具創意與多樣性；","D":"改用低解析度輸入以降低計算成本"}},{"id":39,"answer":"C","stem":"某企業的資料科學團隊利用 ARIMA 模型（AutoRegressive Integrated Moving Average Model）預測每週產品銷售量。模型建立完成後，分析人員發現預測誤差隨時間呈現週期性波動，且自相關函數（ACF）顯示殘差在多個時滯（Lag）上仍顯著不為零。根據上述現象，最合理的模型診斷結論為何？","options":{"A":"模型殘差符合白噪音（White Noise）假設，預測表現穩定；","B":"模型殘差雖有輕微異常，但可視為隨機誤差忽略不計；","C":"模型存在配適不足（Underfitting）問題，需重新調整 p 或 q 參數以捕捉時間依賴性；","D":"殘差特性不影響預測結果，無須進一步修正"}},{"id":40,"answer":"A","stem":"下列哪一項最正確地描述了 VAE（Variational Autoencoder）、GAN （Generative Adversarial Network）與擴散模型（Diffusion Model）在多模態潛在空間對齊（Latent Alignment）與生成策略上的根本差異？","options":{"A":"VAE 透過顯式潛在變數建模實現跨模態對齊，適合捕捉整體語意結構但生成解析度有限；GAN 透過對抗損失（Adversarial Loss）在不同模態間學習分佈映射，生成品質高但穩定性差；擴散模型則以條件化噪聲反推（Conditional Denoising）方式實現高保真跨模態生成，兼具穩定性與多樣性；","B":"VAE 與 Diffusion Ｍodel 均屬隱式生成架構，主要依賴對抗式訓練實現跨模態對齊；GAN 則以顯式後驗估計方式提升樣本一致性；","C":"VAE 與 GAN 均使用馬爾可夫鏈（Markov Chain）進行跨模態轉換； Diffusion Model 則透過 KL 散度最小化學習語意對應。；","D":"三者在多模態應用中皆依賴同一潛在表徵空間（Shared Latent Space），僅在解碼器結構不同而已"}},{"id":41,"answer":"A","stem":"在進行超參數調校（Hyperparameter Tuning）時，若直接在 K-Fold 交叉驗證（Cross-Validation）的資料上同時調整模型參數並評估效能，最可能導致下列哪一種問題？","options":{"A":"模型的交叉驗證結果出現過度樂觀偏差（Over-optimistic Bias），因測試摺資料間接參與參數選擇，造成資料洩漏（Data Leakage）；","B":"模型會在每一摺（Fold）內反覆調整參數，導致訓練不穩與過度正則化；","C":"因交叉驗證資料被重複使用，造成效能方差增大，無法獲得穩定估計；","D":"K-Fold 交叉驗證的假設與超參數搜尋相衝突，導致驗證過程失效"}},{"id":42,"answer":"D","stem":"若部署一個深度學習模型至金融風控系統，該模型採用鑑別式架構 （如 Transformer Classifier）。然而上線後，模型對新樣本的分類錯誤率顯著上升，經檢查發現，輸入資料分佈已與原訓練集明顯不同。針對此情形，下列哪一種應對策略最為適合？","options":{"A":"改用生成對抗網路（GAN）生成新樣本並混入訓練集；","B":"改用邏輯迴歸模型（Logistic Regression）以提升穩定性；","C":"增加模型容量（Model Capacity），以學習更多樣本差異；","D":"使用變分自編碼器（VAE）監控潛在空間分佈，偵測輸入資料偏移"}},{"id":43,"answer":"B","stem":"某金融科技公司欲導入 AI 模型協助客服郵件自動分類（投訴、詢問、表揚）。團隊同時考慮兩種模型設計： 方案 A（生成式路徑）：採用 VAE 建構潛在語意空間，再結合下游分類器進行標籤預測； 方案 B（鑑別式路徑）：採用 BERT Classifier 直接根據輸入文本進行監督式分類。 現有標註資料約 2,000 筆，資料分佈均勻但擴充成本高。若團隊希望公平比較兩種模型的資料利用效率與泛化能力，下列哪一種實驗設計最能突顯兩者的本質差異？","options":{"A":"在完整資料集上分別訓練兩者，並比較其分類準確率 （Accuracy）與推論時間；","B":"在低資源情境（Low-resource Setting）下，逐步減少標註比例 （100%、50%、10%），比較其 F1-score；","C":"使用 GAN 自動生成文本樣本補足資料，觀察兩模型在資料增強後的精確率（Precision）差異；","D":"在相同訓練資料上固定輸入維度，僅調整模型參數量，比較其對過擬合的敏感度"}},{"id":44,"answer":"C","stem":"某電信公司希望建立一個模型來預測顧客是否即將流失，並進一步模擬不同促銷或服務策略下顧客的行為變化，以生成多樣化的虛擬樣本資料進行 A/B 測試與行銷策略評估。若要同時兼顧預測與資料生成的需求，最適合採用下列哪一種方法？","options":{"A":"使用傳統隨機森林（Random Forest）；","B":"使用邏輯迴歸（Logistic Regression）模型；","C":"使用變分自編碼器（Variational Autoencoder, VAE）或生成對抗網路（Generative Adversarial Network, GAN）；","D":"使用強化學習代理（Reinforcement Learning Agent）"}},{"id":45,"answer":"D","stem":"進行影像分類任務時，研究團隊嘗試利用主成分分析（Principal Component Analysis, PCA）將輸入特徵從 1024 維降至 100 維，並將降維後的資料輸入支持向量機（Support Vector Machine, SVM）模型進行訓練。關於此作法，下列哪一項描述最為合理？","options":{"A":"PCA 保留的主成分必然能提升 SVM 的分類準確率；","B":"使用原始高維資料通常更能保留資訊，因此 PCA 沒有實際意義；","C":"PCA 可讓 SVM 自動適用於非線性（Nonlinear）資料集；","D":"降維後可降低訓練時間並減少過擬合（Overfitting）風險"}},{"id":46,"answer":"A","stem":"某企業的 AI 模型已部署於線上服務環境中，用於即時預測顧客流失機率。近期團隊注意到模型預測準確率逐漸下降，但系統運作正常且未出現錯誤訊息。經分析發現，近期輸入資料的分布與模型訓練資料相比出現顯著偏移。若要在 MLOps 流程中主動偵測並預警此類問題， 最應採用下列哪項措施？","options":{"A":"建立即時的資料漂移（Data Drift）與概念漂移（Concept Drift）監測機制；","B":"將模型轉換為量化版本以降低延遲；","C":"增加模型超參數調整次數以強化適應性；","D":"使用固定隨機種子（Random Seed）確保訓練穩定"}},{"id":47,"answer":"C","stem":"某金融科技公司導入多任務學習架構，讓單一 Transformer 模型同時執行 OCR（Optical Character Recognition）後的文檔分類以及命名實體辨識（Named Entity Recognition, NER）任務， 以協助自動歸檔與抽取關鍵金融資訊。在部署初期，團隊發現當模型的 NER 準確率（Accuracy）提升時，文檔分類準確率反而下降。若模型架構正確且資料品質良好，下列哪一項最可能是造成此現象的原因？","options":{"A":"模型架構無法同時支援文字分類與序列標註任務（Sequence Labeling）；","B":"文檔分類任務不需要語意化表徵（Contextualized Representation）；","C":"損失函數（Loss Function）未進行權重平衡，導致任務間競爭；","D":"所使用的 BERT 模型無法支援多任務輸出頭（Multi-Head Outputs）"}},{"id":48,"answer":"B","stem":"某數據工程師使用 DBSCAN 演算法對一份數百萬筆的高維顧客資料進行聚類分析，但發現程式執行速度極慢，甚至出現記憶體不足的情況。若要在不改變演算法核心邏輯的前提下，最有效提升其運算效率的作法為何？","options":{"A":"改用以平均連結（Average Linkage）為基礎的階層式群集法 （Hierarchical Clustering）；","B":"採用高效率的距離索引結構（Distance Index Structure），例如 KD-Tree 或 Ball Tree；","C":"將 ε（Epsilon）參數調得極小，以減少鄰近點的數量；","D":"在資料前處理時增加標準化後的特徵維度數"}},{"id":49,"answer":"A","stem":"某電商平台導入 AI 情感分析模型，用以自動偵測顧客評論中的負面情緒並觸發客服機制。然而，上線後發現模型在面對不同語言或族群書寫風格的評論時表現不一致，例如部分語氣強烈的正面評論被誤判為負面，而禮貌但含批評意圖的評論卻被判為中性。若從技術與資料治理的角度分析，下列哪一項描述不正確？","options":{"A":"模型未啟用詞嵌入正規化（Embedding Normalization）可能造成語意距離不穩定，導致預測誤差；","B":"訓練語料若偏向特定文化或語氣特徵，可能使模型產生內隱偏誤 （Implicit Bias）；","C":"模型若訓練資料來源不平衡，容易導致對不同語言或族群風格的情緒判斷不準確；","D":"Transformer 架構能捕捉上下文語意，但若訓練資料偏差仍存在， 模型仍可能學習到偏誤判斷"}},{"id":50,"answer":"C","stem":"某設計師使用公司內部建置的生成式 AI 工具製作行銷素材，並輸入提示語（Prompt）： 「請生成一張模特兒手持品牌飲料、背景為海邊夕陽的照片」。系統能正確生成主要主題與場景，但輸出的圖像中，品牌標誌顏色常有誤差，或人物手部姿勢顯得不自然。若從多模態生成模型的技術機制分析，此現象最可能是下列哪一項原因所造成？","options":{"A":"擴散式生成模型的去雜訊過程出現隨機梯度漂移，導致影像像素錯誤；","B":"提示語過長造成 Transformer 的位置編碼超出上下文限制，導致生成混亂；","C":"CLIP 模型中的文字編碼器與影像編碼器在語意嵌入空間未充分對齊，導致跨模態理解偏差；","D":"模型未採用對比學習（Contrastive Learning）損失函數，無法建立多模態語意關聯"}}];
+    originalQuestions.forEach((original) => {
+      const question = questions.find((item) => item.id === original.id);
+      question.originalStem = original.stem;
+      question.originalOptions = original.options;
+    });
+
+
+    // 主題順序固定，讓側欄與下拉選單的排列符合學習脈絡。
+    const topicOrder = ['全部主題','NLP','電腦視覺與評估','機器學習','MLOps 與部署','生成式與多模態','負責任 AI 與安全','資料與特徵工程','模型開發與評估'];
+    const list = document.querySelector('#questionList');
+    const search = document.querySelector('#search');
+    const topicFilter = document.querySelector('#topicFilter');
+    const sortMode = document.querySelector('#sortMode');
+    const topicNav = document.querySelector('#topicNav');
+    const resultCount = document.querySelector('#resultCount');
+    const activeTopic = document.querySelector('#activeTopic');
+    const empty = document.querySelector('#empty');
+
+    // 避免題目文字中的特殊符號被當成 HTML，確保離線檔案安全呈現。
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>'"]/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+    }
+
+    // 產生原題中的附表；目前第 19 題含有一張評估指標表。
+    function renderQuestionTable(question) {
+      if (!question.questionTable) return '';
+      const head = question.questionTable.headers.map((cell) => `<th>${escapeHtml(cell)}</th>`).join('');
+      const rows = question.questionTable.rows.map((row) => `<tr>${row.map((cell) => `<td>${escapeHtml(cell)}</td>`).join('')}</tr>`).join('');
+      return `<table class="source-table"><thead><tr>${head}</tr></thead><tbody>${rows}</tbody></table>`;
+    }
+
+    // 將單一題目渲染為可收合卡片，先完整呈現原題，再放入另外標注的解題重點。
+    function renderQuestion(question) {
+      const optionHtml = Object.entries(question.options).map(([letter, data]) => {
+        const correct = letter === question.answer;
+        const originalOption = question.originalOptions[letter];
+        return `<div class="option ${correct ? 'correct' : 'wrong'}"><span class="letter">${letter}</span><p><span class="choice">${escapeHtml(originalOption)}</span><span class="reason"><strong>判斷重點｜${correct ? '正確：' : '錯誤：'}</strong>${escapeHtml(data[1])}</span></p></div>`;
+      }).join('');
+      const supplement = question.basis.includes('補充');
+      return `<article class="question" data-id="${question.id}" data-topic="${escapeHtml(question.topic)}"><div class="question-header"><span class="qno">${question.id}</span><span class="summary-text"><b>${escapeHtml(question.title)}</b><span>${escapeHtml(question.topic)}・原題第 ${question.id} 題</span></span><span class="answer-badge">答案 ${question.answer}</span></div><div class="question-body"><div class="original-block"><span class="section-label">原始題目</span><p class="original-stem">${escapeHtml(question.originalStem)}</p>${renderQuestionTable(question)}</div><h3 class="analysis-title">題目與選項標注</h3><p class="stem"><strong>題目重點：</strong>${escapeHtml(question.stem)}</p><div class="key"><strong>判斷關鍵：</strong>${escapeHtml(question.clue)}</div><div class="options">${optionHtml}</div><div class="meta-row"><span class="tag">${escapeHtml(question.source)}</span><span class="tag ${supplement ? 'supplement' : ''}">${escapeHtml(question.basis)}</span></div></div></article>`;
+    }
+
+    // 根據搜尋字與主題篩選題目，並同步更新結果數量與空白狀態。
+    function applyFilter() {
+      const keyword = search.value.trim().toLocaleLowerCase('zh-Hant');
+      const topic = topicFilter.value;
+      const filtered = questions.filter((question) => {
+        const text = `q${question.id} ${question.id} ${question.title} ${question.stem} ${question.originalStem} ${question.clue} ${question.topic} ${Object.values(question.originalOptions).join(' ')} ${Object.values(question.options).flat().join(' ')}`.toLocaleLowerCase('zh-Hant');
+        return (!keyword || text.includes(keyword)) && (topic === '全部主題' || question.topic === topic);
+      });
+      const sorted = [...filtered].sort((a, b) => sortMode.value === 'topic'
+        ? topicOrder.indexOf(a.topic) - topicOrder.indexOf(b.topic) || a.id - b.id
+        : a.id - b.id);
+      let previousTopic = '';
+      list.innerHTML = sorted.map((question) => {
+        const heading = sortMode.value === 'topic' && question.topic !== previousTopic
+          ? `<h2 class="group-heading">${escapeHtml(question.topic)}<span>${filtered.filter((item) => item.topic === question.topic).length} 題</span></h2>`
+          : '';
+        previousTopic = question.topic;
+        return heading + renderQuestion(question);
+      }).join('');
+      resultCount.textContent = `顯示 ${filtered.length} 題`;
+      activeTopic.textContent = `${topic}・${sortMode.value === 'topic' ? '依主題分組' : '依原題號排序'}`;
+      empty.style.display = filtered.length ? 'none' : 'block';
+      [...topicNav.querySelectorAll('button')].forEach((button) => button.classList.toggle('active', button.dataset.topic === topic));
+    }
+
+    // 建立主題篩選器，題數由實際題目資料即時計算。
+    function setupTopics() {
+      topicFilter.innerHTML = topicOrder.map((topic) => `<option value="${topic}">${topic}</option>`).join('');
+      topicNav.innerHTML = topicOrder.map((topic) => {
+        const count = topic === '全部主題' ? questions.length : questions.filter((q) => q.topic === topic).length;
+        return `<button type="button" data-topic="${topic}">${topic}（${count}）</button>`;
+      }).join('');
+      topicNav.addEventListener('click', (event) => {
+        const button = event.target.closest('button[data-topic]');
+        if (!button) return;
+        topicFilter.value = button.dataset.topic;
+        applyFilter();
+      });
+    }
+
+    search.addEventListener('input', applyFilter);
+    topicFilter.addEventListener('change', applyFilter);
+    sortMode.addEventListener('change', applyFilter);
+    setupTopics();
+    applyFilter();
+  </script>
+</body>
+</html>

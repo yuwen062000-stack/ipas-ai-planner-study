@@ -1,0 +1,1058 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <!--
+    本檔案負責將「科目一學習指引」3.1 自然語言處理技術與應用重整為可閱讀、可列印的單頁講義。
+    所有知識內容僅取自原 PDF 講義頁碼 3-3 至 3-39，不加入外部資料。
+  -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="iPAS AI 應用規劃師中級－科目一 3.1 自然語言處理技術與應用整理">
+  <title>3.1 自然語言處理技術與應用｜科目一講義整理</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #16263d;
+      --muted: #5d6d80;
+      --paper: #f5f8fb;
+      --surface: #ffffff;
+      --line: #d9e2ec;
+      --navy: #0d2c4a;
+      --blue: #126e82;
+      --cyan: #20a4b8;
+      --yellow: #f4c95d;
+      --soft-blue: #eaf5f7;
+      --soft-yellow: #fff7dd;
+      --danger: #a54b4b;
+      --radius: 18px;
+      --shadow: 0 16px 40px rgba(13, 44, 74, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 95% 2%, rgba(32, 164, 184, 0.12), transparent 22rem),
+        var(--paper);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    a { color: inherit; }
+
+    button, input { font: inherit; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 270px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 28px 22px;
+      color: #eef8fa;
+      background: var(--navy);
+      overflow-y: auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid rgba(255,255,255,.16);
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border: 2px solid var(--yellow);
+      border-radius: 12px;
+      color: var(--yellow);
+      font-weight: 900;
+      letter-spacing: -.04em;
+    }
+
+    .brand small, .eyebrow, .meta, .source-note { letter-spacing: .08em; }
+
+    .brand small {
+      display: block;
+      color: #9ecbd3;
+      font-size: .72rem;
+    }
+
+    .brand strong { display: block; font-size: .98rem; }
+
+    .toc-title {
+      margin: 26px 10px 10px;
+      color: #8abdc6;
+      font-size: .75rem;
+      font-weight: 800;
+    }
+
+    .toc {
+      display: grid;
+      gap: 5px;
+    }
+
+    .toc a {
+      padding: 9px 12px;
+      border-radius: 9px;
+      color: #dcecef;
+      font-size: .88rem;
+      text-decoration: none;
+    }
+
+    .toc a:hover, .toc a:focus-visible {
+      color: #fff;
+      background: rgba(255,255,255,.1);
+      outline: none;
+    }
+
+    .sidebar-note {
+      margin-top: 26px;
+      padding: 14px;
+      border: 1px solid rgba(244, 201, 93, .35);
+      border-radius: 12px;
+      color: #dcecef;
+      background: rgba(244, 201, 93, .08);
+      font-size: .78rem;
+    }
+
+    main {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: 54px 48px 96px;
+    }
+
+    .hero {
+      position: relative;
+      padding: 44px;
+      overflow: hidden;
+      border-radius: 28px;
+      color: white;
+      background: linear-gradient(135deg, #0d2c4a 0%, #10536a 66%, #14889a 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "NLP";
+      position: absolute;
+      right: -18px;
+      bottom: -78px;
+      color: rgba(255,255,255,.07);
+      font-size: clamp(7rem, 18vw, 13rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -.08em;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: #8fe2ea;
+      font-size: .8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, h4 { line-height: 1.3; }
+
+    h1 {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2rem, 4.6vw, 4rem);
+      letter-spacing: -.045em;
+    }
+
+    .hero p:not(.eyebrow) {
+      position: relative;
+      z-index: 1;
+      max-width: 730px;
+      margin: 22px 0 0;
+      color: #d9eff2;
+      font-size: 1.08rem;
+    }
+
+    .hero-meta {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 11px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 999px;
+      color: #effbfc;
+      background: rgba(255,255,255,.08);
+      font-size: .78rem;
+    }
+
+    .source-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      margin: 22px 0 42px;
+      padding: 16px 18px;
+      border-left: 5px solid var(--yellow);
+      border-radius: 0 12px 12px 0;
+      background: var(--soft-yellow);
+      font-size: .9rem;
+    }
+
+    .source-banner strong { color: #795a00; }
+
+    section { scroll-margin-top: 22px; }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin: 58px 0 20px;
+      padding-bottom: 13px;
+      border-bottom: 2px solid var(--line);
+    }
+
+    .section-head h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(1.45rem, 2.5vw, 2.05rem);
+      letter-spacing: -.025em;
+    }
+
+    .meta {
+      flex: none;
+      color: var(--blue);
+      font-size: .72rem;
+      font-weight: 900;
+    }
+
+    .lead { max-width: 900px; color: #40536a; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 8px 24px rgba(13, 44, 74, .05);
+    }
+
+    .card .number {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 10px;
+      color: white;
+      background: var(--blue);
+      font-size: .82rem;
+      font-weight: 900;
+    }
+
+    .card h3 { margin: 15px 0 8px; font-size: 1.08rem; }
+    .card p { margin: 0; color: var(--muted); font-size: .9rem; }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(130px, 1fr));
+      align-items: stretch;
+      gap: 10px;
+      margin: 22px 0;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .flow-step {
+      position: relative;
+      min-width: 135px;
+      padding: 18px 16px;
+      border: 1px solid #bcd9df;
+      border-radius: 14px;
+      background: var(--soft-blue);
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      top: 50%;
+      right: -13px;
+      z-index: 2;
+      width: 16px;
+      color: var(--blue);
+      font-weight: 900;
+      transform: translateY(-50%);
+    }
+
+    .flow-step b { display: block; color: var(--navy); font-size: .92rem; }
+    .flow-step span { display: block; margin-top: 5px; color: var(--muted); font-size: .78rem; }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin: 24px 0;
+    }
+
+    .era {
+      position: relative;
+      padding: 25px 20px 22px;
+      border-top: 5px solid var(--cyan);
+      background: var(--surface);
+    }
+
+    .era:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+    .era:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+    .era + .era { border-left: 1px solid var(--line); }
+    .era:nth-child(even) { border-top-color: var(--yellow); }
+    .era .year { color: var(--blue); font-size: .77rem; font-weight: 900; }
+    .era h3 { min-height: 2.7em; margin: 7px 0 8px; font-size: 1rem; }
+    .era p { margin: 0; color: var(--muted); font-size: .82rem; }
+    .era .models { margin-top: 12px; color: var(--navy); font-weight: 800; }
+
+    .table-wrap {
+      margin: 18px 0 28px;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+    }
+
+    th, td {
+      padding: 13px 15px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: #eaf7f9;
+      background: var(--navy);
+      font-size: .79rem;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover { background: #f5fbfc; }
+    td:first-child { color: var(--navy); font-weight: 800; }
+
+    .page-ref {
+      white-space: nowrap;
+      color: var(--blue);
+      font-size: .75rem;
+      font-weight: 800;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 18px 0;
+    }
+
+    .comparison .card { border-top: 5px solid var(--cyan); }
+    .comparison .card:nth-child(even) { border-top-color: var(--yellow); }
+
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .risk-card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .risk-card h3 { margin-top: 0; color: var(--navy); }
+    .risk-card ul { margin-bottom: 0; padding-left: 1.25rem; color: var(--muted); }
+    .risk-card li + li { margin-top: 8px; }
+
+    .search-panel {
+      position: sticky;
+      top: 10px;
+      z-index: 8;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+      padding: 12px 14px;
+      border: 1px solid #bcd9df;
+      border-radius: 14px;
+      background: rgba(255,255,255,.94);
+      box-shadow: 0 10px 30px rgba(13,44,74,.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .search-panel input {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 13px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      color: var(--ink);
+      background: #fff;
+      outline: none;
+    }
+
+    .search-panel input:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(32,164,184,.15); }
+
+    .search-count { min-width: 6em; color: var(--muted); font-size: .82rem; text-align: right; }
+
+    details {
+      margin: 14px 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+
+    summary {
+      padding: 16px 18px;
+      cursor: pointer;
+      color: var(--navy);
+      font-weight: 900;
+      background: #f4f9fa;
+    }
+
+    details .table-wrap { margin: 0; border: 0; border-radius: 0; }
+
+    .term-en { display: block; color: var(--muted); font-size: .73rem; font-weight: 600; }
+
+    .no-results {
+      display: none;
+      padding: 28px;
+      color: var(--muted);
+      text-align: center;
+      background: var(--surface);
+      border-radius: 14px;
+    }
+
+    .study-note {
+      padding: 22px;
+      border: 1px solid #bcd9df;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--soft-blue), #fff);
+    }
+
+    .study-note h3 { margin-top: 0; color: var(--navy); }
+
+    .confusion-table td:nth-child(2) {
+      color: var(--danger);
+      font-weight: 800;
+    }
+
+    .confusion-table td:nth-child(3) strong,
+    .decision-table td:nth-child(2) strong {
+      color: var(--blue);
+    }
+
+    .memory-cue {
+      display: inline-block;
+      margin-top: 7px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      color: #684d00;
+      background: var(--soft-yellow);
+      font-size: .76rem;
+      font-weight: 800;
+    }
+
+    .callout-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    .callout {
+      padding: 18px 20px;
+      border-left: 5px solid var(--cyan);
+      border-radius: 0 14px 14px 0;
+      background: var(--surface);
+      box-shadow: 0 8px 24px rgba(13, 44, 74, .05);
+    }
+
+    .callout:nth-child(even) { border-left-color: var(--yellow); }
+    .callout h3 { margin: 0 0 6px; color: var(--navy); font-size: 1rem; }
+    .callout p { margin: 0; color: var(--muted); font-size: .88rem; }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    @media (max-width: 980px) {
+      .layout { display: block; }
+      .sidebar { position: relative; width: 100%; height: auto; }
+      .toc { grid-template-columns: repeat(3, 1fr); }
+      .sidebar-note { display: none; }
+      main { padding: 34px 24px 72px; }
+      .timeline { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .era, .era:first-child, .era:last-child { border-radius: 14px; border-left: 0; }
+    }
+
+    @media (max-width: 720px) {
+      .toc { grid-template-columns: repeat(2, 1fr); }
+      .hero { padding: 30px 24px; border-radius: 20px; }
+      .cards, .comparison, .risk-grid, .callout-grid { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: 1fr; }
+      .section-head { align-items: start; flex-direction: column; gap: 4px; }
+      .search-panel { align-items: stretch; flex-direction: column; }
+      .search-count { text-align: left; }
+    }
+
+    @media print {
+      @page { size: A4; margin: 14mm 12mm; }
+      body { background: #fff; font-size: 10.5pt; }
+      .layout { display: block; }
+      .sidebar, .search-panel { display: none !important; }
+      main { width: 100%; max-width: none; padding: 0; }
+      .hero { padding: 26px; box-shadow: none; break-after: page; }
+      .source-banner { margin-top: 16px; }
+      .section-head { margin-top: 30px; }
+      .card, .era, .risk-card, .table-wrap, details { break-inside: avoid; box-shadow: none; }
+      details > * { display: block !important; }
+      summary { list-style: none; }
+      .flow { grid-template-columns: repeat(3, 1fr); overflow: visible; }
+      .timeline { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .cards, .risk-grid { grid-template-columns: repeat(3, 1fr); }
+      a { text-decoration: none; }
+      footer { break-before: page; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" aria-label="本頁目錄">
+      <div class="brand">
+        <div class="brand-mark">3.1</div>
+        <div><small>iPAS 中級・科目一</small><strong>AI 相關技術應用</strong></div>
+      </div>
+      <div class="toc-title">章節導覽</div>
+      <nav class="toc">
+        <a href="#overview">01 整體架構</a>
+        <a href="#concept">02 基本概念</a>
+        <a href="#evolution">03 演進階段</a>
+        <a href="#preprocess">04 前處理</a>
+        <a href="#models">05 模型方法</a>
+        <a href="#applications">06 應用情境</a>
+        <a href="#risks">07 挑戰風險</a>
+        <a href="#confusions">08 易混淆辨析</a>
+        <a href="#glossary">09 名詞總表</a>
+      </nav>
+      <div class="sidebar-note">
+        整理範圍：原講義 3-3～3-39。頁碼標示皆指原 PDF 的講義頁碼，方便回查。
+      </div>
+    </aside>
+
+    <main>
+      <header class="hero">
+        <p class="eyebrow">Chapter 03 · Section 3.1</p>
+        <h1>自然語言處理<br>技術與應用</h1>
+        <p>以「理解、處理、生成」為核心，沿著技術演進、資料前處理、模型方法、實務應用與風險治理，重建 3.1 的完整學習脈絡。</p>
+        <div class="hero-meta">
+          <span class="chip">來源限定：科目一 PDF</span>
+          <span class="chip">範圍：3-3～3-39</span>
+          <span class="chip">整理版：HTML 初稿</span>
+        </div>
+      </header>
+
+      <div class="source-banner">
+        <span aria-hidden="true">◆</span>
+        <div><strong>內容界線：</strong>本頁只重整原講義 3.1 的定義、說明、例子與分類；未使用外部資料。文字為便於複習所做的濃縮與重新編排。</div>
+      </div>
+
+      <section id="overview">
+        <div class="section-head">
+          <h2>01｜3.1 整體架構</h2>
+          <span class="meta">原講義 3-3～3-39</span>
+        </div>
+        <p class="lead">講義先說明 NLP 的角色與範疇，再依序進入技術演進、資料前處理、核心技術、實務應用與風險。以下六個區塊就是本節的閱讀主線。</p>
+        <div class="flow" aria-label="3.1 章節架構流程">
+          <div class="flow-step"><b>① 定義與範疇</b><span>NLP、NLU、NLG</span></div>
+          <div class="flow-step"><b>② 技術演進</b><span>規則式至預訓練模型</span></div>
+          <div class="flow-step"><b>③ 資料前處理</b><span>清理、轉換、標準化</span></div>
+          <div class="flow-step"><b>④ 關鍵技術</b><span>向量化、深度學習、預訓練</span></div>
+          <div class="flow-step"><b>⑤ 實務應用</b><span>分類、情感、對話、翻譯等</span></div>
+          <div class="flow-step"><b>⑥ 挑戰與風險</b><span>資料、模型、應用三層</span></div>
+        </div>
+      </section>
+
+      <section id="concept">
+        <div class="section-head">
+          <h2>02｜基本概念：理解、處理、生成</h2>
+          <span class="meta">原講義 3-3～3-5</span>
+        </div>
+        <p class="lead">自然語言處理（NLP）是讓電腦能夠理解、處理並產生自然語言的人工智慧核心技術。講義將其目標拆成三個任務層次。</p>
+        <div class="cards">
+          <article class="card">
+            <span class="number">01</span>
+            <h3>理解 Understand</h3>
+            <p>從語言解析語法與語意，辨識語者的意圖、情緒與知識。</p>
+          </article>
+          <article class="card">
+            <span class="number">02</span>
+            <h3>處理 Process</h3>
+            <p>將語言轉換成電腦可操作的結構，例如特徵向量、語法樹與標注格式。</p>
+          </article>
+          <article class="card">
+            <span class="number">03</span>
+            <h3>生成 Generate</h3>
+            <p>依情境與目標，自動產出自然、流暢且具邏輯的文字或語音。</p>
+          </article>
+        </div>
+
+        <div class="comparison">
+          <article class="card">
+            <h3>NLU｜自然語言理解</h3>
+            <p>位於 NLP 的「理解」階段，分析語法結構與語意邏輯，用於判讀使用者意圖或隱含情緒。常見任務包括意圖辨識、命名實體辨識（NER）與情感分析。</p>
+          </article>
+          <article class="card">
+            <h3>NLG｜自然語言生成</h3>
+            <p>位於 NLP 的「產出」階段，把資料、知識或邏輯轉成自然語言。常見任務包括自動摘要、回應生成與報告撰寫。</p>
+          </article>
+        </div>
+        <div class="study-note">
+          <h3>三者的關係</h3>
+          <p>以客服機器人為例：系統先透過 NLU 理解使用者的語意與需求，再透過 NLG 產生恰當回覆；整體互動過程屬於 NLP。</p>
+        </div>
+      </section>
+
+      <section id="evolution">
+        <div class="section-head">
+          <h2>03｜技術演進四階段</h2>
+          <span class="meta">原講義 3-5～3-9</span>
+        </div>
+        <div class="timeline">
+          <article class="era">
+            <span class="year">1980s–1990s</span>
+            <h3>規則式方法</h3>
+            <p>由專家手工設計語法規則與詞彙辭典，可解釋、適合結構清楚的任務，但難適應語境變化且維護成本高。</p>
+            <p class="models">ELIZA、專家系統</p>
+          </article>
+          <article class="era">
+            <span class="year">1990s–2010s</span>
+            <h3>統計語言模型</h3>
+            <p>以大量語料訓練機率模型，自動學習統計結構並提高彈性；仍缺乏深層語意理解且依賴標注資料。</p>
+            <p class="models">N-gram、HMM、CRF</p>
+          </article>
+          <article class="era">
+            <span class="year">2010–2018</span>
+            <h3>深度學習模型</h3>
+            <p>運用神經網路處理語言序列，自動學習特徵並捕捉上下文；訓練成本高，對小資料集與資源有限情境較不利。</p>
+            <p class="models">RNN、LSTM、GRU</p>
+          </article>
+          <article class="era">
+            <span class="year">2018–至今</span>
+            <h3>預訓練語言模型</h3>
+            <p>以大規模語料預訓練，再針對下游任務微調，具泛用與遷移能力；計算、儲存與推理資源需求高。</p>
+            <p class="models">BERT、GPT、RoBERTa、T5</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="preprocess">
+        <div class="section-head">
+          <h2>04｜資料前處理：模型前的第一道防線</h2>
+          <span class="meta">原講義 3-9～3-12</span>
+        </div>
+        <p class="lead">自然語言資料具有非結構化、語意模糊與語境多變等特性。講義指出，錯誤標注、未處理雜訊或斷詞缺乏上下文，都可能造成模型偏差或語意混淆；因此資料進入模型前，要依任務需要進行清理、轉換與標準化。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>處理步驟</th><th>做什麼</th><th>應用與用處</th><th>注意事項</th></tr></thead>
+            <tbody>
+              <tr><td>分詞<span class="term-en">Tokenization</span></td><td>把文字拆成單字、詞組或子詞。</td><td>建立後續語言處理的基本單位；中文、日文常需斷詞字典或模型。</td><td>切分錯誤會連帶影響語法與語意分析。</td></tr>
+              <tr><td>詞性標注<span class="term-en">POS Tagging</span></td><td>標示名詞、動詞、形容詞等語法角色。</td><td>連接基礎語法與高階語意分析；常支援 NER、關係抽取。</td><td>實務上常作為特徵工程的一部分。</td></tr>
+              <tr><td>詞形還原<span class="term-en">Lemmatization</span></td><td>依字典與語法規則還原成基本字形。</td><td>保留語意一致性，適合語意分析與問答。</td><td>處理較精細，與只裁切詞綴的 Stemming 不同。</td></tr>
+              <tr><td>詞幹提取<span class="term-en">Stemming</span></td><td>以字首字尾裁剪等規則取得詞幹。</td><td>速度快，適合快速處理大規模語料。</td><td>結果不一定是有效單字，準確性低於 Lemmatization。</td></tr>
+              <tr><td>停用詞移除<span class="term-en">Stopword Removal</span></td><td>移除語意貢獻較低的高頻詞。</td><td>降低資料維度並提高關鍵詞比重；常用於資訊檢索與主題建模。</td><td>對話生成、語法分析有時需保留，以維持自然與完整語境。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="models">
+        <div class="section-head">
+          <h2>05｜關鍵技術與模型方法</h2>
+          <span class="meta">原講義 3-12～3-29</span>
+        </div>
+        <p class="lead">前處理後，文字仍需轉換成向量或張量，模型才能運算。講義依序介紹文字表示、詞嵌入、序列模型、Transformer、預訓練模型，以及 RAG、LoRA 等應用強化方法。</p>
+
+        <h3>5.1 文字表示技術比較</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>類型</th><th>代表方法</th><th>表示特性</th><th>主要用處</th><th>主要限制</th></tr></thead>
+            <tbody>
+              <tr><td>純離散表示</td><td>One-hot、Bag of Words</td><td>非分布式、非語境型</td><td>結構簡單、容易實作，適合入門與傳統機器學習。</td><td>向量稀疏、維度高、沒有語意。</td></tr>
+              <tr><td>統計型表示</td><td>tf-idf</td><td>非分布式、非語境型</td><td>反映詞彙重要性，常用於文件檢索與簡單文本分類。</td><td>忽略上下文與語序，無法處理多義詞。</td></tr>
+              <tr><td>統計共現表示</td><td>N-grams</td><td>有限分布性、短範圍上下文</td><td>保留局部詞序與詞組共現特性，可作基礎語言模型特徵。</td><td>N 大時維度膨脹且稀疏，難捕捉長距離依賴。</td></tr>
+              <tr><td>靜態詞嵌入</td><td>Word2Vec、GloVe、FastText</td><td>分布式、非語境型</td><td>保留語意結構、向量可運算、訓練成本較低。</td><td>同一詞只有一個固定向量，忽略不同上下文語意。</td></tr>
+              <tr><td>語境型詞嵌入</td><td>ELMo、BERT、GPT</td><td>分布式、動態語境型</td><td>依上下文動態表示詞義，支援遷移學習與多種高階 NLP 任務。</td><td>模型大，需要較高算力、記憶體與訓練資源。</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>5.2 深度學習架構</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>架構</th><th>核心特性</th><th>應用與用處</th><th>限制</th></tr></thead>
+            <tbody>
+              <tr><td>RNN</td><td>每一步輸出依賴前一步狀態。</td><td>處理時間序列、語序資訊，用於語音辨識、文字生成、翻譯。</td><td>訓練不穩定，梯度消失問題明顯。</td></tr>
+              <tr><td>LSTM</td><td>加入記憶單元與門控機制。</td><td>較能捕捉長距離依賴，穩定性高於 RNN。</td><td>結構較複雜、訓練耗時。</td></tr>
+              <tr><td>GRU</td><td>精簡 LSTM 的部分門控機制。</td><td>運算較快，效果接近 LSTM。</td><td>對長序列仍有限制。</td></tr>
+              <tr><td>Transformer</td><td>以 Self-Attention 同時掌握序列各詞關聯，採全平行運算。</td><td>有效捕捉長距離依賴，適用摘要、續寫、翻譯、分類等任務，能擴展至大規模語料。</td><td>大型模型仍需要大量計算資源。</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>5.3 預訓練模型與應用強化</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>方法／模型</th><th>核心概念</th><th>應用與用處</th></tr></thead>
+            <tbody>
+              <tr><td>ELMo</td><td>以 BiLSTM 依上下文產生動態詞向量。</td><td>語法分析、情感分類、NER。</td></tr>
+              <tr><td>BERT</td><td>雙向 Transformer Encoder；以 MLM、NSP 預訓練。</td><td>分類、問答、資訊擷取、NER 等理解任務。</td></tr>
+              <tr><td>GPT</td><td>單向 Transformer Decoder；自迴歸生成。</td><td>對話生成、摘要、創作、翻譯；可搭配 Prompt、Few-shot、Zero-shot。</td></tr>
+              <tr><td>Prompt-based Learning</td><td>把任務轉為填空或問答格式，直接利用模型既有語言能力。</td><td>減少針對新任務進行大量再訓練的需求。</td></tr>
+              <tr><td>Few-shot Learning</td><td>提供少量示例協助模型理解新任務。</td><td>適合標注資料稀少且需快速適應的情境。</td></tr>
+              <tr><td>Zero-shot Learning</td><td>不提供任務示例，僅以指令與類別完成推理。</td><td>可在無標註訓練資料時進行初步任務，例如郵件分類。</td></tr>
+              <tr><td>RAG</td><td>結合外部知識檢索與語言生成。</td><td>在背景知識需求高的問答、醫療摘要等任務中整合檢索資料後生成答案。</td></tr>
+              <tr><td>LoRA</td><td>增加輕量低秩參數，不直接修改整體模型結構。</td><td>以較少計算與儲存資源，快速調整大型模型到特定情境。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="applications">
+        <div class="section-head">
+          <h2>06｜應用情境與用處</h2>
+          <span class="meta">原講義 3-29～3-32</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>應用類型</th><th>用途</th><th>講義中的應用情境</th><th>需留意</th></tr></thead>
+            <tbody>
+              <tr><td>文字分類<span class="term-en">Text Classification</span></td><td>把文字自動歸入預先定義的類別。</td><td>垃圾郵件偵測、商品評論正負中立分類、客服請求分流。</td><td>須正確理解文字意圖，語言多樣或複雜時分類較難。</td></tr>
+              <tr><td>情感分析<span class="term-en">Sentiment Analysis</span></td><td>辨識文本的正面、負面或中立情緒。</td><td>社群輿情監控、顧客滿意度與評論分析。</td><td>諷刺、反語、方言與俚語可能造成誤判。</td></tr>
+              <tr><td>對話系統<span class="term-en">Chatbot</span></td><td>理解使用者輸入並產生互動回覆。</td><td>任務導向對話（訂票、訂位、查天氣）與開放式對話。</td><td>需處理多輪語境、意圖與回覆品質。</td></tr>
+              <tr><td>文字生成與總結<span class="term-en">Text Generation &amp; Summarization</span></td><td>自動產生文字或濃縮長篇內容。</td><td>新聞摘要、廣告標題、自動報表生成。</td><td>注意語意一致性、邏輯性與事實性，避免誤導。</td></tr>
+              <tr><td>機器翻譯<span class="term-en">Machine Translation</span></td><td>把文字由一種語言轉為另一種語言。</td><td>商業文件翻譯、多語言客服、文化交流與教育。</td><td>需保持語意與上下文，處理不同語言結構。</td></tr>
+              <tr><td>命名實體辨識<span class="term-en">NER</span></td><td>辨識並標註人名、地名、組織、日期等實體。</td><td>法律或醫療文本中的重要實體標註。</td><td>標註不一致可能導致模型誤判。</td></tr>
+              <tr><td>關係抽取<span class="term-en">Relation Extraction</span></td><td>抽取實體之間的關係。</td><td>由文本建立實體間關聯，支援知識整理。</td><td>常依賴分詞、詞性與 NER 等前置處理。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="risks">
+        <div class="section-head">
+          <h2>07｜三層挑戰與風險</h2>
+          <span class="meta">原講義 3-33～3-39</span>
+        </div>
+        <p class="lead">講義依風險發生位置與影響面向，分成資料層、模型層與應用層。重點不是只辨識風險，也要配合對應處理機制。</p>
+        <div class="risk-grid">
+          <article class="risk-card">
+            <h3>資料層風險</h3>
+            <ul>
+              <li><strong>資料隱私：</strong>對話、郵件、留言可能含個資或機密；需匿名化／去識別化並遵循相關規範。</li>
+              <li><strong>標註與品質：</strong>錯誤、不一致、代表性不足或資料偏見會影響準確率、公平性與泛化。</li>
+              <li><strong>授權與版權：</strong>訓練資料與生成內容需確認授權、使用條款與版權。</li>
+            </ul>
+          </article>
+          <article class="risk-card">
+            <h3>模型層風險</h3>
+            <ul>
+              <li><strong>模型偏見：</strong>訓練語料的文化、性別、種族偏見可能被模型延續。</li>
+              <li><strong>公平性不足：</strong>不同語言或族群可能有顯著效能落差。</li>
+              <li><strong>處理方向：</strong>用 WEAT 等工具檢測、平衡訓練資料，納入公平性指標與人工覆核。</li>
+            </ul>
+          </article>
+          <article class="risk-card">
+            <h3>應用層風險</h3>
+            <ul>
+              <li><strong>語意理解：</strong>諷刺、反語、方言、俚語、多義詞可能造成誤判。</li>
+              <li><strong>部署維運：</strong>效能下降、版本混亂、推論慢與資源消耗高；需監控、回饋、再訓練與版本管理。</li>
+              <li><strong>生成內容：</strong>可能出現幻覺、不實或不當內容；需事實查核、人工審核、回饋與風險告知。</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="confusions">
+        <div class="section-head">
+          <h2>08｜易混淆名詞與應用辨析</h2>
+          <span class="meta">依原講義差異重整</span>
+        </div>
+        <p class="lead">先辨認題目在問「處理流程、文字表示、模型架構、學習方式、應用任務，還是風險」，再選名詞。以下比較只整理原講義已說明的差異。</p>
+
+        <div class="callout-grid">
+          <article class="callout">
+            <h3>先看動作：理解、轉換，還是產生？</h3>
+            <p>理解意圖與語意是 NLU；轉成向量等可運算結構是 Process；產出文字或語音是 NLG。三者都在 NLP 的總體框架內。</p>
+          </article>
+          <article class="callout">
+            <h3>先看成果：分類、抽取，還是生成？</h3>
+            <p>放入既定類別是文字分類；找出人名地名等是 NER；找出實體之間的關聯是關係抽取；產出新文字則是文字生成。</p>
+          </article>
+        </div>
+
+        <h3>8.1 名詞成組比較</h3>
+        <div class="table-wrap">
+          <table class="confusion-table">
+            <thead><tr><th>容易混淆的名詞</th><th>最關鍵差別</th><th>應用判斷</th><th>原講義</th></tr></thead>
+            <tbody>
+              <tr><td>NLP／NLU／NLG</td><td>NLP 是總體框架；NLU 負責理解；NLG 負責生成。</td><td><strong>客服機器人：</strong>先以 NLU 判讀需求，再以 NLG 產生回覆，整體屬 NLP。<br><span class="memory-cue">總體 NLP＝理解 NLU＋生成 NLG</span></td><td class="page-ref">3-4～3-5</td></tr>
+              <tr><td>分詞／詞性標注</td><td>分詞是切出語言單位；詞性標注是為切出的詞標示語法角色。</td><td><strong>中文斷詞先用分詞；</strong>要辨認名詞、動詞或支援 NER、關係抽取，再做 POS 標注。</td><td class="page-ref">3-10～3-11</td></tr>
+              <tr><td>詞形還原／詞幹提取</td><td>Lemmatization 依字典與語法還原有效基本字；Stemming 直接裁剪詞綴，可能產生非單字。</td><td><strong>重視語意與準確：</strong>詞形還原；<strong>重視大量快速處理：</strong>詞幹提取。<br><span class="memory-cue">還原較準，提取較快</span></td><td class="page-ref">3-11</td></tr>
+              <tr><td>語境型／非語境型表示</td><td>語境型向量會隨上下文改變；非語境型同一詞永遠是固定向量。</td><td><strong>bank 多義詞：</strong>BERT、ELMo 可依句子改變表示；Word2Vec、GloVe 無法區分不同語境詞義。</td><td class="page-ref">3-13～3-14</td></tr>
+              <tr><td>分布式／非分布式表示</td><td>分布式從詞彙關聯學習位置；非分布式把每個詞映射成孤立固定向量。</td><td><strong>要比較語意相似：</strong>分布式表示；One-hot 是典型非分布式表示。</td><td class="page-ref">3-14</td></tr>
+              <tr><td>「語境型」／「分布式」</td><td>兩者比較維度不同：語境型問「向量會不會隨上下文變」；分布式問「語意是否分散在多個向量維度並由詞間關聯學習」。</td><td>BERT 同時是分布式、動態語境型；Word2Vec 是分布式、非語境型。</td><td class="page-ref">3-12～3-14</td></tr>
+              <tr><td>One-hot／BoW</td><td>One-hot 表示單一詞；BoW 表示一份文件中各詞的出現情況或頻率。兩者都不考慮語序與語意。</td><td><strong>詞的獨立編碼：</strong>One-hot；<strong>文件的詞頻特徵：</strong>BoW。</td><td class="page-ref">3-15～3-16</td></tr>
+              <tr><td>BoW／tf-idf／N-grams</td><td>BoW 看出現頻率；tf-idf 再考慮詞在整體語料中的稀有度；N-grams 保留短範圍詞序。</td><td><strong>簡單詞頻：</strong>BoW；<strong>突顯文件關鍵詞：</strong>tf-idf；<strong>需要局部詞序：</strong>N-grams。</td><td class="page-ref">3-16～3-18</td></tr>
+              <tr><td>Word2Vec／GloVe／FastText</td><td>三者都是靜態分布式詞嵌入；Word2Vec 學局部上下文，GloVe 結合全域共現統計，FastText 再把詞拆成字元 n-gram 子詞。</td><td><strong>處理 OOV 新詞：</strong>FastText；三者皆無法依不同上下文改變同一詞的向量。</td><td class="page-ref">3-18～3-22</td></tr>
+              <tr><td>CBOW／Skip-gram</td><td>CBOW 用周圍詞預測中心詞；Skip-gram 用中心詞預測周圍詞。</td><td><strong>訓練較快、適合小型語料：</strong>CBOW；<strong>低頻詞與語意捕捉：</strong>Skip-gram。<br><span class="memory-cue">CBOW：周圍→中心；Skip-gram：中心→周圍</span></td><td class="page-ref">3-19～3-20</td></tr>
+              <tr><td>RNN／LSTM／GRU／Transformer</td><td>RNN 逐步處理；LSTM 加入記憶與門控；GRU 精簡門控；Transformer 以 Self-Attention 平行處理整段序列。</td><td><strong>長距離依賴與大規模平行訓練：</strong>Transformer；LSTM、GRU 是改善 RNN 序列記憶與訓練問題的架構。</td><td class="page-ref">3-24～3-26</td></tr>
+              <tr><td>ELMo／BERT／GPT</td><td>ELMo 基於 BiLSTM；BERT 是雙向 Transformer Encoder，偏理解；GPT 是單向 Transformer Decoder、自迴歸生成，偏生成。</td><td><strong>分類、問答、NER：</strong>BERT；<strong>對話、摘要、創作：</strong>GPT；ELMo 可增強既有模型的語境表示。</td><td class="page-ref">3-23～3-27</td></tr>
+              <tr><td>Prompt-based／Few-shot／Zero-shot</td><td>Prompt-based 是把任務寫成提示格式；Few-shot 是提供少量範例；Zero-shot 是不提供任務範例。</td><td>Few-shot 與 Zero-shot 都可透過 Prompt 交代任務，差別在於有沒有示例。</td><td class="page-ref">3-27～3-28</td></tr>
+              <tr><td>RAG／LoRA</td><td>RAG 是檢索外部資料後再生成；LoRA 是加入少量低秩參數來調整模型。</td><td><strong>需要外部背景知識：</strong>RAG；<strong>要低成本微調到特定情境：</strong>LoRA。<br><span class="memory-cue">RAG 補知識；LoRA 調模型</span></td><td class="page-ref">3-28～3-29</td></tr>
+              <tr><td>文字分類／情感分析</td><td>文字分類可分任何預定類別；情感分析專門判斷正面、負面或中立情緒。</td><td><strong>客服部門分流：</strong>文字分類；<strong>品牌評論情緒：</strong>情感分析。</td><td class="page-ref">3-30～3-31</td></tr>
+              <tr><td>NER／關係抽取</td><td>NER 先找出並標註實體；關係抽取再判斷實體彼此的關係。</td><td><strong>找人名、地名、組織、日期：</strong>NER；<strong>建立實體關聯：</strong>關係抽取。</td><td class="page-ref">3-32</td></tr>
+              <tr><td>去識別化／匿名化</td><td>去識別化仍可能透過代碼重新連回個體；匿名化則徹底移除連結可能。</td><td><strong>需部分保留可識別性：</strong>去識別化；<strong>開放或高風險、要求無法辨識：</strong>匿名化。</td><td class="page-ref">3-33～3-34</td></tr>
+              <tr><td>資料偏見／模型偏見</td><td>資料偏見存在於語料來源與樣本；模型偏見是模型學習並延續資料中的偏見。</td><td>前者從資料審查、增強、多重標註處理；後者可用 WEAT、公平性指標與人工覆核檢查。</td><td class="page-ref">3-35～3-37</td></tr>
+              <tr><td>語意理解限制／模型幻覺</td><td>語意理解限制是錯解使用者原意；模型幻覺是生成看似自然但虛假或虛構的內容。</td><td><strong>反語、方言被誤判：</strong>語意理解限制；<strong>生成錯誤事實：</strong>模型幻覺。</td><td class="page-ref">3-37～3-39</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>8.2 看到應用題時怎麼選</h3>
+        <div class="table-wrap">
+          <table class="decision-table">
+            <thead><tr><th>題目線索</th><th>優先對應名詞／方法</th><th>為什麼</th><th>不要先選</th></tr></thead>
+            <tbody>
+              <tr><td>把郵件、評論或客服請求放入既定類別</td><td><strong>文字分類</strong></td><td>目標是輸出預先定義的類別。</td><td>NER；它是找實體，不是把整段文字分類。</td></tr>
+              <tr><td>判斷品牌討論、商品評論的正負面態度</td><td><strong>情感分析</strong></td><td>分類目標特別聚焦情緒極性。</td><td>一般文字分類；雖同屬分類，但題目已指定情感。</td></tr>
+              <tr><td>從法律或醫療文本找人名、地名、組織、日期</td><td><strong>NER</strong></td><td>任務是辨識並標註命名實體。</td><td>關係抽取；它處理的是實體間關聯。</td></tr>
+              <tr><td>新聞變短、長文濃縮，或自動產出廣告標題與報表</td><td><strong>文字總結／文字生成</strong></td><td>前者濃縮既有內容，後者依需求產生文字。</td><td>機器翻譯；它的目標是跨語言轉換。</td></tr>
+              <tr><td>把商業文件轉成另一種語言，或提供多語客服</td><td><strong>機器翻譯</strong></td><td>輸入與輸出是不同語言。</td><td>文字生成；題目核心是語言轉換。</td></tr>
+              <tr><td>問答需要先查外部知識庫或醫學文獻再回答</td><td><strong>RAG</strong></td><td>流程是「外部檢索＋生成」。</td><td>LoRA；它是調整模型參數，不負責檢索資料。</td></tr>
+              <tr><td>資源有限，但要讓大型模型適應特定任務</td><td><strong>LoRA</strong></td><td>只調整新增的輕量低秩參數，降低運算與儲存需求。</td><td>RAG；它補充知識，並非微調方式。</td></tr>
+              <tr><td>沒有標註範例，只以指令與候選類別完成分類</td><td><strong>Zero-shot Learning</strong></td><td>零樣本的判斷點是「沒有任務示例」。</td><td>Few-shot；它需要少量示例。</td></tr>
+              <tr><td>同一個詞在不同句子有不同含義</td><td><strong>語境型表示／BERT、ELMo</strong></td><td>詞向量會隨上下文動態改變。</td><td>Word2Vec、GloVe；同一詞使用固定向量。</td></tr>
+              <tr><td>模型把反話判成正面，或誤解方言、俚語</td><td><strong>語意理解限制</strong></td><td>問題在於未正確理解輸入語境。</td><td>模型幻覺；幻覺是生成虛假或虛構內容。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="glossary">
+        <div class="section-head">
+          <h2>09｜專有名詞總表</h2>
+          <span class="meta">僅收錄原講義 3.1</span>
+        </div>
+        <p class="lead">名詞依概念、前處理、文字表示、模型方法、應用與風險分類。可輸入中文、英文縮寫或應用關鍵字進行篩選。</p>
+        <div class="search-panel">
+          <label for="termSearch"><strong>名詞搜尋</strong></label>
+          <input id="termSearch" type="search" placeholder="例如：BERT、分詞、風險、翻譯" autocomplete="off">
+          <span id="searchCount" class="search-count" aria-live="polite">共 79 個名詞</span>
+        </div>
+        <div id="noResults" class="no-results">找不到符合的名詞，請換一個關鍵字。</div>
+
+        <details open data-group>
+          <summary>概念與演進（14）</summary>
+          <div class="table-wrap"><table class="glossary-table"><thead><tr><th>專有名詞</th><th>講義中的意思</th><th>應用與用處</th><th>原講義</th></tr></thead><tbody>
+            <tr><td>自然語言處理<span class="term-en">Natural Language Processing, NLP</span></td><td>使電腦理解、處理並產生自然語言的 AI 核心技術。</td><td>人機溝通、自動知識擷取、語言內容生成。</td><td class="page-ref">3-3～3-4</td></tr>
+            <tr><td>自然語言理解<span class="term-en">Natural Language Understanding, NLU</span></td><td>NLP 的理解階段，分析語法結構與語意邏輯。</td><td>意圖辨識、NER、情感分析。</td><td class="page-ref">3-4～3-5</td></tr>
+            <tr><td>自然語言生成<span class="term-en">Natural Language Generation, NLG</span></td><td>NLP 的產出階段，將資料、知識或邏輯轉成自然語句。</td><td>自動摘要、回應生成、報告撰寫。</td><td class="page-ref">3-4～3-5</td></tr>
+            <tr><td>規則式系統<span class="term-en">Rule-based Systems</span></td><td>依人工編寫的語法規則與詞彙辭典處理語言。</td><td>適合簡單且結構清楚的任務，處理流程可追溯。</td><td class="page-ref">3-5～3-6</td></tr>
+            <tr><td>ELIZA</td><td>以關鍵詞比對進行簡單對話模擬的早期對話式 AI。</td><td>特定情境的簡單對話。</td><td class="page-ref">3-6</td></tr>
+            <tr><td>專家系統<span class="term-en">Expert System</span></td><td>以人工規則在特定知識領域推理。</td><td>提供具清楚推理過程的領域處理。</td><td class="page-ref">3-6</td></tr>
+            <tr><td>統計語言模型<span class="term-en">Statistical Language Models</span></td><td>從大量語料學習語言出現機率與規律。</td><td>提高語言處理的靈活性與可擴展性。</td><td class="page-ref">3-6～3-7</td></tr>
+            <tr><td>N-gram</td><td>用連續 N 個詞的共現機率或特徵表示局部語境。</td><td>語言模型、短範圍詞序與搭配特徵。</td><td class="page-ref">3-7、3-17～3-18</td></tr>
+            <tr><td>隱馬可夫模型<span class="term-en">Hidden Markov Model, HMM</span></td><td>基於機率的統計模型。</td><td>講義列為統計語言模型階段的代表技術。</td><td class="page-ref">3-7</td></tr>
+            <tr><td>條件隨機場<span class="term-en">Conditional Random Field, CRF</span></td><td>基於機率的圖形模型。</td><td>講義列為統計語言模型階段的代表技術。</td><td class="page-ref">3-7</td></tr>
+            <tr><td>深度學習<span class="term-en">Deep Learning</span></td><td>以神經網路自動學習複雜語言特徵與模式。</td><td>提升語意理解、語句生成與語境建模能力。</td><td class="page-ref">3-7～3-8、3-24</td></tr>
+            <tr><td>預訓練語言模型<span class="term-en">Pre-trained Language Models</span></td><td>先用大規模語料訓練，再對下游任務微調。</td><td>提高泛用性、遷移性，減少每個任務從頭訓練。</td><td class="page-ref">3-8～3-9、3-26～3-29</td></tr>
+            <tr><td>生成式 AI<span class="term-en">Generative AI</span></td><td>講義描述為 NLP 發展中強化語言生成能力的技術趨勢。</td><td>對話、內容生成、摘要等語言生成任務。</td><td class="page-ref">3-3、3-9</td></tr>
+            <tr><td>對話式 AI<span class="term-en">Conversational AI</span></td><td>以對話形式進行人機互動的 AI。</td><td>ChatGPT、客服、自動化助理。</td><td class="page-ref">3-3</td></tr>
+          </tbody></table></div>
+        </details>
+
+        <details open data-group>
+          <summary>前處理與文字表示（20）</summary>
+          <div class="table-wrap"><table class="glossary-table"><thead><tr><th>專有名詞</th><th>講義中的意思</th><th>應用與用處</th><th>原講義</th></tr></thead><tbody>
+            <tr><td>分詞<span class="term-en">Tokenization</span></td><td>把文字拆成單字、詞組或子詞。</td><td>所有後續語言處理的基本單位。</td><td class="page-ref">3-10</td></tr>
+            <tr><td>子詞分解<span class="term-en">Subword / BPE</span></td><td>把詞再拆成較小子詞單位；講義以 BPE 為例。</td><td>作為分詞方法，協助處理詞彙。</td><td class="page-ref">3-10</td></tr>
+            <tr><td>詞性標注<span class="term-en">Part-of-Speech Tagging, POS</span></td><td>標示每個詞的語法角色。</td><td>語法分析、NER、關係抽取的前置資訊。</td><td class="page-ref">3-10～3-11</td></tr>
+            <tr><td>詞形還原<span class="term-en">Lemmatization</span></td><td>依語法與字典把詞還原為基本形式。</td><td>語意分析、問答系統。</td><td class="page-ref">3-10～3-11</td></tr>
+            <tr><td>詞幹提取<span class="term-en">Stemming</span></td><td>裁剪詞綴取得詞幹，結果不一定是有效單字。</td><td>快速處理大規模語料。</td><td class="page-ref">3-10～3-11</td></tr>
+            <tr><td>停用詞移除<span class="term-en">Stopword Removal</span></td><td>去除語意貢獻較低的高頻詞。</td><td>資訊檢索、主題建模、降低維度。</td><td class="page-ref">3-10～3-12</td></tr>
+            <tr><td>文字正規化<span class="term-en">Normalization</span></td><td>讓不同詞形轉成一致形式的處理。</td><td>詞形還原與詞幹提取都屬此環節。</td><td class="page-ref">3-11</td></tr>
+            <tr><td>詞彙向量化<span class="term-en">Word Vectorization</span></td><td>把單詞或句子轉為模型可運算的數字形式。</td><td>讓分類器、翻譯系統、生成器能接收文字。</td><td class="page-ref">3-12</td></tr>
+            <tr><td>文字表示學習<span class="term-en">Representation Learning</span></td><td>學習能表達文字與語意關係的數值表示。</td><td>向量品質會影響理解、分類與生成表現。</td><td class="page-ref">3-12</td></tr>
+            <tr><td>向量／張量<span class="term-en">Vector / Tensor</span></td><td>模型可計算的數字形式。</td><td>承接前處理文字並送入模型運算。</td><td class="page-ref">3-12</td></tr>
+            <tr><td>語境型表示<span class="term-en">Contextual Representation</span></td><td>同一詞的向量會隨上下文動態改變。</td><td>處理多義詞與語境依賴。</td><td class="page-ref">3-13</td></tr>
+            <tr><td>非語境型表示<span class="term-en">Non-contextual Representation</span></td><td>每個詞在所有語境中使用固定向量。</td><td>Word2Vec、GloVe 等靜態表示。</td><td class="page-ref">3-14</td></tr>
+            <tr><td>分布式表示<span class="term-en">Distributed Representation</span></td><td>由詞與其他詞的關聯學習向量位置。</td><td>比較語意相近詞並進行向量運算。</td><td class="page-ref">3-14</td></tr>
+            <tr><td>非分布式表示<span class="term-en">Non-distributed Representation</span></td><td>每個詞映射至獨立固定向量，不能表達語意關聯。</td><td>典型方法為 One-hot Encoding。</td><td class="page-ref">3-14</td></tr>
+            <tr><td>詞嵌入<span class="term-en">Word Embedding</span></td><td>將詞轉成包含語意資訊的數字向量。</td><td>讓模型計算詞彙相似性與語意關係。</td><td class="page-ref">3-14～3-15</td></tr>
+            <tr><td>One-hot Encoding</td><td>每個詞用高維向量表示，僅對應位置為 1。</td><td>簡單文本分類與基礎語言模型。</td><td class="page-ref">3-15～3-16</td></tr>
+            <tr><td>詞袋模型<span class="term-en">Bag of Words, BoW</span></td><td>只計算詞出現頻率，不考慮順序與上下文。</td><td>文本分類、主題建模。</td><td class="page-ref">3-16</td></tr>
+            <tr><td>詞頻<span class="term-en">Term Frequency, TF</span></td><td>衡量詞在單一文件中的出現頻率。</td><td>與 IDF 結合計算 tf-idf。</td><td class="page-ref">3-17</td></tr>
+            <tr><td>逆文件頻率<span class="term-en">Inverse Document Frequency, IDF</span></td><td>衡量詞在整體語料庫中的稀有程度。</td><td>降低常見詞權重、突顯較有資訊量的詞。</td><td class="page-ref">3-17</td></tr>
+            <tr><td>tf-idf<span class="term-en">Term Frequency–Inverse Document Frequency</span></td><td>以 TF 與 IDF 的乘積衡量詞對文件的資訊價值。</td><td>文件檢索、簡單文本分類。</td><td class="page-ref">3-17～3-18</td></tr>
+          </tbody></table></div>
+        </details>
+
+        <details open data-group>
+          <summary>詞嵌入、模型與強化方法（19）</summary>
+          <div class="table-wrap"><table class="glossary-table"><thead><tr><th>專有名詞</th><th>講義中的意思</th><th>應用與用處</th><th>原講義</th></tr></thead><tbody>
+            <tr><td>Word2Vec</td><td>由上下文共現關係學習靜態詞向量。</td><td>保留語意結構，可比較相似詞與做向量運算。</td><td class="page-ref">3-18～3-20</td></tr>
+            <tr><td>CBOW<span class="term-en">Continuous Bag of Words</span></td><td>用周圍上下文詞預測中心詞。</td><td>Word2Vec 的訓練方式之一；訓練較快，適合小型語料。</td><td class="page-ref">3-19～3-20</td></tr>
+            <tr><td>Skip-gram</td><td>用中心詞預測周圍上下文詞。</td><td>Word2Vec 的訓練方式之一，對低頻詞較有效。</td><td class="page-ref">3-20</td></tr>
+            <tr><td>GloVe<span class="term-en">Global Vectors for Word Representation</span></td><td>結合整體語料的全域詞彙共現統計學習向量。</td><td>建立靜態分布式詞表示。</td><td class="page-ref">3-20～3-21</td></tr>
+            <tr><td>FastText</td><td>將詞拆成字元 n-gram 子詞並學習子詞向量。</td><td>處理未見過的新詞，提高泛化能力。</td><td class="page-ref">3-21～3-22</td></tr>
+            <tr><td>詞彙表外詞<span class="term-en">Out-of-Vocabulary, OOV</span></td><td>訓練詞彙表中未出現的新詞。</td><td>FastText 可利用子詞資訊建立其向量。</td><td class="page-ref">3-21～3-22</td></tr>
+            <tr><td>語境型詞嵌入<span class="term-en">Contextualized Word Embeddings</span></td><td>詞向量依上下文語境動態變化。</td><td>多義詞、閱讀理解、翻譯、對話、摘要、NER。</td><td class="page-ref">3-22～3-24</td></tr>
+            <tr><td>ELMo<span class="term-en">Embeddings from Language Models</span></td><td>基於 BiLSTM 的動態語境詞向量。</td><td>語法分析、情感分類、NER。</td><td class="page-ref">3-23</td></tr>
+            <tr><td>RNN<span class="term-en">Recurrent Neural Network</span></td><td>依序處理資料，當前輸出依賴前一步狀態。</td><td>語音辨識、文字生成、翻譯等序列任務。</td><td class="page-ref">3-8、3-24</td></tr>
+            <tr><td>LSTM<span class="term-en">Long Short-Term Memory</span></td><td>具記憶單元與門控機制的 RNN。</td><td>捕捉較長距離的語言依賴。</td><td class="page-ref">3-8、3-24</td></tr>
+            <tr><td>GRU<span class="term-en">Gated Recurrent Unit</span></td><td>精簡部分門控機制的 LSTM 變體。</td><td>以較快運算取得接近 LSTM 的效果。</td><td class="page-ref">3-8、3-24</td></tr>
+            <tr><td>Transformer</td><td>以自注意力與平行架構處理序列。</td><td>捕捉長距離關係，支援生成、摘要、翻譯、分類。</td><td class="page-ref">3-8～3-9、3-25～3-26</td></tr>
+            <tr><td>自注意力機制<span class="term-en">Self-Attention</span></td><td>同時考量整段輸入中各詞關聯並加權表示。</td><td>學習長距離依賴，例如句中相隔較遠的主詞與動詞。</td><td class="page-ref">3-25</td></tr>
+            <tr><td>Encoder–Decoder／Seq2Seq</td><td>Encoder 轉成語意表示，Decoder 逐步產生目標文字。</td><td>翻譯、摘要、文字改寫等序列轉換任務。</td><td class="page-ref">3-25</td></tr>
+            <tr><td>全平行架構<span class="term-en">Fully Parallel Architecture</span></td><td>一次處理整個序列並平行計算注意力分數。</td><td>提高訓練速度，適合 GPU／TPU 與大規模語料。</td><td class="page-ref">3-25～3-26</td></tr>
+            <tr><td>BERT<span class="term-en">Bidirectional Encoder Representations from Transformers</span></td><td>使用雙向 Transformer Encoder 的預訓練模型。</td><td>分類、問答、資訊擷取、NER。</td><td class="page-ref">3-23、3-26～3-27</td></tr>
+            <tr><td>GPT<span class="term-en">Generative Pre-trained Transformer</span></td><td>使用單向 Transformer Decoder 的自迴歸生成模型。</td><td>對話、摘要、創作、翻譯。</td><td class="page-ref">3-23～3-24、3-26～3-27</td></tr>
+            <tr><td>檢索增強生成<span class="term-en">Retrieval-Augmented Generation, RAG</span></td><td>先檢索外部知識，再結合語言模型生成。</td><td>知識密集問答、醫療文獻摘要等。</td><td class="page-ref">3-28～3-29</td></tr>
+            <tr><td>低秩自適應<span class="term-en">Low-Rank Adaptation, LoRA</span></td><td>以輕量低秩參數調整模型，不改動整體模型結構。</td><td>用較少運算與儲存資源快速微調大型模型。</td><td class="page-ref">3-29</td></tr>
+          </tbody></table></div>
+        </details>
+
+        <details open data-group>
+          <summary>學習方法與實務應用（11）</summary>
+          <div class="table-wrap"><table class="glossary-table"><thead><tr><th>專有名詞</th><th>講義中的意思</th><th>應用與用處</th><th>原講義</th></tr></thead><tbody>
+            <tr><td>遮蔽語言模型<span class="term-en">Masked Language Model, MLM</span></td><td>遮蔽部分詞彙後，讓模型依雙向上下文預測。</td><td>BERT 的預訓練方式之一。</td><td class="page-ref">3-26～3-27</td></tr>
+            <tr><td>下一句預測<span class="term-en">Next Sentence Prediction, NSP</span></td><td>學習兩個句子之間的關係。</td><td>BERT 的預訓練方式之一。</td><td class="page-ref">3-26～3-27</td></tr>
+            <tr><td>自迴歸預測<span class="term-en">Autoregressive Prediction</span></td><td>依前文逐步預測後續文字。</td><td>GPT 的文字生成方式。</td><td class="page-ref">3-26～3-27</td></tr>
+            <tr><td>基於提示學習<span class="term-en">Prompt-based Learning</span></td><td>將任務改寫成填空或問答格式。</td><td>利用模型既有能力完成新任務，降低再訓練需求。</td><td class="page-ref">3-27～3-28</td></tr>
+            <tr><td>少樣本學習<span class="term-en">Few-shot Learning</span></td><td>提供少量範例讓模型適應新任務。</td><td>資料稀缺時快速完成分類或其他任務。</td><td class="page-ref">3-27～3-28</td></tr>
+            <tr><td>零樣本學習<span class="term-en">Zero-shot Learning</span></td><td>不提供任務範例，模型直接依指令與既有理解推理。</td><td>無標註資料時進行郵件等初步分類。</td><td class="page-ref">3-28</td></tr>
+            <tr><td>文字分類<span class="term-en">Text Classification</span></td><td>把文字歸入預先定義類別。</td><td>垃圾信、評論分類、客服請求分流。</td><td class="page-ref">3-30</td></tr>
+            <tr><td>情感分析<span class="term-en">Sentiment Analysis</span></td><td>判斷文本情緒為正面、負面或中立。</td><td>社群輿情與顧客滿意度分析。</td><td class="page-ref">3-30～3-31</td></tr>
+            <tr><td>對話系統<span class="term-en">Chatbot</span></td><td>以自然語言理解需求並回覆。</td><td>任務導向服務與開放式對話。</td><td class="page-ref">3-31</td></tr>
+            <tr><td>文字生成與總結<span class="term-en">Text Generation &amp; Summarization</span></td><td>自動生成新文字或濃縮內容。</td><td>新聞摘要、廣告標題、自動報表。</td><td class="page-ref">3-31～3-32</td></tr>
+            <tr><td>機器翻譯<span class="term-en">Machine Translation</span></td><td>自動把語言由一種轉為另一種。</td><td>商務文件、多語客服、文化與教育交流。</td><td class="page-ref">3-32</td></tr>
+          </tbody></table></div>
+        </details>
+
+        <details open data-group>
+          <summary>資訊抽取與風險治理（15）</summary>
+          <div class="table-wrap"><table class="glossary-table"><thead><tr><th>專有名詞</th><th>講義中的意思</th><th>應用與用處</th><th>原講義</th></tr></thead><tbody>
+            <tr><td>命名實體辨識<span class="term-en">Named Entity Recognition, NER</span></td><td>辨識並標註文本中的人名、地名、組織、日期等實體。</td><td>法律與醫療文本資訊抽取。</td><td class="page-ref">3-4、3-32</td></tr>
+            <tr><td>關係抽取<span class="term-en">Relation Extraction</span></td><td>辨識文本中實體彼此的關係。</td><td>建立結構化關聯與知識。</td><td class="page-ref">3-32</td></tr>
+            <tr><td>去識別化<span class="term-en">De-identification</span></td><td>遮蔽或替換可直接辨識資訊，但仍可能以代碼重新連結。</td><td>需部分保留可識別性的研究或系統測試。</td><td class="page-ref">3-33～3-34</td></tr>
+            <tr><td>匿名化<span class="term-en">Anonymization</span></td><td>徹底移除或破壞可辨識資訊，使資料無法再連回特定個體。</td><td>開放資料、風險敏感或要求不可辨識的情境。</td><td class="page-ref">3-33～3-34</td></tr>
+            <tr><td>代碼替換<span class="term-en">Pseudonymization</span></td><td>以代碼或亂數 ID 取代姓名、地址等敏感資訊。</td><td>保留資料結構與分析價值。</td><td class="page-ref">3-34</td></tr>
+            <tr><td>資料抽象化<span class="term-en">Data Generalization</span></td><td>把精確資料改成較廣泛範疇。</td><td>降低個體可辨識程度，例如日期改為年代。</td><td class="page-ref">3-34</td></tr>
+            <tr><td>資料遮罩<span class="term-en">Masking</span></td><td>遮蔽關鍵資訊的一部分。</td><td>隱藏郵件、姓名等敏感內容。</td><td class="page-ref">3-34</td></tr>
+            <tr><td>資料隨機化<span class="term-en">Randomization</span></td><td>以隨機值或統計方法替代原始資料。</td><td>降低資料再識別風險。</td><td class="page-ref">3-34</td></tr>
+            <tr><td>聚合處理<span class="term-en">Aggregation</span></td><td>把個別資料彙整為群體統計資訊。</td><td>在保留統計價值時降低個體辨識可能。</td><td class="page-ref">3-34</td></tr>
+            <tr><td>資料偏見<span class="term-en">Data Bias</span></td><td>樣本來源偏狹或含刻板、歧視性語言。</td><td>需以審查、多重標註、資料增強等方式降低偏誤。</td><td class="page-ref">3-35</td></tr>
+            <tr><td>模型偏見<span class="term-en">Model Bias</span></td><td>模型學習並延續訓練資料中的文化、性別或種族偏見。</td><td>需檢測、平衡資料與人工覆核。</td><td class="page-ref">3-36</td></tr>
+            <tr><td>詞嵌入關聯測試<span class="term-en">Word Embedding Association Test, WEAT</span></td><td>分析詞向量中隱含偏見的工具。</td><td>檢查模型是否學到社會偏見。</td><td class="page-ref">3-36</td></tr>
+            <tr><td>常識推理<span class="term-en">Common Sense Reasoning</span></td><td>協助模型理解日常語言的隱含意圖與語境依賴。</td><td>降低對反語、多義詞等語意理解偏差。</td><td class="page-ref">3-37</td></tr>
+            <tr><td>模型幻覺<span class="term-en">Model Hallucination</span></td><td>模型產生虛假、誤導或虛構資訊，即使語法與語氣自然。</td><td>需搭配事實查核、人工審核與使用者回饋。</td><td class="page-ref">3-38～3-39</td></tr>
+            <tr><td>模型監控與再訓練</td><td>持續收集回饋、追蹤上線表現並定期更新模型。</td><td>因應資料差異、效能下降與部署後錯誤。</td><td class="page-ref">3-37～3-38</td></tr>
+          </tbody></table></div>
+        </details>
+      </section>
+
+      <footer>
+        <p><strong>資料來源：</strong>《AI 應用規劃師（中級）學習指引－科目 1 人工智慧技術應用規劃》，第三章 3.1「自然語言處理技術與應用」，講義頁碼 3-3～3-39。</p>
+        <p>本頁為依原講義重新編排的學習整理稿，供使用者確認後再製作 PDF。</p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // 取得名詞表與搜尋介面，讓使用者可用中英文、縮寫或用途快速篩選。
+    const searchInput = document.querySelector('#termSearch');
+    const searchCount = document.querySelector('#searchCount');
+    const noResults = document.querySelector('#noResults');
+    const glossaryRows = [...document.querySelectorAll('.glossary-table tbody tr')];
+    const glossaryGroups = [...document.querySelectorAll('[data-group]')];
+    const totalTerms = glossaryRows.length;
+    searchCount.textContent = `共 ${totalTerms} 個名詞`;
+
+    // 依搜尋字串顯示符合的名詞列；搜尋時自動展開含有結果的分類。
+    function filterGlossary() {
+      const keyword = searchInput.value.trim().toLocaleLowerCase('zh-Hant');
+      let visibleCount = 0;
+
+      glossaryRows.forEach((row) => {
+        const matched = row.textContent.toLocaleLowerCase('zh-Hant').includes(keyword);
+        row.hidden = !matched;
+        if (matched) visibleCount += 1;
+      });
+
+      glossaryGroups.forEach((group) => {
+        const hasVisibleRow = [...group.querySelectorAll('tbody tr')].some((row) => !row.hidden);
+        group.hidden = !hasVisibleRow;
+        if (keyword && hasVisibleRow) group.open = true;
+      });
+
+      searchCount.textContent = keyword ? `符合 ${visibleCount} 個` : `共 ${totalTerms} 個名詞`;
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    searchInput.addEventListener('input', filterGlossary);
+
+    // 列印前展開所有名詞分類，避免 PDF 版本遺漏收合區塊；列印後恢復原狀態。
+    let detailsState = [];
+    window.addEventListener('beforeprint', () => {
+      detailsState = glossaryGroups.map((group) => group.open);
+      glossaryGroups.forEach((group) => { group.open = true; });
+    });
+    window.addEventListener('afterprint', () => {
+      glossaryGroups.forEach((group, index) => { group.open = detailsState[index]; });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <!--
+    本檔案負責將「科目一學習指引」4.1 AI 導入評估重整為可閱讀、可列印的單頁講義。
+    所有知識內容僅取自原 PDF 講義頁碼 4-3 至 4-14，不加入外部資料。
+  -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="iPAS AI 應用規劃師中級－科目一 4.1 AI 導入評估整理">
+  <title>4.1 AI 導入評估｜科目一講義整理</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #16263d; --muted: #5d6d80; --paper: #f5f8fb; --surface: #fff;
+      --line: #d9e2ec; --navy: #0d2c4a; --blue: #126e82; --cyan: #20a4b8;
+      --yellow: #f4c95d; --soft-blue: #eaf5f7; --soft-yellow: #fff7dd;
+      --danger: #a54b4b; --radius: 18px; --shadow: 0 16px 40px rgba(13,44,74,.08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink);
+      background: radial-gradient(circle at 95% 2%, rgba(32,164,184,.12), transparent 22rem), var(--paper);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+      font-size: 16px; line-height: 1.75;
+    }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    .layout { display: grid; grid-template-columns: 270px minmax(0,1fr); min-height: 100vh; }
+    .sidebar { position: sticky; top: 0; height: 100vh; padding: 28px 22px; overflow-y: auto; color: #eef8fa; background: var(--navy); }
+    .brand { display: flex; align-items: center; gap: 12px; padding-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,.16); }
+    .brand-mark { display: grid; width: 42px; height: 42px; place-items: center; border: 2px solid var(--yellow); border-radius: 12px; color: var(--yellow); font-weight: 900; }
+    .brand small, .eyebrow, .meta { letter-spacing: .08em; }
+    .brand small { display: block; color: #9ecbd3; font-size: .72rem; }
+    .brand strong { display: block; font-size: .98rem; }
+    .toc-title { margin: 26px 10px 10px; color: #8abdc6; font-size: .75rem; font-weight: 800; }
+    .toc { display: grid; gap: 5px; }
+    .toc a { padding: 9px 12px; border-radius: 9px; color: #dcecef; font-size: .88rem; text-decoration: none; }
+    .toc a:hover, .toc a:focus-visible { color: #fff; background: rgba(255,255,255,.1); outline: 0; }
+    .sidebar-note { margin-top: 26px; padding: 14px; border: 1px solid rgba(244,201,93,.35); border-radius: 12px; color: #dcecef; background: rgba(244,201,93,.08); font-size: .78rem; }
+    main { width: min(1180px,100%); margin: 0 auto; padding: 54px 48px 96px; }
+    .hero { position: relative; padding: 44px; overflow: hidden; border-radius: 28px; color: #fff; background: linear-gradient(135deg,#0d2c4a 0%,#10536a 66%,#14889a 100%); box-shadow: var(--shadow); }
+    .hero::after { content: "AI"; position: absolute; right: -4px; bottom: -78px; color: rgba(255,255,255,.07); font-size: clamp(9rem,21vw,15rem); font-weight: 900; line-height: 1; letter-spacing: -.08em; }
+    .eyebrow { margin: 0 0 10px; color: #8fe2ea; font-size: .8rem; font-weight: 900; text-transform: uppercase; }
+    h1, h2, h3, h4 { line-height: 1.3; }
+    h1 { position: relative; z-index: 1; max-width: 800px; margin: 0; font-size: clamp(2rem,4.6vw,4rem); letter-spacing: -.045em; }
+    .hero p:not(.eyebrow) { position: relative; z-index: 1; max-width: 760px; margin: 22px 0 0; color: #d9eff2; font-size: 1.08rem; }
+    .hero-meta { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .chip { display: inline-flex; padding: 7px 11px; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; background: rgba(255,255,255,.08); font-size: .78rem; }
+    .source-banner { margin: 22px 0 42px; padding: 16px 18px; border-left: 5px solid var(--yellow); border-radius: 0 12px 12px 0; background: var(--soft-yellow); font-size: .9rem; }
+    .source-banner strong { color: #795a00; }
+    section { scroll-margin-top: 22px; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin: 58px 0 20px; padding-bottom: 13px; border-bottom: 2px solid var(--line); }
+    .section-head h2 { margin: 0; color: var(--navy); font-size: clamp(1.45rem,2.5vw,2.05rem); letter-spacing: -.025em; }
+    .meta { flex: none; color: var(--blue); font-size: .72rem; font-weight: 900; }
+    .lead { max-width: 920px; color: #40536a; }
+    .cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .card { padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: 0 8px 24px rgba(13,44,74,.05); }
+    .card .number { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 10px; color: #fff; background: var(--blue); font-size: .82rem; font-weight: 900; }
+    .card h3 { margin: 15px 0 8px; font-size: 1.08rem; }
+    .card p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .flow { display: grid; grid-template-columns: repeat(6,minmax(130px,1fr)); gap: 10px; margin: 22px 0; overflow-x: auto; padding-bottom: 8px; }
+    .flow-step { position: relative; min-width: 135px; padding: 18px 16px; border: 1px solid #bcd9df; border-radius: 14px; background: var(--soft-blue); }
+    .flow-step:not(:last-child)::after { content: "→"; position: absolute; top: 50%; right: -13px; z-index: 2; width: 16px; color: var(--blue); font-weight: 900; transform: translateY(-50%); }
+    .flow-step b { display: block; color: var(--navy); font-size: .92rem; }
+    .flow-step span { display: block; margin-top: 5px; color: var(--muted); font-size: .78rem; }
+    .table-wrap { margin: 18px 0 28px; overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+    table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    th, td { padding: 13px 15px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: #eaf7f9; background: var(--navy); font-size: .79rem; letter-spacing: .04em; white-space: nowrap; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover { background: #f5fbfc; }
+    td:first-child { color: var(--navy); font-weight: 800; }
+    .page-ref { white-space: nowrap; color: var(--blue); font-size: .75rem; font-weight: 800; }
+    .comparison, .callout-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin: 18px 0; }
+    .comparison .card { border-top: 5px solid var(--cyan); }
+    .comparison .card:nth-child(even) { border-top-color: var(--yellow); }
+    .risk-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .risk-card { padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .risk-card h3 { margin-top: 0; color: var(--navy); }
+    .risk-card ul { margin-bottom: 0; padding-left: 1.25rem; color: var(--muted); }
+    .risk-card li + li { margin-top: 8px; }
+    .callout { padding: 18px 20px; border-left: 5px solid var(--cyan); border-radius: 0 14px 14px 0; background: var(--surface); box-shadow: 0 8px 24px rgba(13,44,74,.05); }
+    .callout:nth-child(even) { border-left-color: var(--yellow); }
+    .callout h3 { margin: 0 0 6px; color: var(--navy); font-size: 1rem; }
+    .callout p { margin: 0; color: var(--muted); font-size: .88rem; }
+    .study-note { padding: 22px; border: 1px solid #bcd9df; border-radius: var(--radius); background: linear-gradient(135deg,var(--soft-blue),#fff); }
+    .study-note h3 { margin-top: 0; color: var(--navy); }
+    .formula { display: block; margin: 9px 0; padding: 10px 13px; border-radius: 10px; color: var(--navy); background: var(--soft-yellow); font-weight: 900; }
+    .confusion-table td:nth-child(2) { color: var(--danger); font-weight: 800; }
+    .confusion-table td:nth-child(3) strong, .decision-table td:nth-child(2) strong { color: var(--blue); }
+    .memory-cue { display: inline-block; margin-top: 7px; padding: 3px 8px; border-radius: 999px; color: #684d00; background: var(--soft-yellow); font-size: .76rem; font-weight: 800; }
+    .search-panel { position: sticky; top: 10px; z-index: 8; display: flex; align-items: center; gap: 12px; margin: 20px 0; padding: 12px 14px; border: 1px solid #bcd9df; border-radius: 14px; background: rgba(255,255,255,.94); box-shadow: 0 10px 30px rgba(13,44,74,.08); backdrop-filter: blur(12px); }
+    .search-panel input { width: 100%; min-height: 44px; padding: 10px 13px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); background: #fff; outline: 0; }
+    .search-panel input:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(32,164,184,.15); }
+    .search-count { min-width: 6em; color: var(--muted); font-size: .82rem; text-align: right; }
+    details { margin: 14px 0; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+    summary { padding: 16px 18px; cursor: pointer; color: var(--navy); font-weight: 900; background: #f4f9fa; }
+    details .table-wrap { margin: 0; border: 0; border-radius: 0; }
+    .term-en { display: block; color: var(--muted); font-size: .73rem; font-weight: 600; }
+    .no-results { display: none; padding: 28px; color: var(--muted); text-align: center; background: var(--surface); border-radius: 14px; }
+    footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
+    @media (max-width: 980px) { .layout { display: block; } .sidebar { position: relative; width: 100%; height: auto; } .toc { grid-template-columns: repeat(3,1fr); } .sidebar-note { display: none; } main { padding: 34px 24px 72px; } }
+    @media (max-width: 720px) { .toc { grid-template-columns: repeat(2,1fr); } .hero { padding: 30px 24px; border-radius: 20px; } .cards, .comparison, .risk-grid, .callout-grid { grid-template-columns: 1fr; } .section-head { align-items: start; flex-direction: column; gap: 4px; } .search-panel { align-items: stretch; flex-direction: column; } .search-count { text-align: left; } }
+    @media print {
+      @page { size: A4; margin: 14mm 12mm; }
+      body { background: #fff; font-size: 10.5pt; } .layout { display: block; }
+      .sidebar, .search-panel { display: none !important; } main { width: 100%; max-width: none; padding: 0; }
+      .hero { padding: 26px; box-shadow: none; break-after: page; } .section-head { margin-top: 30px; }
+      .card, .risk-card, .table-wrap, details { break-inside: avoid; box-shadow: none; }
+      details > * { display: block !important; } summary { list-style: none; }
+      .flow { grid-template-columns: repeat(3,1fr); overflow: visible; }
+      .cards, .risk-grid { grid-template-columns: repeat(3,1fr); } a { text-decoration: none; } footer { break-before: page; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" aria-label="本頁目錄">
+      <div class="brand"><div class="brand-mark">4.1</div><div><small>iPAS 中級・科目一</small><strong>AI 導入評估規劃</strong></div></div>
+      <div class="toc-title">章節導覽</div>
+      <nav class="toc">
+        <a href="#overview">01 整體架構</a><a href="#framework">02 評估框架</a><a href="#business-tech">03 需求與技術</a>
+        <a href="#finance">04 成本效益</a><a href="#readiness">05 組織成熟度</a><a href="#risks">06 風險辨識</a>
+        <a href="#poc">07 POC 驗證</a><a href="#confusions">08 易混淆辨析</a><a href="#glossary">09 名詞總表</a>
+      </nav>
+      <div class="sidebar-note">整理範圍：原講義 4-3～4-14。頁碼標示皆指原 PDF 的講義頁碼，方便回查。</div>
+    </aside>
+
+    <main>
+      <header class="hero">
+        <p class="eyebrow">Chapter 04 · Section 4.1</p>
+        <h1>AI 導入評估</h1>
+        <p>AI 導入不是單純技術上線，而是結合業務價值、技術條件、財務效益、組織成熟度、法規風險與變革管理的系統性工程。</p>
+        <div class="hero-meta"><span class="chip">講義頁 4-3～4-14</span><span class="chip">9 個學習區塊</span><span class="chip">含財務公式與風險矩陣</span><span class="chip">名詞可搜尋</span></div>
+      </header>
+      <div class="source-banner"><strong>整理原則：</strong>內容限定於科目一官方學習指引 4.1，不補入外部資料；重新編排著重「是否值得做、能不能做、組織做不做得成，以及如何用 POC 驗證」。</div>
+
+      <section id="overview">
+        <div class="section-head"><h2>01｜4.1 整體架構</h2><span class="meta">P. 4-3～4-14</span></div>
+        <p class="lead">導入評估的核心，是判斷 AI 專案是否具備實質價值與可行性。評估不只問技術能否實現，也要確認問題真實、目標一致、成本合理、組織可承接、風險可控制。</p>
+        <div class="flow" aria-label="AI 導入評估流程">
+          <div class="flow-step"><b>需求辨識</b><span>找出痛點、瓶頸與服務缺口</span></div>
+          <div class="flow-step"><b>技術初探</b><span>資料、IT 與模型路線是否可行</span></div>
+          <div class="flow-step"><b>財務評估</b><span>成本、ROI、NPV、回收期</span></div>
+          <div class="flow-step"><b>組織盤點</b><span>成熟度、人才、協作與預算</span></div>
+          <div class="flow-step"><b>風險辨識</b><span>法規、技術、文化與變革</span></div>
+          <div class="flow-step"><b>POC 驗證</b><span>小範圍測試價值與落地能力</span></div>
+        </div>
+        <div class="study-note"><h3>評估的兩個核心問題</h3><p><strong>必要性：</strong>AI 是否解決真實業務痛點、提升具體 KPI？<br><strong>可能性：</strong>資料、技術、人才、預算、法規與組織條件是否足以落地？</p></div>
+      </section>
+
+      <section id="framework">
+        <div class="section-head"><h2>02｜三大可行性評估框架</h2><span class="meta">P. 4-3～4-7</span></div>
+        <div class="cards">
+          <article class="card"><span class="number">01</span><h3>業務需求</h3><p>問題是否真實、流程是否存在瓶頸、AI 是否能提升效率、準確率或回應速度等 KPI。</p></article>
+          <article class="card"><span class="number">02</span><h3>技術條件</h3><p>資料是否完整、一致、具代表性並可標註；IT 基礎能否支援訓練、部署及系統整合。</p></article>
+          <article class="card"><span class="number">03</span><h3>成本效益</h3><p>盤點人力、訓練、資料、模型、整合與授權成本，並以 KPI、ROI、NPV、回收期量化價值。</p></article>
+        </div>
+        <div class="callout-grid">
+          <article class="callout"><h3>不要為了 AI 而 AI</h3><p>若沒有清楚痛點、流程缺口或可衡量目標，追逐技術潮流容易造成效果不佳與資源浪費。</p></article>
+          <article class="callout"><h3>條件不足不等於永遠不能做</h3><p>可先強化資料治理與 IT 基礎，並選擇簡單、易實施的情境進行小範圍試點，再逐步擴大。</p></article>
+        </div>
+      </section>
+
+      <section id="business-tech">
+        <div class="section-head"><h2>03｜業務需求與技術可行性</h2><span class="meta">P. 4-3～4-5</span></div>
+        <h3>3.1 從 As-Is 到 To-Be 找出真實需求</h3>
+        <div class="table-wrap"><table><thead><tr><th>評估問題</th><th>觀察線索</th><th>評估目的</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>哪些流程適合 AI？</td><td>重複性高、規則清晰、數據驅動。</td><td>找出 AI 能高效介入的目標。</td><td class="page-ref">4-3～4-4</td></tr>
+          <tr><td>是否有瓶頸或服務缺口？</td><td>人力不足、效率低、服務能力不夠。</td><td>判斷 AI 可輔助或替代的環節。</td><td class="page-ref">4-4</td></tr>
+          <tr><td>哪些 KPI 需要改善？</td><td>效率、準確率、回應速度。</td><td>把導入目標轉成可衡量成果。</td><td class="page-ref">4-4</td></tr>
+          <tr><td>如何蒐集需求？</td><td>跨部門／利益關係人訪談、流程觀察、資料分析。</td><td>描繪 As-Is 與 To-Be 的差距。</td><td class="page-ref">4-3</td></tr>
+        </tbody></table></div>
+        <h3>3.2 技術條件的三項檢查</h3>
+        <div class="comparison">
+          <article class="card"><h3>資料品質</h3><p>檢查完整性、一致性與代表性；確認是否有高品質結構化資料，以及支援監督式學習的標註資料。</p></article>
+          <article class="card"><h3>IT 與整合能力</h3><p>伺服器、網路頻寬、雲端架構、資料倉儲，以及現有系統是否能支援訓練、部署與整合。</p></article>
+          <article class="card"><h3>AI 適配性</h3><p>依問題選擇監督式、非監督式、強化式或生成式模型；不是所有情境都需要深度學習，簡單統計模型有時更合適。</p></article>
+          <article class="card"><h3>尚未成熟時</h3><p>先補資料治理、標註品質與 IT 資源，再以簡單場景做技術探索與試點，累積經驗後逐步擴大。</p></article>
+        </div>
+      </section>
+
+      <section id="finance">
+        <div class="section-head"><h2>04｜成本、效益與優先順序</h2><span class="meta">P. 4-5～4-7</span></div>
+        <h3>4.1 成本組成</h3>
+        <p class="lead">初期成本包括內部人力、技術訓練、資料清洗、模型開發、系統整合、第三方顧問與平台授權；評估時也要納入導入後的營運成本。</p>
+        <div class="cards">
+          <article class="card"><span class="number">ROI</span><h3>投資報酬率</h3><p>衡量投入資金可帶來多少回報，越高表示投資效益越好。<span class="formula">ROI =（投資回報 - 投資成本）÷ 投資成本 × 100%</span></p></article>
+          <article class="card"><span class="number">NPV</span><h3>淨現值</h3><p>將未來各期現金流折現後加總，再扣除初期投資；NPV 為正，表示專案創造超過初期投入的價值。<span class="formula">NPV = Σ［每期現金流 ÷（1＋折現率）^期數］- 初期投資</span></p></article>
+          <article class="card"><span class="number">PP</span><h3>回收期</h3><p>完全回收投資成本所需時間，越短代表風險通常越低；但未考慮資金時間價值，需搭配 NPV。<span class="formula">回收期 = 初期投資成本 ÷ 每年淨現金流</span></p></article>
+        </div>
+        <h3>4.2 資源有限時怎麼排優先順序</h3>
+        <div class="table-wrap"><table><thead><tr><th>排序條件</th><th>優先特徵</th><th>原因</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>技術成熟度</td><td>已有可靠方法與工具。</td><td>降低探索失敗與落地風險。</td><td class="page-ref">4-6～4-7</td></tr>
+          <tr><td>效益可驗證性</td><td>短期可由 KPI 看出改善。</td><td>快速證明投資價值與取得支持。</td><td class="page-ref">4-6～4-7</td></tr>
+          <tr><td>可擴展性</td><td>成果可複製至多個部門。</td><td>提高整體投資回報。</td><td class="page-ref">4-6～4-7</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section id="readiness">
+        <div class="section-head"><h2>05｜組織成熟度與導入準備</h2><span class="meta">P. 4-7～4-9</span></div>
+        <p class="lead">技術有潛力，不代表組織做得成。導入前還要檢查數位與資料成熟度、團隊能力、跨部門協作，以及資源與預算支持。</p>
+        <div class="table-wrap"><table><thead><tr><th>盤點面向</th><th>檢查項目</th><th>就緒的表現</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>數位成熟度</td><td>流程是否數位化；ERP、CRM、資料倉儲是否完善。</td><td>能提供可靠、一致的數據支援。</td><td class="page-ref">4-7</td></tr>
+          <tr><td>資料治理</td><td>正確性、可追溯性、權限控管、資料標準、管理制度與負責單位。</td><td>資料使用準確且合法。</td><td class="page-ref">4-7</td></tr>
+          <tr><td>資料取得流程</td><td>跨系統能否整合，是否具 API、ETL、自動化資料流。</td><td>資料能穩定、持續進入 AI 流程。</td><td class="page-ref">4-7</td></tr>
+          <tr><td>組織能力</td><td>是否有 AI、資料分析、系統整合人才；若不足是否有培訓或外部合作。</td><td>有核心人才或明確補強方案。</td><td class="page-ref">4-7～4-8</td></tr>
+          <tr><td>跨部門協作</td><td>合作經驗、統一窗口、專案負責人、資訊透明與目標一致。</td><td>溝通順暢、分工明確。</td><td class="page-ref">4-8、4-11</td></tr>
+          <tr><td>責任單位</td><td>AI 專案辦公室、數位轉型小組或指定單位。</td><td>有人負責落地與監督。</td><td class="page-ref">4-8</td></tr>
+          <tr><td>資源與預算</td><td>資金、人力、時間、年度預算、補助、內部提案機制。</td><td>資源可持續且能彈性調度。</td><td class="page-ref">4-8～4-9</td></tr>
+          <tr><td>導入條件</td><td>試辦環境、測試資料、專責團隊。</td><td>可進行初期驗證並依結果調整。</td><td class="page-ref">4-8～4-9</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section id="risks">
+        <div class="section-head"><h2>06｜風險辨識、矩陣與緩解</h2><span class="meta">P. 4-9～4-12</span></div>
+        <div class="risk-grid">
+          <article class="risk-card"><h3>法規與資料風險</h3><ul><li>資料來源與處理依據需符合個資法、GDPR。</li><li>需匿名化、授權與存取權限控管。</li><li>海外雲端與委外涉及跨境傳輸及契約保障。</li><li>生成內容可能帶來版權、專利與侵權問題。</li></ul></article>
+          <article class="risk-card"><h3>技術與模型風險</h3><ul><li>資料不完整、格式混亂或數量不足。</li><li>模型對輸入敏感，情境變動後表現下降。</li><li>黑箱與解釋性不足會降低信任與可審查性。</li><li>生成內容可能不符預期或帶有偏見。</li></ul></article>
+          <article class="risk-card"><h3>組織與變革風險</h3><ul><li>職責改變或人力替代引發員工不安。</li><li>經驗決策轉向數據建議可能遭受質疑。</li><li>資料、業務與 IT 缺乏協作會造成摩擦。</li><li>需要溝通、培訓、數據文化與變革管理。</li></ul></article>
+        </div>
+        <h3>6.1 XAI 的目的與價值</h3>
+        <div class="comparison">
+          <article class="card"><h3>為什麼需要可解釋</h3><p>讓使用者理解模型如何預測或決策，增加信任；協助開發者與利害關係人掌握模型行為與偏誤；支援合規、道德與審核需求。</p></article>
+          <article class="card"><h3>高需求情境</h3><p>醫療需向醫師說明診斷依據；金融需向主管機關說明風險評分；招聘與教育需避免歧視；公部門與法務需可審查、可問責。</p></article>
+        </div>
+        <h3>6.2 風險矩陣與應對</h3>
+        <div class="study-note"><h3>風險等級</h3><p><span class="formula">風險等級 = 發生機率（Probability）× 影響程度（Impact）</span></p><p><strong>低風險：</strong>可接受、可監控。<strong>中風險：</strong>需規劃因應。<strong>高風險：</strong>優先處理，必要時迴避或延後導入。風險矩陣常用 3×3 或 5×5 格式。</p></div>
+        <div class="table-wrap"><table><thead><tr><th>策略</th><th>做法</th><th>作用</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>風險緩解</td><td>委外合約加入保固責任、引入專家、先做資料清理。</td><td>降低風險發生機率或影響。</td><td class="page-ref">4-12</td></tr>
+          <tr><td>保障與轉移</td><td>保險、第三方協力。</td><td>轉移部分財務或執行風險。</td><td class="page-ref">4-12</td></tr>
+          <tr><td>POC</td><td>小範圍驗證技術、價值與風險。</td><td>避免一次全面投入造成損失擴大。</td><td class="page-ref">4-12</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section id="poc">
+        <div class="section-head"><h2>07｜POC：用最小風險驗證導入假設</h2><span class="meta">P. 4-12～4-14</span></div>
+        <p class="lead">概念驗證不是縮小版全面上線，而是以具代表性、可控制的範圍，驗證 AI 應用價值、技術落地能力與組織接受度，並提前找出瓶頸。</p>
+        <h3>7.1 POC 場景的四個條件</h3>
+        <div class="cards">
+          <article class="card"><span class="number">01</span><h3>範圍清晰、風險可控</h3><p>以小部門、小資料集或有限流程測試，問題發生時容易處理，不影響整體營運。</p></article>
+          <article class="card"><span class="number">02</span><h3>業務流程具代表性</h3><p>能反映未來擴展邏輯，具實用與延展價值，並呈現全局導入可能遇到的挑戰。</p></article>
+          <article class="card"><span class="number">03</span><h3>資料與技術初步就緒</h3><p>資料格式、存取權限、資料集與基礎 IT 支援已準備，避免測試因資源不足中斷。</p></article>
+          <article class="card"><span class="number">04</span><h3>利益關係人支持</h3><p>選擇已有共識與合作意願的單位，可提高成功率並加速回饋與調整。</p></article>
+        </div>
+        <h3>7.2 量化＋質性評估</h3>
+        <div class="comparison">
+          <article class="card"><h3>量化：Performance Metrics</h3><p>依情境設定準確率、處理速度、錯誤率、成本節省等指標，並與既有 KPI 比較是否顯著改善。</p></article>
+          <article class="card"><h3>質性：User Feedback</h3><p>以問卷、訪談或使用日誌蒐集體驗；特別觀察使用障礙、文化抗拒與流程磨合問題。</p></article>
+        </div>
+        <h3>7.3 POC 結果的四項決策依據</h3>
+        <div class="table-wrap"><table><thead><tr><th>判斷面向</th><th>關鍵問題</th><th>決策用途</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>技術適配性</td><td>模型能否與現有系統整合？資料架構是否兼容？</td><td>確認技術是否能落地。</td><td class="page-ref">4-14</td></tr>
+          <tr><td>預期效益</td><td>是否有效能、效率或使用體驗的明確提升？</td><td>確認商業價值。</td><td class="page-ref">4-14</td></tr>
+          <tr><td>組織接受度</td><td>部門與使用者是否正向接受並願意學習？</td><td>評估後續推動阻力。</td><td class="page-ref">4-14</td></tr>
+          <tr><td>問題與瓶頸</td><td>是否出現重大風險、資源限制或流程障礙？</td><td>調整策略、延後或擴大實施。</td><td class="page-ref">4-14</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section id="confusions">
+        <div class="section-head"><h2>08｜易混淆名詞與情境辨析</h2><span class="meta">依原講義差異重整</span></div>
+        <p class="lead">作答時先判斷題目在問「需求、技術、財務、組織、風險，還是 POC」，再找最貼近的工具與指標。</p>
+        <div class="callout-grid">
+          <article class="callout"><h3>評估不是規劃</h3><p>4.1 的重點是先判斷值不值得、做不做得到，以及用 POC 驗證；詳細導入時程、角色與執行安排屬後續導入規劃。</p></article>
+          <article class="callout"><h3>技術可行不等於專案可行</h3><p>即使模型能做，若缺資料治理、跨部門協作、預算、法規依據或使用者接受度，專案仍可能失敗。</p></article>
+        </div>
+        <h3>8.1 名詞成組比較</h3>
+        <div class="table-wrap"><table class="confusion-table"><thead><tr><th>易混淆名詞</th><th>最關鍵差別</th><th>應用判斷</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>As-Is／To-Be</td><td>As-Is 是現況流程；To-Be 是導入或改善後的理想流程。</td><td>兩者差距用來辨識痛點、服務缺口與改善目標。</td><td class="page-ref">4-3</td></tr>
+          <tr><td>業務需求／技術可行性</td><td>需求回答「為何要做」；技術回答「能不能做」。</td><td>流程瓶頸屬需求；資料與 IT 條件屬技術。</td><td class="page-ref">4-3～4-5</td></tr>
+          <tr><td>KPI／Performance Metrics</td><td>KPI 對應業務成果；模型或系統效能指標衡量 POC 技術表現。</td><td>處理時間降低是 KPI；模型準確率可作 Performance Metric。</td><td class="page-ref">4-4、4-13</td></tr>
+          <tr><td>ROI／NPV／回收期</td><td>ROI 看回報比例；NPV 看折現後淨價值；回收期看多久回本。</td><td><strong>比例：</strong>ROI；<strong>考慮時間價值：</strong>NPV；<strong>多久回收：</strong>Payback。<br><span class="memory-cue">ROI 看比例，NPV 看價值，Payback 看時間</span></td><td class="page-ref">4-5～4-6</td></tr>
+          <tr><td>數位成熟度／資料治理</td><td>數位成熟度看流程與系統是否數位化；資料治理看資料標準、品質、追溯與權限制度。</td><td>ERP／CRM 建置屬成熟度；資料責任與權限屬治理。</td><td class="page-ref">4-7</td></tr>
+          <tr><td>組織能力／跨部門協作</td><td>組織能力看人才與專業；協作看部門間窗口、責任與溝通。</td><td>缺 AI 人才是能力問題；需求對不齊是協作問題。</td><td class="page-ref">4-7～4-8</td></tr>
+          <tr><td>模型穩定性／可解釋性</td><td>穩定性看不同輸入與情境下表現是否一致；可解釋性看能否說明決策原因。</td><td>環境改變後準確下降屬穩定性；無法說明核貸原因屬可解釋性。</td><td class="page-ref">4-10</td></tr>
+          <tr><td>風險矩陣／風險等級</td><td>矩陣是可能性與影響的視覺化工具；等級是兩者結合後的嚴重程度。</td><td>3×3、5×5 是矩陣；低、中、高是等級。</td><td class="page-ref">4-11～4-12</td></tr>
+          <tr><td>風險緩解／風險轉移</td><td>緩解是降低機率或影響；轉移是把部分責任或損失交由第三方承擔。</td><td>資料清理、專家顧問屬緩解；保險、第三方協力屬轉移。</td><td class="page-ref">4-12</td></tr>
+          <tr><td>POC／全面導入</td><td>POC 是小範圍、可控的假設驗證；全面導入是正式擴大營運。</td><td>資料、技術、價值或接受度尚未證實時，先做 POC。</td><td class="page-ref">4-12～4-14</td></tr>
+          <tr><td>量化評估／質性評估</td><td>量化看準確率、速度、錯誤率與成本；質性看體驗、阻力與流程磨合。</td><td>兩者需並用，不能只看模型分數。</td><td class="page-ref">4-13～4-14</td></tr>
+          <tr><td>技術適配性／組織接受度</td><td>技術適配看系統與資料能否整合；組織接受看人是否願意使用與學習。</td><td>API 相容是技術；員工抗拒是組織。</td><td class="page-ref">4-14</td></tr>
+        </tbody></table></div>
+        <h3>8.2 看到情境題時怎麼選</h3>
+        <div class="table-wrap"><table class="decision-table"><thead><tr><th>題目線索</th><th>優先對應名詞／方法</th><th>為什麼</th><th>不要先選</th></tr></thead><tbody>
+          <tr><td>導入前首先找出流程瓶頸與目標</td><td><strong>業務需求與痛點分析</strong></td><td>AI 評估應從真實問題與 As-Is／To-Be 差距開始。</td><td>直接選模型；問題尚未定義。</td></tr>
+          <tr><td>評估未來現金流並考慮時間價值</td><td><strong>NPV</strong></td><td>它會將每期現金流折現。</td><td>回收期；它不考慮資金時間價值。</td></tr>
+          <tr><td>想知道投資多久能完全收回</td><td><strong>Payback Period</strong></td><td>直接衡量回本時間。</td><td>ROI；它回答的是報酬比例。</td></tr>
+          <tr><td>模型可預測，但管理者無法理解原因</td><td><strong>XAI／可解釋性</strong></td><td>需要說明模型如何形成決策。</td><td>只提高準確率；不會自動解決黑箱。</td></tr>
+          <tr><td>風險很可能發生且衝擊重大</td><td><strong>高風險、優先處理</strong></td><td>Risk Level 由機率×影響決定。</td><td>只監控不處理。</td></tr>
+          <tr><td>技術可行但員工拒絕使用</td><td><strong>組織接受度／變革管理</strong></td><td>問題在人員、文化與職責改變。</td><td>資料清洗；無法處理文化阻力。</td></tr>
+          <tr><td>準備小規模測試以降低全面投入風險</td><td><strong>POC</strong></td><td>以可控、代表性範圍驗證價值與瓶頸。</td><td>直接全面部署。</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section id="glossary">
+        <div class="section-head"><h2>09｜專有名詞總表</h2><span class="meta">中英文・定義・用途・頁碼</span></div>
+        <p class="lead">輸入中文、英文、縮寫、公式、風險或 POC 條件即可篩選；列印時會自動展開全部分類。</p>
+        <div class="search-panel"><input id="termSearch" type="search" placeholder="搜尋：ROI、As-Is、資料治理、XAI、風險矩陣、POC…" aria-label="搜尋專有名詞"><span id="searchCount" class="search-count"></span></div>
+        <div id="noResults" class="no-results">找不到符合的名詞，請改用較短的關鍵字。</div>
+
+        <details open data-group><summary>需求、技術與財務評估（20）</summary><div class="table-wrap"><table class="glossary-table"><thead><tr><th>專有名詞</th><th>講義中的意思</th><th>應用與用處</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>AI 導入評估</td><td>從需求、技術、財務、組織與風險判斷導入價值及可行性。</td><td>避免資源浪費與決策失誤。</td><td class="page-ref">4-3</td></tr>
+          <tr><td>利益關係人<span class="term-en">Stakeholders</span></td><td>受到專案影響或能影響專案的人員與單位。</td><td>訪談需求、取得支持與回饋。</td><td class="page-ref">4-3、4-13</td></tr>
+          <tr><td>現況流程<span class="term-en">As-Is</span></td><td>組織目前實際運作方式。</td><td>找出瓶頸與服務缺口。</td><td class="page-ref">4-3</td></tr>
+          <tr><td>理想流程<span class="term-en">To-Be</span></td><td>改善或導入後預期達到的流程。</td><td>與 As-Is 比較形成需求差距。</td><td class="page-ref">4-3</td></tr>
+          <tr><td>關鍵績效指標<span class="term-en">Key Performance Indicators, KPI</span></td><td>衡量業務目標是否改善的指標。</td><td>效率、準確率、回應速度等。</td><td class="page-ref">4-4～4-5、4-13</td></tr>
+          <tr><td>資料品質<span class="term-en">Data Quality</span></td><td>資料的完整性、一致性與代表性。</td><td>決定模型是否有可靠訓練基礎。</td><td class="page-ref">4-4、4-10</td></tr>
+          <tr><td>系統整合性<span class="term-en">System Integration</span></td><td>AI 能否與既有基礎設施與系統連接。</td><td>評估部署與營運可行性。</td><td class="page-ref">4-4、4-14</td></tr>
+          <tr><td>AI 適配性</td><td>業務問題與 AI 技術路線的匹配程度。</td><td>選擇監督、非監督、強化、生成或簡單統計模型。</td><td class="page-ref">4-5</td></tr>
+          <tr><td>監督式學習</td><td>使用有標籤資料學習輸入與目標關係。</td><td>技術路線候選之一。</td><td class="page-ref">4-5</td></tr>
+          <tr><td>非監督式學習</td><td>從無標籤資料探索結構與群組。</td><td>技術路線候選之一。</td><td class="page-ref">4-5</td></tr>
+          <tr><td>強化式學習</td><td>透過行動、環境與回饋學習策略。</td><td>技術路線候選之一。</td><td class="page-ref">4-5</td></tr>
+          <tr><td>生成式模型</td><td>產生新文字、圖像等內容的模型。</td><td>技術路線候選之一。</td><td class="page-ref">4-5、4-9～4-11</td></tr>
+          <tr><td>投資報酬率<span class="term-en">Return on Investment, ROI</span></td><td>投資淨回報相對成本的百分比。</td><td>衡量投資回報是否值得。</td><td class="page-ref">4-5～4-6</td></tr>
+          <tr><td>淨現值<span class="term-en">Net Present Value, NPV</span></td><td>未來現金流折現總和扣除初期投資。</td><td>評估長期專案價值與資金時間價值。</td><td class="page-ref">4-5～4-6</td></tr>
+          <tr><td>折現率</td><td>把未來現金流換算為目前價值所用的比例。</td><td>NPV 計算要素。</td><td class="page-ref">4-6</td></tr>
+          <tr><td>回收期<span class="term-en">Payback Period</span></td><td>完全回收初期投資所需時間。</td><td>快速理解多久回本；越短通常風險越低。</td><td class="page-ref">4-6</td></tr>
+          <tr><td>技術成熟度</td><td>技術是否已有足夠可靠性與實作經驗。</td><td>資源有限時的優先排序條件。</td><td class="page-ref">4-6</td></tr>
+          <tr><td>效益可驗證性</td><td>能否快速用數據證明導入效果。</td><td>選擇優先情境。</td><td class="page-ref">4-6</td></tr>
+          <tr><td>可擴展性</td><td>成果能否複製至更多流程或部門。</td><td>提高專案整體效益。</td><td class="page-ref">4-6</td></tr>
+          <tr><td>成本效益分析</td><td>比較完整投入成本與可量化收益。</td><td>判斷投資合理性。</td><td class="page-ref">4-5～4-7</td></tr>
+        </tbody></table></div></details>
+
+        <details open data-group><summary>組織成熟度與資料能力（16）</summary><div class="table-wrap"><table class="glossary-table"><thead><tr><th>專有名詞</th><th>講義中的意思</th><th>應用與用處</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>數位成熟度<span class="term-en">Digital Maturity</span></td><td>流程與資訊系統的數位化程度。</td><td>判斷 AI 導入的數位基礎。</td><td class="page-ref">4-7</td></tr>
+          <tr><td>資料治理<span class="term-en">Data Governance</span></td><td>資料正確性、追溯、權限、標準與責任制度。</td><td>確保資料使用準確、合法。</td><td class="page-ref">4-5、4-7</td></tr>
+          <tr><td>ERP</td><td>企業資源規劃系統。</td><td>數位成熟度與一致資料來源的例子。</td><td class="page-ref">4-7</td></tr>
+          <tr><td>CRM</td><td>顧客關係管理系統。</td><td>提供顧客與業務資料。</td><td class="page-ref">4-7</td></tr>
+          <tr><td>資料倉儲</td><td>集中保存與整合組織資料的環境。</td><td>支援模型資料取得。</td><td class="page-ref">4-4、4-7</td></tr>
+          <tr><td>API</td><td>系統間交換資料與功能的介面。</td><td>跨系統資料整合。</td><td class="page-ref">4-7</td></tr>
+          <tr><td>ETL</td><td>資料擷取、轉換與載入流程。</td><td>建立自動化資料流。</td><td class="page-ref">4-7</td></tr>
+          <tr><td>組織能力<span class="term-en">Organizational Capability</span></td><td>AI、資料分析與系統整合人才及補強能力。</td><td>判斷是否具備推動專案的人才條件。</td><td class="page-ref">4-7～4-8</td></tr>
+          <tr><td>跨部門協作<span class="term-en">Cross-functional Collaboration</span></td><td>資料、IT、業務與外部夥伴的分工溝通。</td><td>降低摩擦並維持目標一致。</td><td class="page-ref">4-7～4-8、4-11</td></tr>
+          <tr><td>導入責任單位</td><td>AI 專案辦公室、轉型小組或指定團隊。</td><td>統籌落地、進度與監督。</td><td class="page-ref">4-8</td></tr>
+          <tr><td>資源盤點<span class="term-en">Resource Inventory</span></td><td>確認可用資金、人力與時間。</td><td>避免專案資源斷鏈。</td><td class="page-ref">4-8</td></tr>
+          <tr><td>預算來源規劃</td><td>年度預算、補助、投資評估或內部提案。</td><td>確保資金持續支持。</td><td class="page-ref">4-8</td></tr>
+          <tr><td>導入條件<span class="term-en">Implementation Conditions</span></td><td>試辦環境、測試資料與專責團隊。</td><td>支援初期驗證與實作。</td><td class="page-ref">4-8～4-9</td></tr>
+          <tr><td>數據文化</td><td>組織在決策中信任並使用資料分析。</td><td>降低由經驗決策轉型的阻力。</td><td class="page-ref">4-11</td></tr>
+          <tr><td>組織變革<span class="term-en">Organizational Change</span></td><td>AI 導入帶來的角色、流程與工作方式改變。</td><td>需溝通、培訓與引導。</td><td class="page-ref">4-11</td></tr>
+          <tr><td>變革管理</td><td>有計畫地協助人員與組織適應改變。</td><td>降低抗拒與不安。</td><td class="page-ref">4-11</td></tr>
+        </tbody></table></div></details>
+
+        <details open data-group><summary>風險、法規與可解釋性（19）</summary><div class="table-wrap"><table class="glossary-table"><thead><tr><th>專有名詞</th><th>講義中的意思</th><th>應用與用處</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>法規遵循<span class="term-en">Legal Compliance</span></td><td>確認資料來源、處理與系統應用符合法律。</td><td>個資法、GDPR 等。</td><td class="page-ref">4-9</td></tr>
+          <tr><td>資料隱私<span class="term-en">Data Privacy</span></td><td>防止個人或敏感資訊遭暴露或濫用。</td><td>匿名化、授權與權限控管。</td><td class="page-ref">4-9</td></tr>
+          <tr><td>資料跨境傳輸</td><td>資料儲存或處理跨越不同司法管轄區。</td><td>需符合跨境規範與契約保障。</td><td class="page-ref">4-9</td></tr>
+          <tr><td>侵權與版權風險</td><td>訓練資料或生成內容可能侵犯版權、專利。</td><td>需確認資料與內容授權。</td><td class="page-ref">4-9</td></tr>
+          <tr><td>模型穩定性<span class="term-en">Model Stability</span></td><td>模型在不同輸入與業務變動下能否維持可靠表現。</td><td>需定期檢測、監控與調整。</td><td class="page-ref">4-10</td></tr>
+          <tr><td>黑箱風險</td><td>模型預測原因難以理解。</td><td>可能降低信任與可審查性。</td><td class="page-ref">4-10</td></tr>
+          <tr><td>可解釋 AI<span class="term-en">Explainable AI, XAI</span></td><td>讓使用者理解模型如何形成預測或決策。</td><td>信任、偏誤檢查、合規與問責。</td><td class="page-ref">4-10～4-11</td></tr>
+          <tr><td>產出不確定性</td><td>生成內容可能不符預期、含偏見或不合倫理。</td><td>需人工審查與調整。</td><td class="page-ref">4-11</td></tr>
+          <tr><td>風險矩陣<span class="term-en">Risk Matrix</span></td><td>以可能性與影響程度交叉分類風險。</td><td>常見 3×3 或 5×5。</td><td class="page-ref">4-11～4-12</td></tr>
+          <tr><td>風險等級<span class="term-en">Risk Level</span></td><td>發生機率乘以影響程度的總體嚴重度。</td><td>低、中、高風險排序。</td><td class="page-ref">4-11～4-12</td></tr>
+          <tr><td>發生機率<span class="term-en">Probability / Likelihood</span></td><td>風險出現的可能性。</td><td>風險矩陣的一個維度。</td><td class="page-ref">4-12</td></tr>
+          <tr><td>影響程度<span class="term-en">Impact</span></td><td>風險發生時對業務或系統的衝擊。</td><td>輕微、重大、災難性。</td><td class="page-ref">4-12</td></tr>
+          <tr><td>低風險<span class="term-en">Low Risk</span></td><td>可接受並持續監控。</td><td>風險處置等級。</td><td class="page-ref">4-12</td></tr>
+          <tr><td>中風險<span class="term-en">Medium Risk</span></td><td>需規劃因應對策。</td><td>風險處置等級。</td><td class="page-ref">4-12</td></tr>
+          <tr><td>高風險<span class="term-en">High Risk</span></td><td>應優先處理，必要時迴避或延後。</td><td>風險處置等級。</td><td class="page-ref">4-12</td></tr>
+          <tr><td>風險緩解<span class="term-en">Risk Mitigation</span></td><td>採取措施降低風險機率或影響。</td><td>合約保固、顧問、資料清理。</td><td class="page-ref">4-12</td></tr>
+          <tr><td>風險轉移</td><td>由保險或第三方承擔部分風險。</td><td>建立保障機制。</td><td class="page-ref">4-12</td></tr>
+          <tr><td>資料缺口</td><td>資料不完整、格式混亂或數量不足。</td><td>可能使模型無法可靠訓練。</td><td class="page-ref">4-10</td></tr>
+          <tr><td>預防性措施</td><td>在專案早期建立風險緩衝。</td><td>避免中後期才發現重大阻力。</td><td class="page-ref">4-11～4-12</td></tr>
+        </tbody></table></div></details>
+
+        <details open data-group><summary>POC 設計、評估與決策（16）</summary><div class="table-wrap"><table class="glossary-table"><thead><tr><th>專有名詞</th><th>講義中的意思</th><th>應用與用處</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>概念驗證<span class="term-en">Proof of Concept, POC</span></td><td>小範圍驗證 AI 價值與技術落地能力。</td><td>降低全面投入風險，支援後續決策。</td><td class="page-ref">4-12～4-14</td></tr>
+          <tr><td>範圍清晰</td><td>限定部門、流程或資料集。</td><td>控制測試風險與營運影響。</td><td class="page-ref">4-13</td></tr>
+          <tr><td>代表性流程</td><td>可反映未來擴展邏輯的場景。</td><td>讓 POC 結果具有延展價值。</td><td class="page-ref">4-13</td></tr>
+          <tr><td>資料初步就緒</td><td>格式、存取權限與必要資料集已準備。</td><td>避免測試因資料不足中斷。</td><td class="page-ref">4-13</td></tr>
+          <tr><td>技術資源就緒</td><td>基礎 IT 與測試環境可用。</td><td>支援模型驗證與整合。</td><td class="page-ref">4-13</td></tr>
+          <tr><td>利益關係人支持度</td><td>試點單位具合作意願與共識。</td><td>提高成功率及回饋速度。</td><td class="page-ref">4-13</td></tr>
+          <tr><td>效能指標<span class="term-en">Performance Metrics</span></td><td>量化 POC 技術與流程表現。</td><td>準確率、速度、錯誤率、成本節省。</td><td class="page-ref">4-13</td></tr>
+          <tr><td>使用者回饋<span class="term-en">User Feedback</span></td><td>實際使用者的體驗、建議與問題。</td><td>補充純數字無法呈現的使用障礙。</td><td class="page-ref">4-13～4-14</td></tr>
+          <tr><td>使用日誌</td><td>記錄實際使用行為與問題。</td><td>質性評估管道之一。</td><td class="page-ref">4-14</td></tr>
+          <tr><td>技術適配性</td><td>模型、既有系統與資料架構是否相容。</td><td>判斷技術落地能力。</td><td class="page-ref">4-14</td></tr>
+          <tr><td>預期效益驗證</td><td>確認效率、效能或體驗是否明顯改善。</td><td>驗證 AI 商業價值。</td><td class="page-ref">4-14</td></tr>
+          <tr><td>組織接受度</td><td>部門與使用者的正向接受及學習意願。</td><td>判斷擴大導入的人員條件。</td><td class="page-ref">4-14</td></tr>
+          <tr><td>問題與瓶頸辨識</td><td>找出風險、資源限制與流程障礙。</td><td>調整後續策略。</td><td class="page-ref">4-14</td></tr>
+          <tr><td>量化評估</td><td>用數字比較導入前後表現。</td><td>驗證 KPI 與模型效能。</td><td class="page-ref">4-13</td></tr>
+          <tr><td>質性評估</td><td>以問卷、訪談、日誌理解使用體驗。</td><td>發現文化與流程問題。</td><td class="page-ref">4-14</td></tr>
+          <tr><td>導入可行性判斷</td><td>綜合技術、價值、接受度與瓶頸決定下一步。</td><td>擴大、調整、延後或停止。</td><td class="page-ref">4-14</td></tr>
+        </tbody></table></div></details>
+      </section>
+
+      <footer>
+        <p><strong>資料來源：</strong>《AI 應用規劃師（中級）學習指引－科目 1 人工智慧技術應用規劃》，第四章 4.1「AI 導入評估」，講義頁碼 4-3～4-14。</p>
+        <p>本頁為依原講義重新編排的學習整理稿，可直接瀏覽或以瀏覽器列印為 PDF。</p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // 取得名詞表與搜尋介面，讓使用者能以中英文、縮寫、公式、風險或 POC 條件快速篩選。
+    const searchInput = document.querySelector('#termSearch');
+    const searchCount = document.querySelector('#searchCount');
+    const noResults = document.querySelector('#noResults');
+    const glossaryRows = [...document.querySelectorAll('.glossary-table tbody tr')];
+    const glossaryGroups = [...document.querySelectorAll('[data-group]')];
+    const totalTerms = glossaryRows.length;
+    searchCount.textContent = `共 ${totalTerms} 個名詞`;
+
+    // 依搜尋字串切換名詞列；搜尋時自動展開含有結果的分類。
+    function filterGlossary() {
+      const keyword = searchInput.value.trim().toLocaleLowerCase('zh-Hant');
+      let visibleCount = 0;
+      glossaryRows.forEach((row) => {
+        const matched = row.textContent.toLocaleLowerCase('zh-Hant').includes(keyword);
+        row.hidden = !matched;
+        if (matched) visibleCount += 1;
+      });
+      glossaryGroups.forEach((group) => {
+        const hasVisibleRow = [...group.querySelectorAll('tbody tr')].some((row) => !row.hidden);
+        group.hidden = !hasVisibleRow;
+        if (keyword && hasVisibleRow) group.open = true;
+      });
+      searchCount.textContent = keyword ? `符合 ${visibleCount} 個` : `共 ${totalTerms} 個名詞`;
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+    searchInput.addEventListener('input', filterGlossary);
+
+    // 列印前展開所有名詞分類，避免 PDF 版本遺漏收合內容；列印後恢復原狀態。
+    let detailsState = [];
+    window.addEventListener('beforeprint', () => {
+      detailsState = glossaryGroups.map((group) => group.open);
+      glossaryGroups.forEach((group) => { group.open = true; });
+    });
+    window.addEventListener('afterprint', () => {
+      glossaryGroups.forEach((group, index) => { group.open = detailsState[index]; });
+    });
+  </script>
+</body>
+</html>

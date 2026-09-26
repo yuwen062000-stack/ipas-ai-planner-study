@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <!--
+    本檔案負責將「科目一學習指引」3.2 電腦視覺技術與應用重整為可閱讀、可列印的單頁講義。
+    所有知識內容僅取自原 PDF 講義頁碼 3-40 至 3-58，不加入外部資料。
+  -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="iPAS AI 應用規劃師中級－科目一 3.2 電腦視覺技術與應用整理">
+  <title>3.2 電腦視覺技術與應用｜科目一講義整理</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #16263d;
+      --muted: #5d6d80;
+      --paper: #f5f8fb;
+      --surface: #fff;
+      --line: #d9e2ec;
+      --navy: #0d2c4a;
+      --blue: #126e82;
+      --cyan: #20a4b8;
+      --yellow: #f4c95d;
+      --soft-blue: #eaf5f7;
+      --soft-yellow: #fff7dd;
+      --danger: #a54b4b;
+      --radius: 18px;
+      --shadow: 0 16px 40px rgba(13,44,74,.08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(circle at 95% 2%, rgba(32,164,184,.12), transparent 22rem), var(--paper);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    .layout { display: grid; grid-template-columns: 270px minmax(0,1fr); min-height: 100vh; }
+    .sidebar {
+      position: sticky; top: 0; height: 100vh; padding: 28px 22px; overflow-y: auto;
+      color: #eef8fa; background: var(--navy);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; padding-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,.16); }
+    .brand-mark {
+      display: grid; width: 42px; height: 42px; place-items: center;
+      border: 2px solid var(--yellow); border-radius: 12px; color: var(--yellow); font-weight: 900;
+    }
+    .brand small, .eyebrow, .meta { letter-spacing: .08em; }
+    .brand small { display: block; color: #9ecbd3; font-size: .72rem; }
+    .brand strong { display: block; font-size: .98rem; }
+    .toc-title { margin: 26px 10px 10px; color: #8abdc6; font-size: .75rem; font-weight: 800; }
+    .toc { display: grid; gap: 5px; }
+    .toc a { padding: 9px 12px; border-radius: 9px; color: #dcecef; font-size: .88rem; text-decoration: none; }
+    .toc a:hover, .toc a:focus-visible { color: #fff; background: rgba(255,255,255,.1); outline: 0; }
+    .sidebar-note {
+      margin-top: 26px; padding: 14px; border: 1px solid rgba(244,201,93,.35); border-radius: 12px;
+      color: #dcecef; background: rgba(244,201,93,.08); font-size: .78rem;
+    }
+    main { width: min(1180px,100%); margin: 0 auto; padding: 54px 48px 96px; }
+    .hero {
+      position: relative; padding: 44px; overflow: hidden; border-radius: 28px; color: #fff;
+      background: linear-gradient(135deg,#0d2c4a 0%,#10536a 66%,#14889a 100%); box-shadow: var(--shadow);
+    }
+    .hero::after {
+      content: "CV"; position: absolute; right: -10px; bottom: -78px; color: rgba(255,255,255,.07);
+      font-size: clamp(8rem,20vw,14rem); font-weight: 900; line-height: 1; letter-spacing: -.08em;
+    }
+    .eyebrow { margin: 0 0 10px; color: #8fe2ea; font-size: .8rem; font-weight: 900; text-transform: uppercase; }
+    h1, h2, h3, h4 { line-height: 1.3; }
+    h1 { position: relative; z-index: 1; max-width: 760px; margin: 0; font-size: clamp(2rem,4.6vw,4rem); letter-spacing: -.045em; }
+    .hero p:not(.eyebrow) { position: relative; z-index: 1; max-width: 730px; margin: 22px 0 0; color: #d9eff2; font-size: 1.08rem; }
+    .hero-meta { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .chip { display: inline-flex; padding: 7px 11px; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; background: rgba(255,255,255,.08); font-size: .78rem; }
+    .source-banner { margin: 22px 0 42px; padding: 16px 18px; border-left: 5px solid var(--yellow); border-radius: 0 12px 12px 0; background: var(--soft-yellow); font-size: .9rem; }
+    .source-banner strong { color: #795a00; }
+    section { scroll-margin-top: 22px; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin: 58px 0 20px; padding-bottom: 13px; border-bottom: 2px solid var(--line); }
+    .section-head h2 { margin: 0; color: var(--navy); font-size: clamp(1.45rem,2.5vw,2.05rem); letter-spacing: -.025em; }
+    .meta { flex: none; color: var(--blue); font-size: .72rem; font-weight: 900; }
+    .lead { max-width: 920px; color: #40536a; }
+    .cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .card { padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: 0 8px 24px rgba(13,44,74,.05); }
+    .card .number { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 10px; color: #fff; background: var(--blue); font-size: .82rem; font-weight: 900; }
+    .card h3 { margin: 15px 0 8px; font-size: 1.08rem; }
+    .card p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .flow { display: grid; grid-template-columns: repeat(6,minmax(130px,1fr)); gap: 10px; margin: 22px 0; overflow-x: auto; padding-bottom: 8px; }
+    .flow-step { position: relative; min-width: 135px; padding: 18px 16px; border: 1px solid #bcd9df; border-radius: 14px; background: var(--soft-blue); }
+    .flow-step:not(:last-child)::after { content: "→"; position: absolute; top: 50%; right: -13px; z-index: 2; width: 16px; color: var(--blue); font-weight: 900; transform: translateY(-50%); }
+    .flow-step b { display: block; color: var(--navy); font-size: .92rem; }
+    .flow-step span { display: block; margin-top: 5px; color: var(--muted); font-size: .78rem; }
+    .timeline { display: grid; grid-template-columns: repeat(3,1fr); margin: 24px 0; }
+    .era { padding: 25px 20px 22px; border-top: 5px solid var(--cyan); background: var(--surface); }
+    .era:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+    .era:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+    .era + .era { border-left: 1px solid var(--line); }
+    .era:nth-child(even) { border-top-color: var(--yellow); }
+    .era .year { color: var(--blue); font-size: .77rem; font-weight: 900; }
+    .era h3 { min-height: 2.7em; margin: 7px 0 8px; font-size: 1rem; }
+    .era p { margin: 0; color: var(--muted); font-size: .82rem; }
+    .era .models { margin-top: 12px; color: var(--navy); font-weight: 800; }
+    .table-wrap { margin: 18px 0 28px; overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+    table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    th, td { padding: 13px 15px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: #eaf7f9; background: var(--navy); font-size: .79rem; letter-spacing: .04em; white-space: nowrap; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover { background: #f5fbfc; }
+    td:first-child { color: var(--navy); font-weight: 800; }
+    .page-ref { white-space: nowrap; color: var(--blue); font-size: .75rem; font-weight: 800; }
+    .comparison, .callout-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin: 18px 0; }
+    .comparison .card { border-top: 5px solid var(--cyan); }
+    .comparison .card:nth-child(even) { border-top-color: var(--yellow); }
+    .risk-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .risk-card { padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .risk-card h3 { margin-top: 0; color: var(--navy); }
+    .risk-card ul { margin-bottom: 0; padding-left: 1.25rem; color: var(--muted); }
+    .risk-card li + li { margin-top: 8px; }
+    .callout { padding: 18px 20px; border-left: 5px solid var(--cyan); border-radius: 0 14px 14px 0; background: var(--surface); box-shadow: 0 8px 24px rgba(13,44,74,.05); }
+    .callout:nth-child(even) { border-left-color: var(--yellow); }
+    .callout h3 { margin: 0 0 6px; color: var(--navy); font-size: 1rem; }
+    .callout p { margin: 0; color: var(--muted); font-size: .88rem; }
+    .study-note { padding: 22px; border: 1px solid #bcd9df; border-radius: var(--radius); background: linear-gradient(135deg,var(--soft-blue),#fff); }
+    .study-note h3 { margin-top: 0; color: var(--navy); }
+    .formula { display: inline-block; padding: 8px 12px; border-radius: 10px; color: var(--navy); background: var(--soft-yellow); font-weight: 900; }
+    .confusion-table td:nth-child(2) { color: var(--danger); font-weight: 800; }
+    .confusion-table td:nth-child(3) strong, .decision-table td:nth-child(2) strong { color: var(--blue); }
+    .memory-cue { display: inline-block; margin-top: 7px; padding: 3px 8px; border-radius: 999px; color: #684d00; background: var(--soft-yellow); font-size: .76rem; font-weight: 800; }
+    .search-panel { position: sticky; top: 10px; z-index: 8; display: flex; align-items: center; gap: 12px; margin: 20px 0; padding: 12px 14px; border: 1px solid #bcd9df; border-radius: 14px; background: rgba(255,255,255,.94); box-shadow: 0 10px 30px rgba(13,44,74,.08); backdrop-filter: blur(12px); }
+    .search-panel input { width: 100%; min-height: 44px; padding: 10px 13px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); background: #fff; outline: 0; }
+    .search-panel input:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(32,164,184,.15); }
+    .search-count { min-width: 6em; color: var(--muted); font-size: .82rem; text-align: right; }
+    details { margin: 14px 0; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+    summary { padding: 16px 18px; cursor: pointer; color: var(--navy); font-weight: 900; background: #f4f9fa; }
+    details .table-wrap { margin: 0; border: 0; border-radius: 0; }
+    .term-en { display: block; color: var(--muted); font-size: .73rem; font-weight: 600; }
+    .no-results { display: none; padding: 28px; color: var(--muted); text-align: center; background: var(--surface); border-radius: 14px; }
+    footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
+    @media (max-width: 980px) {
+      .layout { display: block; }
+      .sidebar { position: relative; width: 100%; height: auto; }
+      .toc { grid-template-columns: repeat(3,1fr); }
+      .sidebar-note { display: none; }
+      main { padding: 34px 24px 72px; }
+      .timeline { grid-template-columns: 1fr; gap: 12px; }
+      .era, .era:first-child, .era:last-child { border-radius: 14px; border-left: 0; }
+    }
+    @media (max-width: 720px) {
+      .toc { grid-template-columns: repeat(2,1fr); }
+      .hero { padding: 30px 24px; border-radius: 20px; }
+      .cards, .comparison, .risk-grid, .callout-grid { grid-template-columns: 1fr; }
+      .section-head { align-items: start; flex-direction: column; gap: 4px; }
+      .search-panel { align-items: stretch; flex-direction: column; }
+      .search-count { text-align: left; }
+    }
+    @media print {
+      @page { size: A4; margin: 14mm 12mm; }
+      body { background: #fff; font-size: 10.5pt; }
+      .layout { display: block; }
+      .sidebar, .search-panel { display: none !important; }
+      main { width: 100%; max-width: none; padding: 0; }
+      .hero { padding: 26px; box-shadow: none; break-after: page; }
+      .section-head { margin-top: 30px; }
+      .card, .era, .risk-card, .table-wrap, details { break-inside: avoid; box-shadow: none; }
+      details > * { display: block !important; }
+      summary { list-style: none; }
+      .flow { grid-template-columns: repeat(3,1fr); overflow: visible; }
+      .cards, .risk-grid { grid-template-columns: repeat(3,1fr); }
+      a { text-decoration: none; }
+      footer { break-before: page; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" aria-label="本頁目錄">
+      <div class="brand">
+        <div class="brand-mark">3.2</div>
+        <div><small>iPAS 中級・科目一</small><strong>AI 相關技術應用</strong></div>
+      </div>
+      <div class="toc-title">章節導覽</div>
+      <nav class="toc">
+        <a href="#overview">01 整體架構</a>
+        <a href="#concept">02 基本概念</a>
+        <a href="#evolution">03 演進階段</a>
+        <a href="#preprocess">04 標註前處理</a>
+        <a href="#models">05 任務與模型</a>
+        <a href="#applications">06 應用情境</a>
+        <a href="#risks">07 挑戰風險</a>
+        <a href="#confusions">08 易混淆辨析</a>
+        <a href="#glossary">09 名詞總表</a>
+      </nav>
+      <div class="sidebar-note">整理範圍：原講義 3-40～3-58。頁碼標示皆指原 PDF 的講義頁碼，方便回查。</div>
+    </aside>
+
+    <main>
+      <header class="hero">
+        <p class="eyebrow">Chapter 03 · Section 3.2</p>
+        <h1>電腦視覺<br>技術與應用</h1>
+        <p>從「看懂影像」出發，沿著影像標註、資料前處理、分類／偵測／分割、產業應用與風險治理，重建 3.2 的完整學習脈絡。</p>
+        <div class="hero-meta">
+          <span class="chip">講義頁 3-40～3-58</span>
+          <span class="chip">9 個學習區塊</span>
+          <span class="chip">含易混淆辨析</span>
+          <span class="chip">名詞可搜尋</span>
+        </div>
+      </header>
+
+      <div class="source-banner"><div><strong>整理原則：</strong>內容限定於科目一官方學習指引 3.2，不補入外部知識；重新編排是為了把定義、模型、應用與考題判斷線索串在一起。</div></div>
+
+      <section id="overview">
+        <div class="section-head"><h2>01｜3.2 整體架構</h2><span class="meta">P. 3-40～3-58</span></div>
+        <p class="lead">電腦視覺的目標，是讓機器從影像或影片中擷取、辨識並解釋語意資訊，據此進行分析、理解與決策。讀本章時，可用「資料 → 模型 → 任務 → 應用 → 治理」掌握全貌。</p>
+        <div class="flow" aria-label="電腦視覺學習流程">
+          <div class="flow-step"><b>定義與範疇</b><span>影像處理、模式辨識、機器與深度學習</span></div>
+          <div class="flow-step"><b>標註與前處理</b><span>建立 Ground Truth、統一資料品質</span></div>
+          <div class="flow-step"><b>特徵與模型</b><span>人工特徵轉為 CNN 自動學習</span></div>
+          <div class="flow-step"><b>核心任務</b><span>分類、偵測、語意／實例分割</span></div>
+          <div class="flow-step"><b>產業應用</b><span>安防、醫療、製造、零售、自駕</span></div>
+          <div class="flow-step"><b>風險治理</b><span>隱私、偏見、可靠度、部署維運</span></div>
+        </div>
+        <div class="study-note"><h3>一眼抓住本章</h3><p><strong>分類</strong>回答「這張圖是什麼」；<strong>偵測</strong>回答「有哪些物件、在哪裡」；<strong>語意分割</strong>回答「每個像素是哪一類」；<strong>實例分割</strong>還會區分同類中的不同個體。</p></div>
+      </section>
+
+      <section id="concept">
+        <div class="section-head"><h2>02｜基本概念：看懂、定位、切分、生成</h2><span class="meta">P. 3-40～3-42</span></div>
+        <p class="lead">CV 不是單一技術，而是影像處理、模式辨識、機器學習與深度學習的跨領域整合。影像處理可改善細節，模式辨識分析物體模式，深度學習則從大量資料自動學習特徵。</p>
+        <div class="cards">
+          <article class="card"><span class="number">01</span><h3>影像分類</h3><p>為整張影像判斷一個或多個類別；應用於商品辨識、醫療影像診斷與社群內容分類。</p></article>
+          <article class="card"><span class="number">02</span><h3>物件偵測</h3><p>同時辨識物件類別與所在位置，通常用邊界框表示；應用於自駕、安防與人流偵測。</p></article>
+          <article class="card"><span class="number">03</span><h3>語意分割</h3><p>為影像中的每個像素標註語意類別，但不區分同類別中的不同個體。</p></article>
+          <article class="card"><span class="number">04</span><h3>實例分割</h3><p>在像素分類之外，再區分同類別的不同實體；可視為結合物件偵測與語意分割。</p></article>
+          <article class="card"><span class="number">05</span><h3>影像生成與合成</h3><p>利用生成模型產生新影像、文字轉圖像或風格轉換，支援設計、遊戲及訓練資料產出。</p></article>
+          <article class="card"><span class="number">06</span><h3>跨模態理解</h3><p>CLIP、BLIP 等模型同時處理影像與文本，讓視覺從辨識走向語意融合與創造。</p></article>
+        </div>
+      </section>
+
+      <section id="evolution">
+        <div class="section-head"><h2>03｜技術演進三階段</h2><span class="meta">P. 3-42～3-45</span></div>
+        <div class="timeline">
+          <article class="era"><span class="year">1980s–2010</span><h3>特徵工程主導</h3><p>人工選擇邊緣、特徵點、色彩與紋理，再交給傳統分類器；無法自動學習高階語意，表現受特徵設計限制。</p><p class="models">Canny・SIFT・SURF・ORB・SVM・KNN・隨機森林</p></article>
+          <article class="era"><span class="year">2012–2020</span><h3>CNN 革命</h3><p>AlexNet 在 ImageNet 帶來突破，模型能自動學習圖像特徵；但高度依賴標註資料與 GPU 算力。</p><p class="models">AlexNet・VGGNet・GoogLeNet・ResNet・DenseNet・YOLO・U-Net</p></article>
+          <article class="era"><span class="year">2020–至今</span><h3>多模態與生成式 AI 融合</h3><p>語言、影像與生成模型整合，視覺任務從理解與辨識擴展到跨模態語意、內容生成與決策輔助。</p><p class="models">CLIP・ViT・DALL·E・Stable Diffusion・Midjourney・SAM</p></article>
+        </div>
+        <div class="callout-grid">
+          <article class="callout"><h3>CLIP 與 ViT</h3><p>CLIP 把影像與文字嵌入同一語意空間；ViT 以類似 NLP 的 Transformer 架構處理影像，突破 CNN 長期主導的模式。</p></article>
+          <article class="callout"><h3>生成模型與 SAM</h3><p>DALL·E、Stable Diffusion、Midjourney 聚焦文字轉圖像與創作；SAM 強調未知影像分割任務的普適性、可遷移性與泛化能力。</p></article>
+        </div>
+      </section>
+
+      <section id="preprocess">
+        <div class="section-head"><h2>04｜影像標註與資料前處理</h2><span class="meta">P. 3-45～3-47</span></div>
+        <p class="lead">影像標註為監督式學習建立標準答案 Ground Truth；前處理則統一格式、改善品質並提升訓練效率。兩者直接影響泛化能力與穩定性。</p>
+        <h3>4.1 任務決定標註形式</h3>
+        <div class="table-wrap"><table><thead><tr><th>任務</th><th>標註形式</th><th>意義</th><th>講義列舉工具</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>影像分類</td><td>類別標籤</td><td>整張影像標記單一類別</td><td>LabelImg、Label Studio</td><td class="page-ref">3-45</td></tr>
+          <tr><td>物件偵測</td><td>邊界框 Bounding Box</td><td>標示物件位置與類別</td><td>CVAT、Roboflow</td><td class="page-ref">3-45</td></tr>
+          <tr><td>語意分割</td><td>每像素分割標籤</td><td>每一像素皆對應類別</td><td>LabelMe、SuperAnnotate</td><td class="page-ref">3-45</td></tr>
+          <tr><td>實例分割</td><td>像素遮罩＋實例 ID</td><td>區分同類型的多個物件</td><td>VGG Image Annotator</td><td class="page-ref">3-45</td></tr>
+          <tr><td>關鍵點標注</td><td>身體節點或特定點位座標</td><td>常用於人體姿態估計</td><td>COCO Annotator</td><td class="page-ref">3-45</td></tr>
+          <tr><td>OCR</td><td>區塊框選＋文字內容</td><td>框選每段文字並輸入正確字串</td><td>Tesseract Trainer、LabelImg OCR 模式</td><td class="page-ref">3-45</td></tr>
+        </tbody></table></div>
+        <div class="comparison">
+          <article class="card"><h3>提升標註效率</h3><p><strong>自動標註：</strong>模型先預測，人工校對錯誤。<br><strong>半監督學習：</strong>少量標註＋大量未標註資料。<br><strong>主動學習：</strong>模型挑選最具挑戰性的樣本交由人工標註。</p></article>
+          <article class="card"><h3>確保標註品質</h3><p>建立統一 Annotation Guideline，要求一致性、邊界／像素細節準確，並定期抽查或採雙重標註。</p></article>
+        </div>
+        <h3>4.2 前處理方法</h3>
+        <div class="table-wrap"><table><thead><tr><th>目的</th><th>方法</th><th>主要作用</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>圖像尺寸處理</td><td>Resize／Padding／Cropping</td><td>統一模型輸入大小，避免變形或資訊遺失。</td><td class="page-ref">3-47</td></tr>
+          <tr><td>正規化</td><td>Pixel Normalization</td><td>像素 0–255 轉為 0–1，或標準化為均值 0、標準差 1。</td><td class="page-ref">3-47</td></tr>
+          <tr><td>像素增強</td><td>直方圖均衡化、Gamma 校正</td><td>提升對比度與亮度，適合低光源或低品質影像。</td><td class="page-ref">3-47</td></tr>
+          <tr><td>噪聲去除</td><td>平滑濾波、邊緣保留濾波</td><td>減少感測器或拍攝雜訊。</td><td class="page-ref">3-47</td></tr>
+          <tr><td>色彩空間轉換</td><td>RGB ↔ Grayscale、HSV</td><td>依任務調整通道，灰階可簡化輸入。</td><td class="page-ref">3-47</td></tr>
+          <tr><td>資料擴增</td><td>翻轉、旋轉、裁剪、模糊、色彩偏移</td><td>增強泛化能力並對抗過擬合。</td><td class="page-ref">3-47</td></tr>
+          <tr><td>序列統一</td><td>影片影格取樣</td><td>支援動作辨識與影像序列建模。</td><td class="page-ref">3-47</td></tr>
+          <tr><td>進階處理</td><td>清洗、分層抽樣、Encoding</td><td>移除低品質資料、平衡類別，並轉為 Tensor 或 CLIP embeddings。</td><td class="page-ref">3-47</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section id="models">
+        <div class="section-head"><h2>05｜核心任務、模型與評估</h2><span class="meta">P. 3-47～3-52</span></div>
+        <h3>5.1 影像分類：整張圖屬於哪一類？</h3>
+        <p class="lead">基本流程為資料收集與標註 → 縮放與正規化 → 選擇 CNN 等模型 → 以訓練集訓練、驗證集評估。</p>
+        <div class="flow">
+          <div class="flow-step"><b>卷積層</b><span>卷積核擷取局部特徵，產生 Feature Map</span></div>
+          <div class="flow-step"><b>池化層</b><span>特徵圖降維，降低計算並強化泛化</span></div>
+          <div class="flow-step"><b>激活層</b><span>ReLU 等函數引入非線性</span></div>
+          <div class="flow-step"><b>全連接層</b><span>整合特徵為一維向量</span></div>
+          <div class="flow-step"><b>輸出層</b><span>Softmax 轉換為類別機率</span></div>
+          <div class="flow-step"><b>評估</b><span>Accuracy、Top-5 Error、混淆矩陣</span></div>
+        </div>
+        <div class="callout-grid">
+          <article class="callout"><h3>CNN 的優勢</h3><p>能自動學習邊緣、紋理等影像特徵，減少人工特徵擷取，並能處理複雜的非結構化影像資料。</p></article>
+          <article class="callout"><h3>CNN 的限制</h3><p>訓練時間長、需要大量資料與運算資源；資料集過小時表現可能不理想，也較容易過擬合。</p></article>
+        </div>
+        <div class="table-wrap"><table><thead><tr><th>CNN 架構</th><th>考點特徵</th><th>適用／貢獻</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>LeNet</td><td>早期、5 層、結構簡單</td><td>手寫數字等簡單影像分類。</td><td class="page-ref">3-49</td></tr>
+          <tr><td>AlexNet</td><td>8 層、ReLU、Dropout；2012 ImageNet 里程碑</td><td>大規模影像分類，奠定 CNN 地位。</td><td class="page-ref">3-41、3-43、3-49</td></tr>
+          <tr><td>VGG</td><td>深層網路＋3×3 小卷積核，可達 19 層</td><td>以加深網路提升分類準確度。</td><td class="page-ref">3-49</td></tr>
+          <tr><td>ResNet</td><td>Residual Connection，可達 152 層</td><td>處理深層網路訓練的梯度消失問題。</td><td class="page-ref">3-49</td></tr>
+        </tbody></table></div>
+
+        <h3>5.2 物件偵測：是什麼，而且在哪裡？</h3>
+        <div class="table-wrap"><table><thead><tr><th>模型</th><th>核心方式</th><th>速度／準確度取向</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>YOLO</td><td>以迴歸同時預測邊界框與類別</td><td>速度快，適合即時應用。</td><td class="page-ref">3-49～3-50</td></tr>
+          <tr><td>Faster R-CNN</td><td>RPN 先生成候選框，再分類與迴歸</td><td>準確度高，但速度較慢。</td><td class="page-ref">3-50</td></tr>
+          <tr><td>SSD</td><td>使用多尺度特徵進行物件檢測</td><td>在速度與準確度間取得較好平衡。</td><td class="page-ref">3-50</td></tr>
+        </tbody></table></div>
+
+        <h3>5.3 影像分割：精確到每個像素</h3>
+        <div class="table-wrap"><table><thead><tr><th>模型</th><th>核心特色</th><th>主要任務</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>FCN</td><td>以全卷積與 Upsampling 把低解析度特徵圖還原至原圖大小；可端到端訓練</td><td>像素級語意分割。</td><td class="page-ref">3-50～3-51</td></tr>
+          <tr><td>U-Net</td><td>對稱 Encoder／Decoder＋Skip Connections，恢復高解析度細節</td><td>醫療影像分割，適合不平衡資料集。</td><td class="page-ref">3-51</td></tr>
+          <tr><td>Mask R-CNN</td><td>在 Faster R-CNN 上增加二進制 mask 預測分支</td><td>結合物件偵測與像素級實例分割。</td><td class="page-ref">3-51</td></tr>
+        </tbody></table></div>
+        <div class="study-note"><h3>IoU 必考計算</h3><p><span class="formula">IoU = Intersection ÷ Union</span></p><p>講義例：真實框 100、預測框 80、重疊 40；聯集 = 100＋80－40 = 140，因此 IoU = 40／140 ≈ 0.286。範圍為 0～1，越接近 1 越準確。</p></div>
+      </section>
+
+      <section id="applications">
+        <div class="section-head"><h2>06｜產業應用與實務流程</h2><span class="meta">P. 3-52～3-55</span></div>
+        <div class="cards">
+          <article class="card"><span class="number">安</span><h3>監控與安全</h3><p>人臉辨識：檢測 → 特徵提取 → 資料庫比對。ANPR：車牌區域檢測 → 字符辨識。重點是低延遲、隱私與公平性。</p></article>
+          <article class="card"><span class="number">醫</span><h3>醫療影像</h3><p>分類 CT／MRI 診斷結果；以 U-Net 分割腫瘤或病灶。需專業醫師精確標註，並遵守醫療隱私法規。</p></article>
+          <article class="card"><span class="number">製</span><h3>智慧製造</h3><p>檢測表面缺陷與尺寸偏差；搭配邊緣運算降低延遲，發現瑕疵後即時回饋操作員。</p></article>
+          <article class="card"><span class="number">零</span><h3>智慧零售</h3><p>追蹤顧客與商品互動、移動路徑與停留時間，生成 Heatmap，優化商品擺放與店鋪動線。</p></article>
+          <article class="card"><span class="number">境</span><h3>AR／VR</h3><p>AR 追蹤實體物件並疊加虛擬資訊；VR 追蹤使用者動作並映射至虛擬世界，提供沉浸體驗。</p></article>
+          <article class="card"><span class="number">駕</span><h3>自動駕駛</h3><p>車道線與物件偵測感知環境，再融合影像、雷達與 LiDAR，提高決策安全性與可靠度。</p></article>
+        </div>
+      </section>
+
+      <section id="risks">
+        <div class="section-head"><h2>07｜三層挑戰與風險</h2><span class="meta">P. 3-56～3-58</span></div>
+        <div class="risk-grid">
+          <article class="risk-card"><h3>隱私與合規</h3><ul><li>人臉、車牌、住址與兒童影像可能包含 PII 或敏感個資。</li><li>以遮蔽、模糊、遮罩進行匿名化或去識別化。</li><li>明示用途、取得同意，落實資料最小化、保存與刪除政策。</li><li>公共安全與個人隱私間需取得倫理平衡。</li></ul></article>
+          <article class="risk-card"><h3>偏見與可靠度</h3><ul><li>資料來源不平衡、標註主觀偏誤、角度／光照／解析度差異都可能造成失準。</li><li>False Positive 造成不必要介入；False Negative 可能漏掉真正風險。</li><li>以 Bias Audit、過／欠採樣、資料增強與重加權改善。</li><li>搭配 AUC、精確度、召回率等多維指標。</li></ul></article>
+          <article class="risk-card"><h3>部署與維運</h3><ul><li>即時偵測與分割耗用大量 GPU／TPU；邊緣裝置需 MobileNet、YOLOv5-Nano 等輕量模型。</li><li>影像串流批次延遲會破壞即時性。</li><li>版本管理、Data Drift 與場域測試不足可能造成模型失效。</li><li>建立 MLOps、影像品質監控與自動回退機制。</li></ul></article>
+        </div>
+      </section>
+
+      <section id="confusions">
+        <div class="section-head"><h2>08｜易混淆名詞與應用辨析</h2><span class="meta">依原講義差異重整</span></div>
+        <p class="lead">先辨認題目要的是「整張圖、物件位置、像素類別、不同實體、即時速度、細節精準度，還是生成新影像」，就能快速排除不相干選項。</p>
+        <div class="callout-grid">
+          <article class="callout"><h3>先看輸出粒度</h3><p>圖級輸出是分類；框級輸出是偵測；像素級輸出是分割；同類物件還要各自編號，才是實例分割。</p></article>
+          <article class="callout"><h3>先看部署取向</h3><p>即時性優先常選 YOLO；準確度優先可選 Faster R-CNN；兩者折衷可考慮 SSD。這是講義明確列出的相對定位。</p></article>
+        </div>
+        <h3>8.1 名詞成組比較</h3>
+        <div class="table-wrap"><table class="confusion-table"><thead><tr><th>易混淆名詞</th><th>最關鍵差別</th><th>應用判斷</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>影像處理／電腦視覺</td><td>影像處理偏改善與轉換影像；CV 的終點是辨識、理解並決策。</td><td>提亮、去噪是前處理；判斷影像內容與物件位置才是視覺理解。</td><td class="page-ref">3-40～3-41</td></tr>
+          <tr><td>影像分類／物件偵測</td><td>分類輸出整張圖的類別；偵測還輸出物件位置。</td><td><strong>這張圖是貓：</strong>分類；<strong>圖中有幾隻貓且在哪裡：</strong>偵測。</td><td class="page-ref">3-41、3-47～3-50</td></tr>
+          <tr><td>語意分割／實例分割</td><td>語意分割不區分同類個體；實例分割會為每個實體給唯一標識。</td><td><strong>所有車像素同屬「車」：</strong>語意；<strong>每台車分開：</strong>實例。<br><span class="memory-cue">語意看類別，實例看個體</span></td><td class="page-ref">3-41、3-50</td></tr>
+          <tr><td>手工特徵／深度學習特徵</td><td>前者由人工設計邊緣、特徵點、色彩與紋理；後者由模型從資料自動學習。</td><td>Canny、SIFT 搭 SVM 屬早期方式；CNN 屬自動特徵學習。</td><td class="page-ref">3-42～3-43</td></tr>
+          <tr><td>CNN／ViT</td><td>CNN 以卷積提取局部特徵；ViT 以 Transformer 架構處理影像。</td><td>題目若強調 NLP 類似架構、Transformer 進入視覺領域，選 ViT。</td><td class="page-ref">3-43～3-44、3-48</td></tr>
+          <tr><td>CLIP／DALL·E</td><td>CLIP 將文字與影像放進同一語意空間，重點是跨模態理解；DALL·E 依文字生成圖像。</td><td><strong>圖文語意對齊：</strong>CLIP；<strong>文字轉新圖片：</strong>DALL·E。</td><td class="page-ref">3-44</td></tr>
+          <tr><td>自動標註／主動學習</td><td>自動標註是模型先產標籤、人工校正；主動學習是模型挑最具挑戰的樣本要求標註。</td><td>前者減少逐張人工標註；後者把有限人力用在最有價值的樣本。</td><td class="page-ref">3-46</td></tr>
+          <tr><td>Resize／Padding／Cropping</td><td>Resize 改變尺寸；Padding 補邊；Cropping 裁切區域。</td><td>共同目的為統一模型輸入大小，但要避免變形或資訊遺失。</td><td class="page-ref">3-47</td></tr>
+          <tr><td>正規化／資料擴增</td><td>正規化調整像素數值尺度；擴增製造影像變化以提升泛化。</td><td><strong>0–255 轉 0–1：</strong>正規化；<strong>旋轉、翻轉：</strong>擴增。</td><td class="page-ref">3-47</td></tr>
+          <tr><td>YOLO／Faster R-CNN／SSD</td><td>YOLO 快；Faster R-CNN 準但慢；SSD 在兩者間平衡。</td><td><strong>即時監控：</strong>YOLO；<strong>高準確需求：</strong>Faster R-CNN；<strong>折衷：</strong>SSD。</td><td class="page-ref">3-49～3-50</td></tr>
+          <tr><td>FCN／U-Net／Mask R-CNN</td><td>FCN 做端到端像素分類；U-Net 用 Encoder／Decoder 與跳躍連接保細節；Mask R-CNN 增加遮罩分支分開實例。</td><td><strong>醫療分割：</strong>U-Net；<strong>同類個體分開：</strong>Mask R-CNN。</td><td class="page-ref">3-50～3-51</td></tr>
+          <tr><td>Accuracy／Top-5 Error／IoU</td><td>Accuracy 看分類正確比例；Top-5 看真實類是否落在前五名；IoU 看預測區域與真實區域重疊。</td><td>分割或邊界框重疊用 IoU；大量類別分類可看 Top-5。</td><td class="page-ref">3-49、3-51～3-52</td></tr>
+          <tr><td>False Positive／False Negative</td><td>FP 是沒有目標卻判有；FN 是有目標卻漏掉。</td><td>健康者誤判為病人是 FP；漏檢瑕疵是 FN。<br><span class="memory-cue">FP＝誤報；FN＝漏報</span></td><td class="page-ref">3-57</td></tr>
+          <tr><td>資料偏見／資料漂移</td><td>偏見是資料不平衡或標註主觀造成不公平；漂移是上線後輸入分佈因環境改變。</td><td>族群辨識落差先查偏見；季節、光照、鏡頭改變後失準先查漂移。</td><td class="page-ref">3-57～3-58</td></tr>
+        </tbody></table></div>
+
+        <h3>8.2 看到應用題時怎麼選</h3>
+        <div class="table-wrap"><table class="decision-table"><thead><tr><th>題目線索</th><th>優先對應方法</th><th>為什麼</th><th>不要先選</th></tr></thead><tbody>
+          <tr><td>為整張 CT 判斷診斷類別</td><td><strong>影像分類</strong></td><td>輸出是整張影像的類別。</td><td>物件偵測；題目沒有要求位置。</td></tr>
+          <tr><td>即時框出道路上的行人與車輛</td><td><strong>YOLO／物件偵測</strong></td><td>同時要類別、位置與低延遲。</td><td>影像分類；它不提供邊界框。</td></tr>
+          <tr><td>把腫瘤區域精確到每個像素</td><td><strong>U-Net／影像分割</strong></td><td>醫療病灶需要細緻像素範圍。</td><td>分類；它只判整張圖。</td></tr>
+          <tr><td>把影像中的每一台車分別標出</td><td><strong>實例分割／Mask R-CNN</strong></td><td>同類別的不同個體要各自區分。</td><td>語意分割；它會把所有車視為同一類。</td></tr>
+          <tr><td>低光源影像需提升對比與亮度</td><td><strong>直方圖均衡化／Gamma 校正</strong></td><td>屬像素增強前處理。</td><td>資料擴增；目的不是創造訓練變化。</td></tr>
+          <tr><td>少量標註加大量未標註資料</td><td><strong>半監督式學習</strong></td><td>正是其資料組合方式。</td><td>主動學習；它強調挑出最值得標註的樣本。</td></tr>
+          <tr><td>攝影角度與光照改變後模型失準</td><td><strong>Data Drift／場域測試與監控</strong></td><td>部署環境改變造成輸入分佈變化。</td><td>只重新命名模型版本；無法處理輸入漂移。</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section id="glossary">
+        <div class="section-head"><h2>09｜專有名詞總表</h2><span class="meta">中英文・定義・用途・頁碼</span></div>
+        <p class="lead">輸入中文、英文、縮寫、模型名稱或用途即可篩選；列印時會自動展開全部分類。</p>
+        <div class="search-panel"><input id="termSearch" type="search" placeholder="搜尋：YOLO、分割、正規化、偏見、即時…" aria-label="搜尋專有名詞"><span id="searchCount" class="search-count"></span></div>
+        <div id="noResults" class="no-results">找不到符合的名詞，請改用較短的關鍵字。</div>
+
+        <details open data-group><summary>基礎、任務與技術演進（18）</summary><div class="table-wrap"><table class="glossary-table"><thead><tr><th>專有名詞</th><th>講義中的意思</th><th>應用與用處</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>電腦視覺<span class="term-en">Computer Vision, CV</span></td><td>讓機器從影像或影片擷取、辨識並解釋語意資訊。</td><td>支援視覺感知、分析、理解、決策與自動化。</td><td class="page-ref">3-40～3-41</td></tr>
+          <tr><td>影像處理<span class="term-en">Image Processing</span></td><td>改善或轉換影像內容的技術。</td><td>清晰化細節、前處理與品質改善。</td><td class="page-ref">3-40～3-41</td></tr>
+          <tr><td>模式辨識<span class="term-en">Pattern Recognition</span></td><td>分析影像中的物體模式。</td><td>與機器學習、深度學習共同構成 CV。</td><td class="page-ref">3-41</td></tr>
+          <tr><td>人工設計特徵<span class="term-en">Handcrafted Features</span></td><td>由人工選定邊緣、特徵點、色彩或紋理。</td><td>早期 CV 配合傳統分類器使用。</td><td class="page-ref">3-40、3-42～3-43</td></tr>
+          <tr><td>影像分類<span class="term-en">Image Classification</span></td><td>將整張影像歸入一個或多個類別。</td><td>商品辨識、醫療診斷、內容分類。</td><td class="page-ref">3-41、3-45、3-47～3-49</td></tr>
+          <tr><td>物件偵測<span class="term-en">Object Detection</span></td><td>同時定位物體並判斷類別。</td><td>自駕、監控、人流與工業瑕疵檢測。</td><td class="page-ref">3-41、3-45、3-49～3-50</td></tr>
+          <tr><td>語意分割<span class="term-en">Semantic Segmentation</span></td><td>為每個像素指定語意類別，不區分同類個體。</td><td>街景、農作物與醫學影像處理。</td><td class="page-ref">3-41、3-45、3-50</td></tr>
+          <tr><td>實例分割<span class="term-en">Instance Segmentation</span></td><td>像素分類之外，再區分同類別的不同實體。</td><td>多目標辨識、AR 與精密檢測。</td><td class="page-ref">3-41、3-45、3-50</td></tr>
+          <tr><td>影像生成與合成<span class="term-en">Image Generation &amp; Synthesis</span></td><td>以生成模型合成新影像、文字轉圖或風格轉換。</td><td>設計、遊戲、創意內容與訓練資料。</td><td class="page-ref">3-42</td></tr>
+          <tr><td>邊緣偵測<span class="term-en">Edge Detection / Canny</span></td><td>找出影像中的邊緣線條。</td><td>早期人工特徵，支援物體辨識。</td><td class="page-ref">3-42</td></tr>
+          <tr><td>特徵點偵測<span class="term-en">SIFT / SURF / ORB</span></td><td>尋找影像中的關鍵特徵點。</td><td>圖像比對與辨識。</td><td class="page-ref">3-43</td></tr>
+          <tr><td>卷積神經網路<span class="term-en">Convolutional Neural Network, CNN</span></td><td>以卷積等層級自動學習影像特徵的深度網路。</td><td>分類、偵測、分割與人臉辨識。</td><td class="page-ref">3-40、3-43、3-48</td></tr>
+          <tr><td>CLIP<span class="term-en">Contrastive Language-Image Pre-Training</span></td><td>將文字與影像嵌入同一語意空間。</td><td>跨模態學習與圖文理解。</td><td class="page-ref">3-42、3-44、3-47</td></tr>
+          <tr><td>視覺 Transformer<span class="term-en">Vision Transformer, ViT</span></td><td>以 Transformer 架構處理影像資料。</td><td>突破 CNN 主導的視覺處理方式。</td><td class="page-ref">3-44</td></tr>
+          <tr><td>DALL·E</td><td>依自然語言描述生成高細節影像的模型平台。</td><td>文字轉圖像、風格轉換、藝術與產品視覺化。</td><td class="page-ref">3-42、3-44</td></tr>
+          <tr><td>Stable Diffusion</td><td>可依文字提示生成、編輯與變換風格的開源模型。</td><td>高效精細圖像生成與創意設計。</td><td class="page-ref">3-42、3-44</td></tr>
+          <tr><td>Midjourney</td><td>專注藝術風格創作的商業服務平台。</td><td>插畫、視覺藝術、設計靈感。</td><td class="page-ref">3-44</td></tr>
+          <tr><td>SAM<span class="term-en">Segment Anything Model</span></td><td>Meta 的通用影像分割模型，強調可遷移性與泛化。</td><td>在多領域未知分割任務中提供一致結果。</td><td class="page-ref">3-44</td></tr>
+        </tbody></table></div></details>
+
+        <details open data-group><summary>標註、前處理與資料品質（17）</summary><div class="table-wrap"><table class="glossary-table"><thead><tr><th>專有名詞</th><th>講義中的意思</th><th>應用與用處</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>影像標註<span class="term-en">Image Annotation</span></td><td>為影像中的物件、區域或屬性建立標籤。</td><td>提供監督式學習的標準答案。</td><td class="page-ref">3-45～3-46</td></tr>
+          <tr><td>標準答案<span class="term-en">Ground Truth</span></td><td>模型訓練與評估時所依據的正確標註。</td><td>衡量預測是否正確。</td><td class="page-ref">3-45、3-52</td></tr>
+          <tr><td>邊界框<span class="term-en">Bounding Box</span></td><td>以矩形框標示物件位置。</td><td>物件偵測標註與預測輸出。</td><td class="page-ref">3-41、3-45</td></tr>
+          <tr><td>關鍵點標注<span class="term-en">Keypoint Annotation</span></td><td>標記身體節點或特定點位座標。</td><td>人體姿態估計。</td><td class="page-ref">3-45</td></tr>
+          <tr><td>文字辨識<span class="term-en">Optical Character Recognition, OCR</span></td><td>框選文字區塊並輸入正確字串。</td><td>將影像文字轉為可讀內容。</td><td class="page-ref">3-45</td></tr>
+          <tr><td>自動標註<span class="term-en">Auto-labeling</span></td><td>模型先產生標註，人工只校對與修正。</td><td>降低人力成本、提高標註效率。</td><td class="page-ref">3-46</td></tr>
+          <tr><td>半監督式學習<span class="term-en">Semi-supervised Learning</span></td><td>少量標註資料搭配大量未標註資料。</td><td>標註不足時提升學習效果。</td><td class="page-ref">3-46</td></tr>
+          <tr><td>主動學習<span class="term-en">Active Learning</span></td><td>模型選出最具挑戰的樣本要求標註。</td><td>提高有限標註資源的價值。</td><td class="page-ref">3-46</td></tr>
+          <tr><td>標註準則<span class="term-en">Annotation Guideline</span></td><td>統一標註規則、細節與品質控制方式。</td><td>維持標註一致性與準確性。</td><td class="page-ref">3-46</td></tr>
+          <tr><td>影像資料前處理<span class="term-en">Preprocessing for Image Data</span></td><td>統一格式、改善品質並提高訓練效率。</td><td>模型訓練前的資料準備。</td><td class="page-ref">3-46～3-47</td></tr>
+          <tr><td>像素正規化<span class="term-en">Pixel Normalization</span></td><td>調整像素值尺度或標準化分佈。</td><td>穩定輸入並提升訓練效率。</td><td class="page-ref">3-47</td></tr>
+          <tr><td>直方圖均衡化／Gamma 校正</td><td>提升影像對比度與亮度。</td><td>處理低光源或低品質影像。</td><td class="page-ref">3-47</td></tr>
+          <tr><td>色彩空間轉換<span class="term-en">RGB / Grayscale / HSV</span></td><td>依任務轉換顏色通道結構。</td><td>灰階可簡化模型輸入。</td><td class="page-ref">3-47</td></tr>
+          <tr><td>資料擴增<span class="term-en">Data Augmentation</span></td><td>以翻轉、旋轉、裁剪等方式增加影像變化。</td><td>提高泛化並對抗過擬合。</td><td class="page-ref">3-47、3-57</td></tr>
+          <tr><td>資料清洗</td><td>移除模糊、重複、標註錯誤或低品質圖片。</td><td>維持訓練資料品質。</td><td class="page-ref">3-47</td></tr>
+          <tr><td>分層抽樣<span class="term-en">Stratified Sampling</span></td><td>在不平衡資料集中依類別分層抽樣。</td><td>避免類別過多或過少影響穩定性。</td><td class="page-ref">3-47</td></tr>
+          <tr><td>圖像編碼<span class="term-en">Encoding</span></td><td>將影像轉成 Tensor 或嵌入向量。</td><td>提供模型進行學習與預測。</td><td class="page-ref">3-47</td></tr>
+        </tbody></table></div></details>
+
+        <details open data-group><summary>模型、元件與評估（22）</summary><div class="table-wrap"><table class="glossary-table"><thead><tr><th>專有名詞</th><th>講義中的意思</th><th>應用與用處</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>卷積層<span class="term-en">Convolutional Layer</span></td><td>以卷積核擷取局部特徵並生成 Feature Map。</td><td>學習邊緣、紋理等影像特徵。</td><td class="page-ref">3-48</td></tr>
+          <tr><td>池化層<span class="term-en">Pooling Layer</span></td><td>對特徵圖降維，例如 Max Pooling。</td><td>降低計算量並提升泛化。</td><td class="page-ref">3-48</td></tr>
+          <tr><td>激活層<span class="term-en">Activation Layer</span></td><td>以 ReLU 等函數引入非線性。</td><td>提升模型表達能力。</td><td class="page-ref">3-48</td></tr>
+          <tr><td>全連接層<span class="term-en">Fully Connected Layer</span></td><td>將特徵整合成一維向量。</td><td>進行最終分類。</td><td class="page-ref">3-48</td></tr>
+          <tr><td>Softmax</td><td>把模型輸出轉換成各類別機率。</td><td>分類模型輸出層。</td><td class="page-ref">3-48</td></tr>
+          <tr><td>LeNet</td><td>早期 5 層 CNN。</td><td>手寫數字等簡單分類。</td><td class="page-ref">3-49</td></tr>
+          <tr><td>AlexNet</td><td>8 層並引入 ReLU 與 Dropout 的 CNN 里程碑。</td><td>2012 ImageNet、大規模分類。</td><td class="page-ref">3-41、3-43、3-49</td></tr>
+          <tr><td>VGG</td><td>強調網路深度與 3×3 小卷積核。</td><td>提升影像分類準確度。</td><td class="page-ref">3-43、3-49</td></tr>
+          <tr><td>ResNet</td><td>加入殘差連接的深層網路。</td><td>改善梯度消失並支援更深網路。</td><td class="page-ref">3-43、3-49</td></tr>
+          <tr><td>YOLO<span class="term-en">You Only Look Once</span></td><td>以迴歸同時預測物件邊界框與類別。</td><td>即時物件偵測。</td><td class="page-ref">3-43、3-49～3-50</td></tr>
+          <tr><td>Faster R-CNN</td><td>以 RPN 生成候選框後再分類與迴歸。</td><td>高準確物件偵測，速度較慢。</td><td class="page-ref">3-43、3-50～3-51</td></tr>
+          <tr><td>區域提議網路<span class="term-en">Region Proposal Network, RPN</span></td><td>為 Faster R-CNN 生成可能含物件的候選區域。</td><td>支援後續分類與邊界框回歸。</td><td class="page-ref">3-50</td></tr>
+          <tr><td>SSD<span class="term-en">Single Shot Multibox Detector</span></td><td>利用多尺度特徵進行單階段偵測。</td><td>平衡偵測速度與準確度。</td><td class="page-ref">3-50</td></tr>
+          <tr><td>FCN<span class="term-en">Fully Convolutional Network</span></td><td>以全卷積與上採樣進行整圖像素分類。</td><td>端到端語意分割。</td><td class="page-ref">3-43、3-50～3-51</td></tr>
+          <tr><td>U-Net</td><td>對稱 Encoder／Decoder 並加入 Skip Connections。</td><td>保留高解析細節，常用於醫療分割。</td><td class="page-ref">3-43、3-51、3-54</td></tr>
+          <tr><td>Mask R-CNN</td><td>在 Faster R-CNN 增加二進制遮罩預測分支。</td><td>實例分割。</td><td class="page-ref">3-51</td></tr>
+          <tr><td>準確率<span class="term-en">Accuracy</span></td><td>預測正確樣本數占總樣本數的比例。</td><td>分類模型常見指標。</td><td class="page-ref">3-48～3-49</td></tr>
+          <tr><td>Top-5 錯誤率<span class="term-en">Top-5 Error</span></td><td>真實類別落在前五預測內即視為正確。</td><td>ImageNet 等大量類別情境。</td><td class="page-ref">3-48～3-49</td></tr>
+          <tr><td>混淆矩陣<span class="term-en">Confusion Matrix</span></td><td>呈現各類別真實與預測的分佈。</td><td>分析誤分類情況。</td><td class="page-ref">3-49</td></tr>
+          <tr><td>交集聯集比<span class="term-en">Intersection over Union, IoU</span></td><td>預測區域與真實區域交集除以聯集。</td><td>評估分割或物件框重疊程度。</td><td class="page-ref">3-51～3-52</td></tr>
+          <tr><td>假陽性<span class="term-en">False Positive, FP</span></td><td>實際沒有目標卻被模型判定為有。</td><td>例如將健康者誤診為病人。</td><td class="page-ref">3-57</td></tr>
+          <tr><td>假陰性<span class="term-en">False Negative, FN</span></td><td>實際存在目標卻未被辨識。</td><td>例如漏檢工業瑕疵。</td><td class="page-ref">3-57</td></tr>
+        </tbody></table></div></details>
+
+        <details open data-group><summary>應用、治理與維運（15）</summary><div class="table-wrap"><table class="glossary-table"><thead><tr><th>專有名詞</th><th>講義中的意思</th><th>應用與用處</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>車牌辨識系統<span class="term-en">Automatic Number Plate Recognition, ANPR</span></td><td>先定位車牌，再辨識字元。</td><td>交通管理、智慧停車與監控。</td><td class="page-ref">3-53</td></tr>
+          <tr><td>即時推論<span class="term-en">Real-time Inference</span></td><td>即時分析影像或視訊並回傳結果。</td><td>監控系統要求低延遲與高效運算。</td><td class="page-ref">3-53</td></tr>
+          <tr><td>工業瑕疵偵測<span class="term-en">Industrial Defect Detection</span></td><td>檢查產品表面缺陷與尺寸偏差。</td><td>生產線品質保證。</td><td class="page-ref">3-54</td></tr>
+          <tr><td>熱點圖<span class="term-en">Heatmap</span></td><td>以顧客移動路徑與停留時間呈現熱區。</td><td>優化店鋪布局與顧客體驗。</td><td class="page-ref">3-55</td></tr>
+          <tr><td>邊緣運算<span class="term-en">Edge Computing</span></td><td>把處理移到接近資料來源的設備。</td><td>降低延遲、支援即時回饋。</td><td class="page-ref">3-54～3-55</td></tr>
+          <tr><td>多模態融合<span class="term-en">Multimodal Fusion</span></td><td>融合雷達、LiDAR 與影像等感測資料。</td><td>提高自駕環境感知與決策可靠度。</td><td class="page-ref">3-55</td></tr>
+          <tr><td>個人識別資料<span class="term-en">Personally Identifiable Information, PII</span></td><td>可辨識個人的人臉、車牌、住址等資訊。</td><td>需依個資法規保護與管理。</td><td class="page-ref">3-56</td></tr>
+          <tr><td>匿名化／去識別化</td><td>以臉部遮蔽、模糊或遮罩降低個人可辨識性。</td><td>保護敏感影像與降低誤用風險。</td><td class="page-ref">3-56</td></tr>
+          <tr><td>資料最小化</td><td>只保留完成目的所需的資料與期間。</td><td>配合保存、刪除與加密政策。</td><td class="page-ref">3-56</td></tr>
+          <tr><td>偏見診斷測試<span class="term-en">Bias Audit</span></td><td>分析模型對不同族群的行為差異。</td><td>辨識並改善不公平現象。</td><td class="page-ref">3-57</td></tr>
+          <tr><td>資料漂移<span class="term-en">Data Drift</span></td><td>環境或攝影條件改變，使輸入資料分佈改變。</td><td>可能造成上線模型逐漸失效。</td><td class="page-ref">3-58</td></tr>
+          <tr><td>MLOps</td><td>建立模型持續整合、部署與監控流程。</td><td>追蹤效能、版本與異常。</td><td class="page-ref">3-58</td></tr>
+          <tr><td>持續整合／持續部署<span class="term-en">CI / CD</span></td><td>自動化整合、測試與模型部署。</td><td>提高更新流程一致性與可控性。</td><td class="page-ref">3-58</td></tr>
+          <tr><td>影像品質監測</td><td>監測畫質與網路延遲。</td><td>確保上線輸入品質穩定。</td><td class="page-ref">3-58</td></tr>
+          <tr><td>容錯與回退機制</td><td>模型異常時回復舊版本或改用預設邏輯。</td><td>避免服務中斷。</td><td class="page-ref">3-58</td></tr>
+        </tbody></table></div></details>
+      </section>
+
+      <footer>
+        <p><strong>資料來源：</strong>《AI 應用規劃師（中級）學習指引－科目 1 人工智慧技術應用規劃》，第三章 3.2「電腦視覺技術與應用」，講義頁碼 3-40～3-58。</p>
+        <p>本頁為依原講義重新編排的學習整理稿，可直接瀏覽或以瀏覽器列印為 PDF。</p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // 取得名詞表與搜尋介面，讓使用者能以中英文、縮寫、模型或用途快速篩選。
+    const searchInput = document.querySelector('#termSearch');
+    const searchCount = document.querySelector('#searchCount');
+    const noResults = document.querySelector('#noResults');
+    const glossaryRows = [...document.querySelectorAll('.glossary-table tbody tr')];
+    const glossaryGroups = [...document.querySelectorAll('[data-group]')];
+    const totalTerms = glossaryRows.length;
+    searchCount.textContent = `共 ${totalTerms} 個名詞`;
+
+    // 依搜尋字串切換名詞列；搜尋時自動展開含有結果的分類。
+    function filterGlossary() {
+      const keyword = searchInput.value.trim().toLocaleLowerCase('zh-Hant');
+      let visibleCount = 0;
+      glossaryRows.forEach((row) => {
+        const matched = row.textContent.toLocaleLowerCase('zh-Hant').includes(keyword);
+        row.hidden = !matched;
+        if (matched) visibleCount += 1;
+      });
+      glossaryGroups.forEach((group) => {
+        const hasVisibleRow = [...group.querySelectorAll('tbody tr')].some((row) => !row.hidden);
+        group.hidden = !hasVisibleRow;
+        if (keyword && hasVisibleRow) group.open = true;
+      });
+      searchCount.textContent = keyword ? `符合 ${visibleCount} 個` : `共 ${totalTerms} 個名詞`;
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+    searchInput.addEventListener('input', filterGlossary);
+
+    // 列印前展開所有名詞分類，避免 PDF 版本遺漏收合內容；列印後恢復原狀態。
+    let detailsState = [];
+    window.addEventListener('beforeprint', () => {
+      detailsState = glossaryGroups.map((group) => group.open);
+      glossaryGroups.forEach((group) => { group.open = true; });
+    });
+    window.addEventListener('afterprint', () => {
+      glossaryGroups.forEach((group, index) => { group.open = detailsState[index]; });
+    });
+  </script>
+</body>
+</html>

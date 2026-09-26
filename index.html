@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <!-- 本檔案是公開學習網站入口，只收錄自行整理的講義與考古題解析。 -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="2026 iPAS AI 應用規劃師中級－講義與考古題解析總覽">
+  <title>iPAS AI 應用規劃師中級｜學習總覽</title>
+  <style>
+    :root{color-scheme:light;--navy:#0d2c4a;--ink:#172941;--muted:#617186;--paper:#f3f7fa;--surface:#fff;--line:#d8e3eb;--teal:#138093;--cyan:#1ea6b8;--yellow:#f4c95d;--purple:#7657a8;--green:#2d8b72;--blue-soft:#e9f5f7;--purple-soft:#f2edfa;--yellow-soft:#fff7dc;--shadow:0 16px 42px rgba(13,44,74,.09);--radius:20px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:radial-gradient(circle at 90% 0,rgba(30,166,184,.14),transparent 26rem),var(--paper);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;line-height:1.65}a{color:inherit}button,input{font:inherit}.shell{display:grid;grid-template-columns:270px minmax(0,1fr);min-height:100vh}.sidebar{position:sticky;top:0;height:100vh;padding:30px 22px;overflow-y:auto;color:#eef9fb;background:linear-gradient(180deg,#0d2c4a,#0c4054)}.brand{padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.15)}.brand-mark{display:grid;width:52px;height:52px;margin-bottom:14px;place-items:center;border:2px solid var(--yellow);border-radius:15px;color:var(--yellow);font-weight:950;letter-spacing:.04em}.brand small{display:block;color:#90c5cf;font-size:.75rem;letter-spacing:.08em}.brand strong{display:block;margin-top:3px;font-size:1.02rem}.side-title{margin:25px 10px 9px;color:#8fc2cb;font-size:.73rem;font-weight:900;letter-spacing:.1em}.nav{display:grid;gap:5px}.nav a{padding:9px 12px;border-radius:10px;color:#dcecef;font-size:.88rem;text-decoration:none}.nav a:hover,.nav a:focus-visible{color:#fff;background:rgba(255,255,255,.1);outline:0}.side-note{margin-top:28px;padding:14px;border:1px solid rgba(244,201,93,.32);border-radius:13px;color:#d8e9ec;background:rgba(244,201,93,.08);font-size:.78rem}.side-note b{color:var(--yellow)}main{width:min(1240px,100%);margin:0 auto;padding:48px 46px 88px}.hero{position:relative;padding:44px;overflow:hidden;border-radius:28px;color:#fff;background:linear-gradient(135deg,#0d2c4a 0%,#10546b 62%,#13899a 100%);box-shadow:var(--shadow)}.hero::after{content:"iPAS";position:absolute;right:-12px;bottom:-60px;color:rgba(255,255,255,.065);font-size:clamp(8rem,19vw,14rem);font-weight:950;line-height:1;letter-spacing:-.08em}.eyebrow{position:relative;z-index:1;margin:0 0 10px;color:#8fe1e9;font-size:.8rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.hero h1{position:relative;z-index:1;max-width:780px;margin:0;font-size:clamp(2.1rem,4.8vw,4.25rem);line-height:1.18;letter-spacing:-.045em}.hero p:not(.eyebrow){position:relative;z-index:1;max-width:740px;margin:20px 0 0;color:#d8eef1;font-size:1.08rem}.stats{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,minmax(115px,1fr));gap:10px;max-width:720px;margin-top:28px}.stat{padding:12px 14px;border:1px solid rgba(255,255,255,.18);border-radius:13px;background:rgba(255,255,255,.08)}.stat b{display:block;color:#fff;font-size:1.35rem}.stat span{color:#bfe2e7;font-size:.76rem}.search-wrap{position:sticky;top:10px;z-index:10;display:flex;align-items:center;gap:12px;margin:22px 0 38px;padding:13px 15px;border:1px solid #bcd9df;border-radius:15px;background:rgba(255,255,255,.94);box-shadow:0 12px 32px rgba(13,44,74,.09);backdrop-filter:blur(12px)}.search-wrap input{width:100%;min-height:46px;padding:10px 14px;border:1px solid var(--line);border-radius:11px;color:var(--ink);background:#fff;outline:0}.search-wrap input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(30,166,184,.14)}.search-count{min-width:7em;color:var(--muted);font-size:.82rem;text-align:right}.section{scroll-margin-top:26px;margin-top:52px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--line)}.section-head h2{margin:0;color:var(--navy);font-size:clamp(1.45rem,2.5vw,2rem);line-height:1.25;letter-spacing:-.025em}.section-head p{margin:0;color:var(--muted);font-size:.85rem}.chapter-label{display:flex;align-items:center;gap:11px;margin:30px 0 13px}.chapter-label span{display:grid;width:34px;height:34px;place-items:center;border-radius:10px;color:#fff;background:var(--teal);font-size:.78rem;font-weight:900}.chapter-label h3{margin:0;color:var(--navy);font-size:1.08rem}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.resource-card{position:relative;display:flex;min-height:190px;padding:22px;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:0 8px 24px rgba(13,44,74,.05);text-decoration:none;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}.resource-card:hover,.resource-card:focus-visible{z-index:2;border-color:#84c5d0;box-shadow:0 18px 38px rgba(13,44,74,.13);outline:0;transform:translateY(-4px)}.resource-card::after{content:"↗";position:absolute;right:18px;top:16px;color:#8aa0b2;font-size:1.2rem;font-weight:900}.resource-card .content{display:flex;flex-direction:column;width:100%}.kicker{margin:0 0 10px;color:var(--teal);font-size:.73rem;font-weight:900;letter-spacing:.08em}.resource-card h4{max-width:88%;margin:0;color:var(--navy);font-size:1.15rem;line-height:1.38}.resource-card p{margin:10px 0 16px;color:var(--muted);font-size:.86rem}.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}.tag{padding:4px 8px;border-radius:999px;color:#176171;background:var(--blue-soft);font-size:.71rem;font-weight:800}.exam-card{border-top:5px solid var(--purple)}.exam-card .kicker{color:var(--purple)}.exam-card .tag{color:#5e4085;background:var(--purple-soft)}.source-card{min-height:160px;border-top:5px solid var(--yellow)}.source-card .kicker{color:#856300}.source-card .tag{color:#715400;background:var(--yellow-soft)}.callout{display:grid;grid-template-columns:1.35fr .65fr;gap:20px;align-items:center;margin-top:18px;padding:24px;border:1px solid #bcd9df;border-radius:18px;background:linear-gradient(135deg,var(--blue-soft),#fff)}.callout h3{margin:0 0 6px;color:var(--navy)}.callout p{margin:0;color:var(--muted);font-size:.9rem}.callout a{justify-self:end;padding:10px 15px;border-radius:11px;color:#fff;background:var(--teal);font-size:.85rem;font-weight:900;text-decoration:none}.empty{display:none;padding:34px;border:1px dashed #aac5ce;border-radius:16px;color:var(--muted);text-align:center;background:#fff}footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem}
+    @media(max-width:1040px){.shell{display:block}.sidebar{position:relative;width:100%;height:auto}.nav{grid-template-columns:repeat(4,1fr)}.side-note{display:none}main{padding:34px 24px 70px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:680px){.nav{grid-template-columns:repeat(2,1fr)}.hero{padding:30px 24px;border-radius:21px}.stats{grid-template-columns:repeat(2,1fr)}.search-wrap{align-items:stretch;flex-direction:column}.search-count{text-align:left}.grid{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column;gap:3px}.callout{grid-template-columns:1fr}.callout a{justify-self:start}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">AI</div><small>2026 學習與認證</small><strong>iPAS AI 應用規劃師中級</strong></div>
+      <div class="side-title">快速導覽</div>
+      <nav class="nav"><a href="#notes">科目一講義</a><a href="#notes-two">科目二講義</a><a href="#exams-one">科目一考古題</a><a href="#exams-two">科目二考古題</a></nav>
+      <div class="side-note"><b>使用方式：</b>點擊任一卡片即可開啟對應 HTML。上方搜尋可同時找章號、主題、年份與關鍵字。</div>
+    </aside>
+
+    <main>
+      <header class="hero">
+        <p class="eyebrow">Learning Dashboard</p>
+        <h1>AI 應用規劃師中級<br>學習總覽</h1>
+        <p>講義整理與考古題逐題解析集中在同一頁。從章節複習到考題演練，只要點選卡片即可開始。</p>
+        <div class="stats"><div class="stat"><b>22</b><span>講義整理章節</span></div><div class="stat"><b>4</b><span>完整考古題解析</span></div><div class="stat"><b>200</b><span>逐題解析題目</span></div><div class="stat"><b>2</b><span>考試科目</span></div></div>
+      </header>
+
+      <div class="search-wrap"><input id="resource-search" type="search" placeholder="搜尋章節、主題或年份，例如：NLP、統計、MLOps、115 年……" aria-label="搜尋學習資源"><span id="search-count" class="search-count">共 26 份資源</span></div>
+
+      <section id="notes" class="section resource-section">
+        <div class="section-head"><h2>科目一｜講義整理</h2><p>9 個章節・可搜尋名詞・適合閱讀與列印</p></div>
+        <div class="chapter-label"><span>03</span><h3>AI 相關技術應用</h3></div>
+        <div class="grid">
+          <a class="resource-card" href="科目一講義整理/3.1自然語言處理/index.html" data-search="3.1 自然語言處理 NLP 文本 分詞 詞向量 Transformer BERT GPT"><div class="content"><p class="kicker">CHAPTER 3.1</p><h4>自然語言處理</h4><p>從文字前處理、語言表示到模型架構與應用風險。</p><div class="tags"><span class="tag">NLP</span><span class="tag">Transformer</span><span class="tag">文本應用</span></div></div></a>
+          <a class="resource-card" href="科目一講義整理/3.2電腦視覺/index.html" data-search="3.2 電腦視覺 CV 影像 CNN 物件偵測 分割 OCR"><div class="content"><p class="kicker">CHAPTER 3.2</p><h4>電腦視覺</h4><p>影像處理、CNN、辨識、偵測、分割與視覺應用。</p><div class="tags"><span class="tag">CNN</span><span class="tag">Object Detection</span><span class="tag">影像辨識</span></div></div></a>
+          <a class="resource-card" href="科目一講義整理/3.3生成式AI/index.html" data-search="3.3 生成式 AI GAN VAE Diffusion LLM 生成模型"><div class="content"><p class="kicker">CHAPTER 3.3</p><h4>生成式 AI</h4><p>生成模型、LLM、提示方法及生成內容的應用與風險。</p><div class="tags"><span class="tag">LLM</span><span class="tag">GAN／VAE</span><span class="tag">Diffusion</span></div></div></a>
+          <a class="resource-card" href="科目一講義整理/3.4多模態人工智慧/index.html" data-search="3.4 多模態 AI 文字 影像 語音 融合 CLIP"><div class="content"><p class="kicker">CHAPTER 3.4</p><h4>多模態人工智慧</h4><p>跨文字、影像與語音的表示、融合方式與應用。</p><div class="tags"><span class="tag">Multimodal</span><span class="tag">Fusion</span><span class="tag">CLIP</span></div></div></a>
+        </div>
+
+        <div class="chapter-label"><span>04</span><h3>AI 導入評估規劃</h3></div>
+        <div class="grid">
+          <a class="resource-card" href="科目一講義整理/4.1AI導入評估/index.html" data-search="4.1 AI 導入評估 可行性 商業價值 ROI NPV POC 成熟度"><div class="content"><p class="kicker">CHAPTER 4.1</p><h4>AI 導入評估</h4><p>需求、技術、成本效益、組織成熟度、風險與 POC。</p><div class="tags"><span class="tag">可行性</span><span class="tag">ROI／NPV</span><span class="tag">POC</span></div></div></a>
+          <a class="resource-card" href="科目一講義整理/4.2AI導入規劃/index.html" data-search="4.2 AI 導入規劃 WBS 甘特圖 Scrum Sprint 資源 委外"><div class="content"><p class="kicker">CHAPTER 4.2</p><h4>AI 導入規劃</h4><p>資源盤點、WBS、時程、Scrum、導入模式與交付物。</p><div class="tags"><span class="tag">WBS</span><span class="tag">Scrum</span><span class="tag">導入模式</span></div></div></a>
+          <a class="resource-card" href="科目一講義整理/4.3AI風險管理/index.html" data-search="4.3 AI 風險管理 GDPR 個資 偏見 倫理 MLOps 漂移 HITL"><div class="content"><p class="kicker">CHAPTER 4.3</p><h4>AI 風險管理</h4><p>技術、組織、合規與倫理風險，以及持續監控策略。</p><div class="tags"><span class="tag">GDPR</span><span class="tag">公平性</span><span class="tag">風險策略</span></div></div></a>
+        </div>
+
+        <div class="chapter-label"><span>05</span><h3>AI 技術應用與系統部署</h3></div>
+        <div class="grid">
+          <a class="resource-card" href="科目一講義整理/5.1數據準備與模型選擇/index.html" data-search="5.1 數據 資料準備 清理 品質 特徵工程 PCA DBSCAN 模型選擇"><div class="content"><p class="kicker">CHAPTER 5.1</p><h4>數據準備與模型選擇</h4><p>資料來源、品質、特徵工程、降維及六類學習任務。</p><div class="tags"><span class="tag">Data Quality</span><span class="tag">Feature</span><span class="tag">Model Selection</span></div></div></a>
+          <a class="resource-card" href="科目一講義整理/5.2AI技術系統集成與部署/index.html" data-search="5.2 AI 技術 系統 集成 部署 API Docker Kubernetes 雲端 Edge MLOps"><div class="content"><p class="kicker">CHAPTER 5.2</p><h4>AI 技術系統集成與部署</h4><p>資料管線、API、容器、部署模式、MLOps 與成效追蹤。</p><div class="tags"><span class="tag">API</span><span class="tag">Kubernetes</span><span class="tag">MLOps</span></div></div></a>
+        </div>
+      </section>
+
+      <section id="notes-two" class="section resource-section">
+        <div class="section-head"><h2>科目二｜講義整理</h2><p>13 個章節・統計、資料工程、分析與 AI 應用</p></div>
+        <div class="chapter-label"><span>03</span><h3>機率統計基礎</h3></div>
+        <div class="grid">
+          <a class="resource-card" href="科目二講義整理/3.1敘述性統計與資料摘要技術/index.html" data-search="科目二 3.1 敘述性統計 資料摘要 平均數 中位數 標準差 IQR 箱形圖 偏度 峰度"><div class="content"><p class="kicker">SUBJECT 02 · CHAPTER 3.1</p><h4>敘述性統計與資料摘要技術</h4><p>集中趨勢、離散程度、四分位與箱形圖、偏度、峰度及建模應用。</p><div class="tags"><span class="tag">Central Tendency</span><span class="tag">IQR</span><span class="tag">Skewness</span></div></div></a>
+          <a class="resource-card" href="科目二講義整理/3.2機率分佈與資料分佈模型/index.html" data-search="科目二 3.2 機率分佈 PMF PDF Bernoulli Binomial Poisson Normal Exponential"><div class="content"><p class="kicker">SUBJECT 02 · CHAPTER 3.2</p><h4>機率分佈與資料分佈模型</h4><p>隨機變數、期望與變異，以及常見離散型與連續型分佈。</p><div class="tags"><span class="tag">PMF／PDF</span><span class="tag">Poisson</span><span class="tag">Normal</span></div></div></a>
+          <a class="resource-card" href="科目二講義整理/3.3假設檢定與統計推論/index.html" data-search="科目二 3.3 假設檢定 統計推論 H0 H1 p值 信賴區間 t-test ANOVA"><div class="content"><p class="kicker">SUBJECT 02 · CHAPTER 3.3</p><h4>假設檢定與統計推論</h4><p>假設、p 值、信賴區間、錯誤型態及常見參數與非參數檢定。</p><div class="tags"><span class="tag">p-value</span><span class="tag">Confidence Interval</span><span class="tag">ANOVA</span></div></div></a>
+        </div>
+
+        <div class="chapter-label"><span>04</span><h3>大數據的處理與管理</h3></div>
+        <div class="grid">
+          <a class="resource-card" href="科目二講義整理/4.1數據收集與清理/index.html" data-search="科目二 4.1 數據 收集 清理 缺失值 異常值 重複 資料品質"><div class="content"><p class="kicker">SUBJECT 02 · CHAPTER 4.1</p><h4>數據收集與清理</h4><p>資料來源、缺失與異常處理、重複一致性及品質驗證。</p><div class="tags"><span class="tag">Data Cleaning</span><span class="tag">Outlier</span><span class="tag">Quality</span></div></div></a>
+          <a class="resource-card" href="科目二講義整理/4.2數據儲存與管理/index.html" data-search="科目二 4.2 數據 儲存 管理 RDBMS NoSQL Data Lake Lakehouse ACID Zero Trust"><div class="content"><p class="kicker">SUBJECT 02 · CHAPTER 4.2</p><h4>數據儲存與管理</h4><p>RDBMS、NoSQL、資料湖、效能優化、一致性與存取治理。</p><div class="tags"><span class="tag">Data Lake</span><span class="tag">ACID</span><span class="tag">Zero Trust</span></div></div></a>
+          <a class="resource-card" href="科目二講義整理/4.3數據處理技術與工具/index.html" data-search="科目二 4.3 數據 處理 技術 工具 Encoding Scaling Spark Flink Pipeline Airflow"><div class="content"><p class="kicker">SUBJECT 02 · CHAPTER 4.3</p><h4>數據處理技術與工具</h4><p>資料轉換、特徵工程、批次與串流引擎，以及管線編排。</p><div class="tags"><span class="tag">Feature Engineering</span><span class="tag">Spark／Flink</span><span class="tag">Pipeline</span></div></div></a>
+        </div>
+
+        <div class="chapter-label"><span>05</span><h3>大數據分析與呈現</h3></div>
+        <div class="grid">
+          <a class="resource-card" href="科目二講義整理/5.1統計學在大數據中的應用/index.html" data-search="科目二 5.1 統計學 大數據 抽樣 效應量 信賴區間 A B 測試"><div class="content"><p class="kicker">SUBJECT 02 · CHAPTER 5.1</p><h4>統計學在大數據中的應用</h4><p>抽樣、估計、相關、迴歸與 A/B 測試，辨識大樣本常見陷阱。</p><div class="tags"><span class="tag">Sampling</span><span class="tag">Effect Size</span><span class="tag">A/B Test</span></div></div></a>
+          <a class="resource-card" href="科目二講義整理/5.2常見的大數據分析方法/index.html" data-search="科目二 5.2 大數據 分析 方法 分類 迴歸 分群 關聯 異常偵測 時間序列"><div class="content"><p class="kicker">SUBJECT 02 · CHAPTER 5.2</p><h4>常見的大數據分析方法</h4><p>分類、迴歸、分群、關聯規則、異常偵測、時間序列與降維。</p><div class="tags"><span class="tag">Classification</span><span class="tag">Clustering</span><span class="tag">Time Series</span></div></div></a>
+          <a class="resource-card" href="科目二講義整理/5.3數據可視化工具/index.html" data-search="科目二 5.3 數據 可視化 圖表 Dashboard Tableau Power BI Matplotlib"><div class="content"><p class="kicker">SUBJECT 02 · CHAPTER 5.3</p><h4>數據可視化工具</h4><p>依分析目的選圖、Dashboard 設計、視覺倫理及常用 BI 工具。</p><div class="tags"><span class="tag">Chart Selection</span><span class="tag">Dashboard</span><span class="tag">Tableau／Power BI</span></div></div></a>
+        </div>
+
+        <div class="chapter-label"><span>06</span><h3>大數據於 AI 的應用與治理</h3></div>
+        <div class="grid">
+          <a class="resource-card" href="科目二講義整理/6.1大數據與機器學習/index.html" data-search="科目二 6.1 大數據 機器學習 mini batch distributed streaming drift"><div class="content"><p class="kicker">SUBJECT 02 · CHAPTER 6.1</p><h4>大數據與機器學習</h4><p>大規模訓練、異質資料、不平衡、線上學習、漂移與分散式加速。</p><div class="tags"><span class="tag">Mini-batch</span><span class="tag">Distributed ML</span><span class="tag">Drift</span></div></div></a>
+          <a class="resource-card" href="科目二講義整理/6.2大數據在鑑別式AI中的應用/index.html" data-search="科目二 6.2 大數據 鑑別式 AI 金融 零售 醫療 資安 標註"><div class="content"><p class="kicker">SUBJECT 02 · CHAPTER 6.2</p><h4>大數據在鑑別式 AI 中的應用</h4><p>金融、零售、醫療、資安與製造案例，以及多型態資料整合與評估。</p><div class="tags"><span class="tag">Discriminative AI</span><span class="tag">Industry Use</span><span class="tag">HITL</span></div></div></a>
+          <a class="resource-card" href="科目二講義整理/6.3大數據在生成式AI中的應用/index.html" data-search="科目二 6.3 大數據 生成式 AI RAG 多樣性 資料品質 幻覺"><div class="content"><p class="kicker">SUBJECT 02 · CHAPTER 6.3</p><h4>大數據在生成式 AI 中的應用</h4><p>訓練資料多樣性、RAG、時效更新、生成應用與風險治理。</p><div class="tags"><span class="tag">Generative AI</span><span class="tag">RAG</span><span class="tag">Data Quality</span></div></div></a>
+          <a class="resource-card" href="科目二講義整理/6.4大數據隱私保護安全與合規/index.html" data-search="科目二 6.4 大數據 隱私 保護 安全 合規 匿名化 Differential Privacy Federated Learning DPIA"><div class="content"><p class="kicker">SUBJECT 02 · CHAPTER 6.4</p><h4>大數據隱私保護、安全與合規</h4><p>匿名化、差分隱私、聯邦學習、安全控制、合法基礎與 DPIA。</p><div class="tags"><span class="tag">Privacy</span><span class="tag">Differential Privacy</span><span class="tag">DPIA</span></div></div></a>
+        </div>
+      </section>
+
+      <section id="exams-one" class="section resource-section">
+        <div class="section-head"><h2>科目一｜考古題完整解析</h2><p>共 100 題・原題、答案與 A～D 逐項解析</p></div>
+        <div class="grid">
+          <a class="resource-card exam-card" href="科目一考古題解析/115年第一次/index.html" data-search="科目一 考古題 115 年 第一次 50 題 完整 逐題 解析"><div class="content"><p class="kicker">115 年第一次</p><h4>第一科・完整原題與逐題解析</h4><p>50 題完整呈現，可依主題篩選、搜尋名詞並切換原題號／主題排序。</p><div class="tags"><span class="tag">50 題</span><span class="tag">逐項解析</span><span class="tag">主題篩選</span></div></div></a>
+          <a class="resource-card exam-card" href="科目一考古題解析/114年第二次/index.html" data-search="科目一 考古題 114 年 第二次 50 題 完整 逐題 解析"><div class="content"><p class="kicker">114 年第二次</p><h4>第一科・完整原題與逐題解析</h4><p>50 題官方公告試題，包含判斷重點、選項解析與講義頁碼。</p><div class="tags"><span class="tag">50 題</span><span class="tag">逐項解析</span><span class="tag">講義對照</span></div></div></a>
+        </div>
+      </section>
+
+      <section id="exams-two" class="section resource-section">
+        <div class="section-head"><h2>科目二｜考古題完整解析</h2><p>共 100 題・統計、資料處理與機器學習</p></div>
+        <div class="grid">
+          <a class="resource-card exam-card" href="科目二考古題解析/115年第一次/index.html" data-search="科目二 考古題 115 年 第一次 50 題 大數據 完整 逐題 解析"><div class="content"><p class="kicker">115 年第一次</p><h4>第二科・完整原題與逐題解析</h4><p>50 題完整解析，涵蓋機率統計、大數據分析、機器學習與程式實作。</p><div class="tags"><span class="tag">50 題</span><span class="tag">公式／程式碼</span><span class="tag">主題篩選</span></div></div></a>
+          <a class="resource-card exam-card" href="科目二考古題解析/114年第二次/index.html" data-search="科目二 考古題 114 年 第二次 50 題 大數據 完整 逐題 解析"><div class="content"><p class="kicker">114 年第二次</p><h4>第二科・完整原題與逐題解析</h4><p>50 題官方公告試題，保留圖表、程式碼並附逐項判斷理由。</p><div class="tags"><span class="tag">50 題</span><span class="tag">圖表／程式碼</span><span class="tag">逐項解析</span></div></div></a>
+        </div>
+      </section>
+
+      <div id="empty" class="empty">找不到符合的資源，請換一個章號、年份或關鍵字。</div>
+      <footer>2026 iPAS AI 應用規劃師中級學習總覽｜僅供同事間學習交流；原始教材與商標權利均屬原權利人。</footer>
+    </main>
+  </div>
+  <script>
+    // 本段依名稱、章號、年份與主題關鍵字篩選所有學習資源卡片。
+    const search=document.querySelector('#resource-search');
+    const cards=[...document.querySelectorAll('.resource-card')];
+    const sections=[...document.querySelectorAll('.resource-section')];
+    const count=document.querySelector('#search-count');
+    const empty=document.querySelector('#empty');
+
+    // 搜尋時隱藏不符合的卡片與空章節，並回報目前可見數量。
+    function filterResources(){
+      const keyword=search.value.trim().toLocaleLowerCase('zh-Hant');
+      let visible=0;
+      cards.forEach(card=>{
+        const haystack=`${card.textContent} ${card.dataset.search||''}`.toLocaleLowerCase('zh-Hant');
+        const matched=!keyword||haystack.includes(keyword);
+        card.hidden=!matched;
+        if(matched)visible+=1;
+      });
+      sections.forEach(section=>{section.hidden=![...section.querySelectorAll('.resource-card')].some(card=>!card.hidden)});
+      count.textContent=keyword?`${visible} 份符合`:`共 ${cards.length} 份資源`;
+      empty.style.display=visible?'none':'block';
+    }
+    search.addEventListener('input',filterResources);
+    filterResources();
+  </script>
+</body>
+</html>

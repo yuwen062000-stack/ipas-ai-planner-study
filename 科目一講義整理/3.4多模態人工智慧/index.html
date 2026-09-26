@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <!--
+    本檔案負責將「科目一學習指引」3.4 多模態人工智慧應用重整為可閱讀、可列印的單頁講義。
+    所有知識內容僅取自原 PDF 講義頁碼 3-73 至 3-83，不加入外部資料。
+  -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="iPAS AI 應用規劃師中級－科目一 3.4 多模態人工智慧應用整理">
+  <title>3.4 多模態人工智慧應用｜科目一講義整理</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #16263d; --muted: #5d6d80; --paper: #f5f8fb; --surface: #fff;
+      --line: #d9e2ec; --navy: #0d2c4a; --blue: #126e82; --cyan: #20a4b8;
+      --yellow: #f4c95d; --soft-blue: #eaf5f7; --soft-yellow: #fff7dd;
+      --danger: #a54b4b; --radius: 18px; --shadow: 0 16px 40px rgba(13,44,74,.08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink);
+      background: radial-gradient(circle at 95% 2%, rgba(32,164,184,.12), transparent 22rem), var(--paper);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+      font-size: 16px; line-height: 1.75;
+    }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    .layout { display: grid; grid-template-columns: 270px minmax(0,1fr); min-height: 100vh; }
+    .sidebar { position: sticky; top: 0; height: 100vh; padding: 28px 22px; overflow-y: auto; color: #eef8fa; background: var(--navy); }
+    .brand { display: flex; align-items: center; gap: 12px; padding-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,.16); }
+    .brand-mark { display: grid; width: 42px; height: 42px; place-items: center; border: 2px solid var(--yellow); border-radius: 12px; color: var(--yellow); font-weight: 900; }
+    .brand small, .eyebrow, .meta { letter-spacing: .08em; }
+    .brand small { display: block; color: #9ecbd3; font-size: .72rem; }
+    .brand strong { display: block; font-size: .98rem; }
+    .toc-title { margin: 26px 10px 10px; color: #8abdc6; font-size: .75rem; font-weight: 800; }
+    .toc { display: grid; gap: 5px; }
+    .toc a { padding: 9px 12px; border-radius: 9px; color: #dcecef; font-size: .88rem; text-decoration: none; }
+    .toc a:hover, .toc a:focus-visible { color: #fff; background: rgba(255,255,255,.1); outline: 0; }
+    .sidebar-note { margin-top: 26px; padding: 14px; border: 1px solid rgba(244,201,93,.35); border-radius: 12px; color: #dcecef; background: rgba(244,201,93,.08); font-size: .78rem; }
+    main { width: min(1180px,100%); margin: 0 auto; padding: 54px 48px 96px; }
+    .hero { position: relative; padding: 44px; overflow: hidden; border-radius: 28px; color: #fff; background: linear-gradient(135deg,#0d2c4a 0%,#10536a 66%,#14889a 100%); box-shadow: var(--shadow); }
+    .hero::after { content: "MM"; position: absolute; right: -10px; bottom: -78px; color: rgba(255,255,255,.07); font-size: clamp(8rem,20vw,14rem); font-weight: 900; line-height: 1; letter-spacing: -.08em; }
+    .eyebrow { margin: 0 0 10px; color: #8fe2ea; font-size: .8rem; font-weight: 900; text-transform: uppercase; }
+    h1, h2, h3, h4 { line-height: 1.3; }
+    h1 { position: relative; z-index: 1; max-width: 800px; margin: 0; font-size: clamp(2rem,4.6vw,4rem); letter-spacing: -.045em; }
+    .hero p:not(.eyebrow) { position: relative; z-index: 1; max-width: 760px; margin: 22px 0 0; color: #d9eff2; font-size: 1.08rem; }
+    .hero-meta { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .chip { display: inline-flex; padding: 7px 11px; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; background: rgba(255,255,255,.08); font-size: .78rem; }
+    .source-banner { margin: 22px 0 42px; padding: 16px 18px; border-left: 5px solid var(--yellow); border-radius: 0 12px 12px 0; background: var(--soft-yellow); font-size: .9rem; }
+    .source-banner strong { color: #795a00; }
+    section { scroll-margin-top: 22px; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin: 58px 0 20px; padding-bottom: 13px; border-bottom: 2px solid var(--line); }
+    .section-head h2 { margin: 0; color: var(--navy); font-size: clamp(1.45rem,2.5vw,2.05rem); letter-spacing: -.025em; }
+    .meta { flex: none; color: var(--blue); font-size: .72rem; font-weight: 900; }
+    .lead { max-width: 920px; color: #40536a; }
+    .cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .card { padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: 0 8px 24px rgba(13,44,74,.05); }
+    .card .number { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 10px; color: #fff; background: var(--blue); font-size: .82rem; font-weight: 900; }
+    .card h3 { margin: 15px 0 8px; font-size: 1.08rem; }
+    .card p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .flow { display: grid; grid-template-columns: repeat(6,minmax(130px,1fr)); gap: 10px; margin: 22px 0; overflow-x: auto; padding-bottom: 8px; }
+    .flow-step { position: relative; min-width: 135px; padding: 18px 16px; border: 1px solid #bcd9df; border-radius: 14px; background: var(--soft-blue); }
+    .flow-step:not(:last-child)::after { content: "→"; position: absolute; top: 50%; right: -13px; z-index: 2; width: 16px; color: var(--blue); font-weight: 900; transform: translateY(-50%); }
+    .flow-step b { display: block; color: var(--navy); font-size: .92rem; }
+    .flow-step span { display: block; margin-top: 5px; color: var(--muted); font-size: .78rem; }
+    .timeline { display: grid; grid-template-columns: repeat(3,1fr); margin: 24px 0; }
+    .era { padding: 25px 20px 22px; border-top: 5px solid var(--cyan); background: var(--surface); }
+    .era:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+    .era:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+    .era + .era { border-left: 1px solid var(--line); }
+    .era:nth-child(even) { border-top-color: var(--yellow); }
+    .era .year { color: var(--blue); font-size: .76rem; font-weight: 900; }
+    .era h3 { min-height: 2.7em; margin: 7px 0 8px; font-size: 1rem; }
+    .era p { margin: 0; color: var(--muted); font-size: .82rem; }
+    .era .models { margin-top: 12px; color: var(--navy); font-weight: 800; }
+    .table-wrap { margin: 18px 0 28px; overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+    table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    th, td { padding: 13px 15px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: #eaf7f9; background: var(--navy); font-size: .79rem; letter-spacing: .04em; white-space: nowrap; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover { background: #f5fbfc; }
+    td:first-child { color: var(--navy); font-weight: 800; }
+    .page-ref { white-space: nowrap; color: var(--blue); font-size: .75rem; font-weight: 800; }
+    .comparison, .callout-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin: 18px 0; }
+    .comparison .card { border-top: 5px solid var(--cyan); }
+    .comparison .card:nth-child(even) { border-top-color: var(--yellow); }
+    .risk-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .risk-card { padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .risk-card h3 { margin-top: 0; color: var(--navy); }
+    .risk-card ul { margin-bottom: 0; padding-left: 1.25rem; color: var(--muted); }
+    .risk-card li + li { margin-top: 8px; }
+    .callout { padding: 18px 20px; border-left: 5px solid var(--cyan); border-radius: 0 14px 14px 0; background: var(--surface); box-shadow: 0 8px 24px rgba(13,44,74,.05); }
+    .callout:nth-child(even) { border-left-color: var(--yellow); }
+    .callout h3 { margin: 0 0 6px; color: var(--navy); font-size: 1rem; }
+    .callout p { margin: 0; color: var(--muted); font-size: .88rem; }
+    .study-note { padding: 22px; border: 1px solid #bcd9df; border-radius: var(--radius); background: linear-gradient(135deg,var(--soft-blue),#fff); }
+    .study-note h3 { margin-top: 0; color: var(--navy); }
+    .confusion-table td:nth-child(2) { color: var(--danger); font-weight: 800; }
+    .confusion-table td:nth-child(3) strong, .decision-table td:nth-child(2) strong { color: var(--blue); }
+    .memory-cue { display: inline-block; margin-top: 7px; padding: 3px 8px; border-radius: 999px; color: #684d00; background: var(--soft-yellow); font-size: .76rem; font-weight: 800; }
+    .search-panel { position: sticky; top: 10px; z-index: 8; display: flex; align-items: center; gap: 12px; margin: 20px 0; padding: 12px 14px; border: 1px solid #bcd9df; border-radius: 14px; background: rgba(255,255,255,.94); box-shadow: 0 10px 30px rgba(13,44,74,.08); backdrop-filter: blur(12px); }
+    .search-panel input { width: 100%; min-height: 44px; padding: 10px 13px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); background: #fff; outline: 0; }
+    .search-panel input:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(32,164,184,.15); }
+    .search-count { min-width: 6em; color: var(--muted); font-size: .82rem; text-align: right; }
+    details { margin: 14px 0; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+    summary { padding: 16px 18px; cursor: pointer; color: var(--navy); font-weight: 900; background: #f4f9fa; }
+    details .table-wrap { margin: 0; border: 0; border-radius: 0; }
+    .term-en { display: block; color: var(--muted); font-size: .73rem; font-weight: 600; }
+    .no-results { display: none; padding: 28px; color: var(--muted); text-align: center; background: var(--surface); border-radius: 14px; }
+    footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
+    @media (max-width: 980px) { .layout { display: block; } .sidebar { position: relative; width: 100%; height: auto; } .toc { grid-template-columns: repeat(3,1fr); } .sidebar-note { display: none; } main { padding: 34px 24px 72px; } .timeline { grid-template-columns: 1fr; gap: 12px; } .era, .era:first-child, .era:last-child { border-radius: 14px; border-left: 0; } }
+    @media (max-width: 720px) { .toc { grid-template-columns: repeat(2,1fr); } .hero { padding: 30px 24px; border-radius: 20px; } .cards, .comparison, .risk-grid, .callout-grid { grid-template-columns: 1fr; } .section-head { align-items: start; flex-direction: column; gap: 4px; } .search-panel { align-items: stretch; flex-direction: column; } .search-count { text-align: left; } }
+    @media print {
+      @page { size: A4; margin: 14mm 12mm; }
+      body { background: #fff; font-size: 10.5pt; } .layout { display: block; }
+      .sidebar, .search-panel { display: none !important; } main { width: 100%; max-width: none; padding: 0; }
+      .hero { padding: 26px; box-shadow: none; break-after: page; } .section-head { margin-top: 30px; }
+      .card, .era, .risk-card, .table-wrap, details { break-inside: avoid; box-shadow: none; }
+      details > * { display: block !important; } summary { list-style: none; }
+      .flow { grid-template-columns: repeat(3,1fr); overflow: visible; } .timeline { grid-template-columns: repeat(3,1fr); gap: 8px; }
+      .cards, .risk-grid { grid-template-columns: repeat(3,1fr); } a { text-decoration: none; } footer { break-before: page; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" aria-label="本頁目錄">
+      <div class="brand"><div class="brand-mark">3.4</div><div><small>iPAS 中級・科目一</small><strong>AI 相關技術應用</strong></div></div>
+      <div class="toc-title">章節導覽</div>
+      <nav class="toc">
+        <a href="#overview">01 整體架構</a><a href="#concept">02 模態與概念</a><a href="#evolution">03 演進階段</a>
+        <a href="#fusion">04 對齊與融合</a><a href="#models">05 模型與流程</a><a href="#applications">06 應用與指標</a>
+        <a href="#risks">07 風險與趨勢</a><a href="#confusions">08 易混淆辨析</a><a href="#glossary">09 名詞總表</a>
+      </nav>
+      <div class="sidebar-note">整理範圍：原講義 3-73～3-83。頁碼標示皆指原 PDF 的講義頁碼，方便回查。</div>
+    </aside>
+
+    <main>
+      <header class="hero">
+        <p class="eyebrow">Chapter 03 · Section 3.4</p>
+        <h1>多模態人工智慧<br>應用</h1>
+        <p>將文字、影像、語音與感測訊號放進共同理解框架，沿著跨模態表示、語意對齊、融合方法、代表模型、應用案例與治理風險，重建 3.4 的完整學習脈絡。</p>
+        <div class="hero-meta"><span class="chip">講義頁 3-73～3-83</span><span class="chip">9 個學習區塊</span><span class="chip">含融合與指標辨析</span><span class="chip">名詞可搜尋</span></div>
+      </header>
+      <div class="source-banner"><strong>整理原則：</strong>內容限定於科目一官方學習指引 3.4，不補入外部資料；重新編排著重「模態特性－對齊方式－融合流程－模型任務－應用指標－治理策略」之間的關聯。</div>
+
+      <section id="overview">
+        <div class="section-head"><h2>01｜3.4 整體架構</h2><span class="meta">P. 3-73～3-83</span></div>
+        <p class="lead">多模態 AI 能同時處理兩種以上不同資料模態，透過語意對齊與融合學習，整合各模態的互補線索。相較只處理單一資料型態的模型，它在複雜情境、多源判斷與人機互動中更具彈性與準確性。</p>
+        <div class="flow" aria-label="多模態 AI 學習主軸">
+          <div class="flow-step"><b>多源輸入</b><span>文字、影像、語音、感測資料</span></div>
+          <div class="flow-step"><b>專屬編碼</b><span>擷取各模態的結構與特徵</span></div>
+          <div class="flow-step"><b>語意對齊</b><span>映射至共同語意／向量空間</span></div>
+          <div class="flow-step"><b>融合學習</b><span>整合互補資訊與交互關係</span></div>
+          <div class="flow-step"><b>任務輸出</b><span>問答、檢索、生成、預測、控制</span></div>
+          <div class="flow-step"><b>治理部署</b><span>同步、運算、隱私、安全與合規</span></div>
+        </div>
+        <div class="study-note"><h3>一句話抓住多模態</h3><p>單模態是「各自看懂」；多模態則要讓不同資料<strong>對得上、合得起來、彼此補強</strong>，再完成更全面的理解、生成或決策。</p></div>
+      </section>
+
+      <section id="concept">
+        <div class="section-head"><h2>02｜四種常見模態與資料特性</h2><span class="meta">P. 3-73～3-75</span></div>
+        <div class="cards">
+          <article class="card"><span class="number">文</span><h3>文字</h3><p>自然語言、描述與問句；資料離散且語意性強，常由 Transformer 等模型處理。</p></article>
+          <article class="card"><span class="number">圖</span><h3>影像</h3><p>靜態圖像與影像序列；包含空間位置、顏色與紋理資訊。</p></article>
+          <article class="card"><span class="number">聲</span><h3>語音／音訊</h3><p>包含語音內容、語音情緒與背景聲音；具有時間序列與情緒線索。</p></article>
+          <article class="card"><span class="number">感</span><h3>感測器資料</h3><p>位置、加速度、溫度、雷達等；反映實體環境的連續變化。</p></article>
+        </div>
+        <div class="comparison">
+          <article class="card"><h3>單一模態</h3><p>NLP 只處理文字、CV 只處理影像；模型能深入處理特定資料型態，但較難利用其他來源補足資訊。</p></article>
+          <article class="card"><h3>多模態</h3><p>同步分析不同模態，建立語意關係並進行融合，可支援複雜情境與多源資訊判斷。</p></article>
+        </div>
+        <div class="callout-grid">
+          <article class="callout"><h3>智慧客服例子</h3><p>同時分析語音語調、語意文字與臉部表情，更完整掌握顧客意圖與情緒。</p></article>
+          <article class="callout"><h3>醫療診斷例子</h3><p>結合病歷文字、醫學影像與生命徵象，提升診斷效率與準確率。</p></article>
+        </div>
+      </section>
+
+      <section id="evolution">
+        <div class="section-head"><h2>03｜技術演進三階段</h2><span class="meta">P. 3-74～3-75</span></div>
+        <div class="timeline">
+          <article class="era"><span class="year">早期階段</span><h3>特徵串接與簡單融合</h3><p>直接合併各模態特徵向量，再輸入 SVM 或決策樹。方法簡單，但無法處理模態間語意對齊與交互關係，也不易擴展。</p><p class="models">Feature Concatenation・SVM・決策樹</p></article>
+          <article class="era"><span class="year">深度學習階段</span><h3>模態專屬網路與融合層</h3><p>影像使用 CNN，文字與語音使用 RNN，再由 Fusion Layer 整合；模型表現與結構彈性明顯提升。</p><p class="models">CNN・RNN・Fusion Layer</p></article>
+          <article class="era"><span class="year">當前階段</span><h3>Transformer 統一架構</h3><p>Self-Attention、遮罩預訓練與多層次對齊，使圖文問答、圖像敘述與跨模態檢索更流暢。</p><p class="models">M3AE・Flamingo・BLIP-2</p></article>
+        </div>
+      </section>
+
+      <section id="fusion">
+        <div class="section-head"><h2>04｜跨模態表示、對齊與融合</h2><span class="meta">P. 3-74～3-77</span></div>
+        <p class="lead">不同模態的資料格式與結構差異很大，不能只把原始資料混在一起。多模態系統必須先擷取特徵，再建立時間或語意對應，最後融合成可共同推理的表示。</p>
+        <div class="table-wrap"><table><thead><tr><th>核心概念</th><th>講義中的作用</th><th>代表方法／例子</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>跨模態表示學習</td><td>將不同模態映射到相同語意空間，使模型可比較、關聯或互相翻譯。</td><td>Cross-modal Embeddings、ImageBind。</td><td class="page-ref">3-73～3-74</td></tr>
+          <tr><td>語意對齊</td><td>讓語意相符的圖文、語音或感測資料建立一致對應。</td><td>CLIP 的圖文對比學習。</td><td class="page-ref">3-73～3-75</td></tr>
+          <tr><td>特徵串接</td><td>直接合併各模態特徵向量後交給傳統模型。</td><td>Feature Concatenation＋SVM／決策樹。</td><td class="page-ref">3-74</td></tr>
+          <tr><td>融合層</td><td>先由模態專屬網路取特徵，再於網路內整合。</td><td>CNN＋RNN＋Fusion Layer。</td><td class="page-ref">3-75</td></tr>
+          <tr><td>早期融合</td><td>在資料層級進行整合。</td><td>感測資料進入模型前先同步合併。</td><td class="page-ref">3-77</td></tr>
+          <tr><td>晚期融合</td><td>在特徵層級整合不同來源資訊。</td><td>各模態先提取特徵後再合併。</td><td class="page-ref">3-77</td></tr>
+          <tr><td>時間同步</td><td>對齊不同感測器的採樣頻率與時間戳。</td><td>DTW、時間戳校正。</td><td class="page-ref">3-77、3-80～3-81</td></tr>
+        </tbody></table></div>
+        <div class="study-note"><h3>CLIP 的共同空間</h3><p>CLIP 以對比學習同時訓練圖片與文字編碼器：相符圖文在向量空間靠近，不相符圖文則遠離。這是「跨模態表示＋語意對齊」最典型的考題線索。</p></div>
+      </section>
+
+      <section id="models">
+        <div class="section-head"><h2>05｜代表模型與技術流程</h2><span class="meta">P. 3-75～3-78</span></div>
+        <h3>5.1 代表性多模態模型</h3>
+        <div class="table-wrap"><table><thead><tr><th>模型</th><th>核心設計</th><th>強項／任務</th><th>限制／辨識線索</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>CLIP</td><td>圖片編碼器採 ViT 或 ResNet，文字編碼器採 Transformer，以 Contrastive Loss 聯合優化。</td><td>圖文匹配、圖文檢索、圖片標題生成；Zero-shot 泛化強。</td><td>複雜細節理解有限，資料偏見可能影響公平性。</td><td class="page-ref">3-74～3-76</td></tr>
+          <tr><td>BLIP／BLIP-2</td><td>強化文字與影像的雙向理解及多層次對齊。</td><td>VQA 與圖文生成任務。</td><td>題幹強調圖文問答、雙向理解。</td><td class="page-ref">3-75、3-77～3-78</td></tr>
+          <tr><td>Flamingo</td><td>多模態模型，具 Few-shot Learning 能力。</td><td>快速適應新的圖文任務。</td><td>題幹強調少量示例適應。</td><td class="page-ref">3-75、3-77</td></tr>
+          <tr><td>M3AE</td><td>Masked Multimodal Autoencoder，以統一編碼器對圖文做遮罩預訓練。</td><td>共享語意結構、多模態特徵提取與生成。</td><td>題幹強調遮罩預訓練與統一編碼器。</td><td class="page-ref">3-75、3-78</td></tr>
+          <tr><td>ImageBind</td><td>將影像、聲音、深度、紅外線等感知模態映射至統一向量空間。</td><td>多種感知模態的共同表示。</td><td>不只圖文，而是多種感官資料。</td><td class="page-ref">3-73</td></tr>
+        </tbody></table></div>
+        <h3>5.2 語音模態整合流程</h3>
+        <div class="flow">
+          <div class="flow-step"><b>語音輸入</b><span>接收使用者語音與聲學訊號</span></div>
+          <div class="flow-step"><b>ASR</b><span>Whisper 等模型把語音轉成文字</span></div>
+          <div class="flow-step"><b>NLU</b><span>BERT／GPT 解析意圖與語意</span></div>
+          <div class="flow-step"><b>任務執行</b><span>查詢資訊或觸發系統動作</span></div>
+          <div class="flow-step"><b>生成回應</b><span>依理解結果形成回答內容</span></div>
+          <div class="flow-step"><b>TTS</b><span>把文字回應轉為語音輸出</span></div>
+        </div>
+        <h3>5.3 感測資料融合</h3>
+        <div class="cards">
+          <article class="card"><span class="number">城</span><h3>智慧城市</h3><p>融合監視影像、空氣品質與交通流量，進行環境監測、異常預警與堵塞預測。</p></article>
+          <article class="card"><span class="number">醫</span><h3>智慧醫療</h3><p>融合 X 光／MRI 與心率、血壓等生命徵象，輔助診斷與即時監控。</p></article>
+          <article class="card"><span class="number">駕</span><h3>自駕與機器人</h3><p>整合攝影機、雷達與超音波，提升定位準確度與障礙物偵測能力。</p></article>
+        </div>
+      </section>
+
+      <section id="applications">
+        <div class="section-head"><h2>06｜三大應用領域、挑戰與指標</h2><span class="meta">P. 3-78～3-80</span></div>
+        <div class="table-wrap"><table><thead><tr><th>領域</th><th>整合資料</th><th>代表應用</th><th>主要挑戰</th><th>評估指標</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>智慧醫療</td><td>CT／MRI、EMR、ECG、血糖、血壓</td><td>病灶判別＋自動診斷摘要；心率＋醫師筆記預測風險；慢性病與 ICU 監控。</td><td>隱私、異質資料同步、解釋性不足。</td><td>Accuracy、False Positive Rate、報告 ROUGE。</td><td class="page-ref">3-78～3-79</td></tr>
+          <tr><td>零售分析</td><td>攝影機、POS、評論、社群回饋</td><td>動線＋銷售優化貨架；情感＋趨勢做推薦；BI Dashboard 即時監控。</td><td>顧客隱私、多源噪聲、即時處理。</td><td>Precision、動線 IoU、情感分析 F1。</td><td class="page-ref">3-79</td></tr>
+          <tr><td>虛實互動</td><td>語音、文字、表情、姿勢、3D 模型</td><td>Avatar 回應、語音＋手勢控制、虛擬展覽、智慧教室、遠距協作。</td><td>系統延遲、跨模態一致性、運算資源。</td><td>Latency、語音 WER、姿勢辨識 Accuracy。</td><td class="page-ref">3-79～3-80</td></tr>
+        </tbody></table></div>
+        <div class="callout-grid">
+          <article class="callout"><h3>指標要跟輸出對應</h3><p>分類與姿勢辨識看 Accuracy；假警報問題看 FPR；生成診斷摘要看 ROUGE；推薦看 Precision；區域重疊看 IoU；語音錯誤看 WER；即時互動看 Latency。</p></article>
+          <article class="callout"><h3>多模態的真正優勢</h3><p>不是資料種類越多越好，而是不同來源能互相補充：影像提供空間線索，文字提供語意脈絡，語音提供情緒與時間訊息，感測器反映連續環境變化。</p></article>
+        </div>
+      </section>
+
+      <section id="risks">
+        <div class="section-head"><h2>07｜三類風險、解法與五項趨勢</h2><span class="meta">P. 3-80～3-83</span></div>
+        <h3>7.1 風險與解決策略</h3>
+        <div class="risk-grid">
+          <article class="risk-card"><h3>資料對齊與標註</h3><ul><li>時間點、更新頻率與語意邏輯難以一致。</li><li>多模態標註成本高，高品質資料稀缺且管理負擔大。</li><li><strong>解法：</strong>DTW 與語意對齊、弱監督／生成模型自動標註、分散式儲存與資料版本控制。</li></ul></article>
+          <article class="risk-card"><h3>運算與部署</h3><ul><li>模型複雜且參數龐大，需要大量 GPU／TPU。</li><li>雲端有延遲與隱私疑慮；邊緣需權衡效能與容量。</li><li><strong>解法：</strong>Pruning、Quantization、Knowledge Distillation、LoRA、MobileNet、雲邊混合與硬體加速。</li></ul></article>
+          <article class="risk-card"><h3>隱私與法規</h3><ul><li>臉部、聲音與生理訊號屬敏感資料，可能遭竊取或誤用。</li><li>模型可能被攻擊或用於 Deepfake；MLOps 若無審查與控管也可能違規。</li><li><strong>解法：</strong>匿名化、端到端加密、對抗訓練、生成內容檢測、法規遵循、審計與監控。</li></ul></article>
+        </div>
+        <h3>7.2 未來趨勢</h3>
+        <div class="table-wrap"><table><thead><tr><th>趨勢</th><th>發展方向</th><th>關鍵意義</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>統一架構</td><td>共享表示、減少分離模組，支援任意模態輸入。</td><td>提高彈性與可擴展性。</td><td class="page-ref">3-82</td></tr>
+          <tr><td>即時與低資源部署</td><td>模型壓縮、最佳化、自適應推論與多階段處理。</td><td>降低記憶體與運算負擔，支援移動端與邊緣設備。</td><td class="page-ref">3-83</td></tr>
+          <tr><td>自主／自我監督學習</td><td>以大量未標註資料預訓練。</td><td>降低標註成本，強化跨模態對齊與泛化。</td><td class="page-ref">3-83</td></tr>
+          <tr><td>與代理式 AI 整合</td><td>結合推理、決策、主動感知與回應。</td><td>應用於機器人、助理、教育與客服。</td><td class="page-ref">3-83</td></tr>
+          <tr><td>法規與倫理框架</td><td>強化資料使用、模型訓練與應用規範。</td><td>讓技術與隱私、倫理設計並進，確保安全可信。</td><td class="page-ref">3-83</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section id="confusions">
+        <div class="section-head"><h2>08｜易混淆名詞與應用辨析</h2><span class="meta">依原講義差異重整</span></div>
+        <p class="lead">先辨認題目在問「資料模態、表示對齊、融合時機、模型任務、語音流程、部署位置，還是評估指標」，再選最精確的名詞。</p>
+        <div class="callout-grid">
+          <article class="callout"><h3>先看系統整合了什麼</h3><p>只有文字不叫多模態；同時使用影片畫面、語音與文字字幕，才是跨模態整合。</p></article>
+          <article class="callout"><h3>再看資料在哪個階段融合</h3><p>依講義定義，Early Fusion 是資料層級整合；Late Fusion 是特徵層級整合。作答時以講義用語為準。</p></article>
+        </div>
+        <h3>8.1 名詞成組比較</h3>
+        <div class="table-wrap"><table class="confusion-table"><thead><tr><th>易混淆名詞</th><th>最關鍵差別</th><th>應用判斷</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>單模態／多模態</td><td>單模態只處理一種資料；多模態同時處理兩種以上並建立關聯。</td><td><strong>只有評論文字：</strong>單模態；<strong>評論＋銷售＋影像：</strong>多模態。</td><td class="page-ref">3-73～3-74</td></tr>
+          <tr><td>語意對齊／融合學習</td><td>對齊先建立不同模態間的一致語意；融合再整合互補資訊做推理。</td><td>圖文向量靠近是對齊；把圖文共同用於問答是融合。</td><td class="page-ref">3-73～3-75</td></tr>
+          <tr><td>特徵串接／深度融合</td><td>串接只把向量合併，無法充分處理交互關係；深度融合以專屬網路與 Fusion Layer 聯合學習。</td><td>題幹提 SVM／決策樹多為早期串接；CNN＋RNN 多為深度融合。</td><td class="page-ref">3-74～3-75</td></tr>
+          <tr><td>早期融合／晚期融合</td><td>依講義：早期融合在資料層；晚期融合在特徵層。</td><td><strong>原始／同步資料先整合：</strong>早期；<strong>各自取特徵後整合：</strong>晚期。<br><span class="memory-cue">早期先合資料，晚期再合特徵</span></td><td class="page-ref">3-77</td></tr>
+          <tr><td>CLIP／ImageBind</td><td>CLIP 主要對齊圖像與文字；ImageBind 對齊影像、聲音、深度、紅外線等更多感知模態。</td><td><strong>圖文共同空間：</strong>CLIP；<strong>多感官統一空間：</strong>ImageBind。</td><td class="page-ref">3-73～3-76</td></tr>
+          <tr><td>CLIP／BLIP</td><td>CLIP 以對比學習做圖文對齊與檢索；BLIP 強化雙向圖文理解、VQA 與生成。</td><td><strong>零樣本圖文匹配：</strong>CLIP；<strong>視覺問答：</strong>BLIP／BLIP-2。</td><td class="page-ref">3-75～3-78</td></tr>
+          <tr><td>Flamingo／M3AE</td><td>Flamingo 強調 Few-shot 新圖文任務；M3AE 強調遮罩預訓練與統一編碼器。</td><td><strong>少量範例快速適應：</strong>Flamingo；<strong>遮住部分圖文再學共享結構：</strong>M3AE。</td><td class="page-ref">3-75、3-77～3-78</td></tr>
+          <tr><td>ASR／NLU／TTS</td><td>ASR 是語音轉文字；NLU 解析意圖；TTS 把回應文字轉成語音。</td><td>語音助理流程依序為 ASR → NLU → 任務／回應 → TTS。</td><td class="page-ref">3-76～3-77</td></tr>
+          <tr><td>資料同步／語意對齊</td><td>資料同步處理時間戳、採樣頻率；語意對齊處理內容意義的一致性。</td><td>感測器同時發生用時間同步；圖片與描述相符用語意對齊。</td><td class="page-ref">3-77、3-80～3-81</td></tr>
+          <tr><td>Pruning／Quantization／Knowledge Distillation</td><td>剪枝移除不重要結構；量化降低數值精度；蒸餾讓小模型學大模型知識。</td><td>三者都是邊緣部署的模型壓縮／輕量化方向。</td><td class="page-ref">3-81</td></tr>
+          <tr><td>雲端部署／邊緣部署／混合部署</td><td>雲端彈性高但有延遲與隱私疑慮；邊緣即時但容量受限；混合部署分配不同任務。</td><td>關鍵任務在邊緣、複雜推理上雲端，就是混合部署。</td><td class="page-ref">3-81～3-82</td></tr>
+          <tr><td>弱監督／自我監督</td><td>弱監督利用不完整或較弱標註降低成本；自我監督從未標註資料建立預訓練訊號。</td><td>前者用於自動標註策略；後者是未來大規模跨模態預訓練方向。</td><td class="page-ref">3-81、3-83</td></tr>
+          <tr><td>Precision／F1／IoU</td><td>Precision 看推薦命中的精確性；F1 綜合分類精確與召回；IoU 看區域重疊。</td><td>推薦用 Precision；評論情感用 F1；動線區域分析用 IoU。</td><td class="page-ref">3-79</td></tr>
+          <tr><td>WER／Latency</td><td>WER 衡量語音文字錯誤率；Latency 衡量互動回應速度。</td><td>轉錄內容錯誤看 WER；虛擬人反應慢看 Latency。</td><td class="page-ref">3-80</td></tr>
+        </tbody></table></div>
+        <h3>8.2 看到應用題時怎麼選</h3>
+        <div class="table-wrap"><table class="decision-table"><thead><tr><th>題目線索</th><th>優先對應名詞／方法</th><th>為什麼</th><th>不要先選</th></tr></thead><tbody>
+          <tr><td>以文字搜尋語意相符圖片，且不為任務重新訓練</td><td><strong>CLIP／Zero-shot</strong></td><td>圖文共同向量空間與零樣本能力是 CLIP 強項。</td><td>ASR；它只負責語音轉文字。</td></tr>
+          <tr><td>智慧音箱把語音指令轉成可分析文字</td><td><strong>ASR／Whisper</strong></td><td>第一步是 Speech-to-Text。</td><td>TTS；它的方向相反。</td></tr>
+          <tr><td>攝影機與雷達採樣頻率不同，需要時間點對齊</td><td><strong>資料同步／DTW</strong></td><td>問題在時間序列與時間戳。</td><td>CLIP；它重點是圖文語意對齊。</td></tr>
+          <tr><td>手機端部署大型多模態模型</td><td><strong>模型壓縮與邊緣部署</strong></td><td>需用剪枝、量化或蒸餾降低記憶體與計算。</td><td>只增加參數量。</td></tr>
+          <tr><td>醫學影像加病歷，自動產生診斷摘要</td><td><strong>多模態醫療＋ROUGE</strong></td><td>輸入跨影像與文字，輸出是摘要。</td><td>IoU；除非要評估病灶區域重疊。</td></tr>
+          <tr><td>虛擬導覽員語音與手勢回應太慢</td><td><strong>Latency</strong></td><td>問題是互動系統延遲。</td><td>WER；它只衡量語音文字錯誤率。</td></tr>
+          <tr><td>希望用未標註資料學習跨模態共同表示</td><td><strong>自我監督學習</strong></td><td>以資料本身產生訓練訊號，降低標註成本。</td><td>人工逐筆多模態標註。</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section id="glossary">
+        <div class="section-head"><h2>09｜專有名詞總表</h2><span class="meta">中英文・定義・用途・頁碼</span></div>
+        <p class="lead">輸入中文、英文、縮寫、模型、融合方式或用途即可篩選；列印時會自動展開全部分類。</p>
+        <div class="search-panel"><input id="termSearch" type="search" placeholder="搜尋：CLIP、語意對齊、ASR、Early Fusion、量化…" aria-label="搜尋專有名詞"><span id="searchCount" class="search-count"></span></div>
+        <div id="noResults" class="no-results">找不到符合的名詞，請改用較短的關鍵字。</div>
+
+        <details open data-group><summary>模態、表示與融合（18）</summary><div class="table-wrap"><table class="glossary-table"><thead><tr><th>專有名詞</th><th>講義中的意思</th><th>應用與用處</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>多模態人工智慧<span class="term-en">Multimodal AI</span></td><td>同時處理兩種以上不同資料模態的 AI 系統。</td><td>跨模態理解、融合、生成與決策。</td><td class="page-ref">3-73～3-74</td></tr>
+          <tr><td>模態<span class="term-en">Modality</span></td><td>資料的感知或表達類型。</td><td>文字、影像、語音、感測器資料。</td><td class="page-ref">3-74</td></tr>
+          <tr><td>文字模態</td><td>離散且語意性強的自然語言、描述或問句。</td><td>NLP、問答與文字理解。</td><td class="page-ref">3-74</td></tr>
+          <tr><td>影像模態</td><td>含空間資訊、顏色與紋理的靜態圖像或序列。</td><td>CV、圖文匹配與視覺問答。</td><td class="page-ref">3-74</td></tr>
+          <tr><td>語音／音訊模態</td><td>含時間序列、內容、情緒與背景聲音。</td><td>助理、搜尋、客服與跨語言互動。</td><td class="page-ref">3-74、3-76～3-77</td></tr>
+          <tr><td>感測器資料</td><td>位置、加速度、溫度、雷達等環境連續數值。</td><td>城市、醫療、自駕與機器人。</td><td class="page-ref">3-73～3-74、3-77</td></tr>
+          <tr><td>跨模態表示學習<span class="term-en">Cross-modal Embeddings</span></td><td>把不同模態映射至共同語意空間。</td><td>比較、關聯或互相翻譯不同模態。</td><td class="page-ref">3-74</td></tr>
+          <tr><td>語意對齊<span class="term-en">Semantic Alignment</span></td><td>使不同模態中意義相同的內容建立對應。</td><td>圖文配對、跨模態檢索。</td><td class="page-ref">3-73～3-75、3-80～3-81</td></tr>
+          <tr><td>融合學習<span class="term-en">Fusion Learning</span></td><td>整合多模態特徵與互補資訊。</td><td>提高理解與決策品質。</td><td class="page-ref">3-73</td></tr>
+          <tr><td>特徵串接<span class="term-en">Feature Concatenation</span></td><td>直接合併不同模態的特徵向量。</td><td>早期簡單融合策略。</td><td class="page-ref">3-74</td></tr>
+          <tr><td>融合層<span class="term-en">Fusion Layer</span></td><td>整合不同模態專屬網路輸出的特徵。</td><td>多模態深度學習。</td><td class="page-ref">3-75</td></tr>
+          <tr><td>早期融合<span class="term-en">Early Fusion</span></td><td>依講義定義，在資料層級整合。</td><td>原始或同步資料先合併。</td><td class="page-ref">3-77</td></tr>
+          <tr><td>晚期融合<span class="term-en">Late Fusion</span></td><td>依講義定義，在特徵層級整合。</td><td>各模態先抽取特徵再合併。</td><td class="page-ref">3-77</td></tr>
+          <tr><td>感測融合<span class="term-en">Sensor Fusion</span></td><td>以資料同步與特徵對齊整合異質感測資料。</td><td>環境感知、定位與監控。</td><td class="page-ref">3-77</td></tr>
+          <tr><td>資料同步</td><td>精準對齊不同來源的採樣頻率與時間戳。</td><td>避免多源資料時序錯位。</td><td class="page-ref">3-77、3-80</td></tr>
+          <tr><td>動態時間校正<span class="term-en">Dynamic Time Warping, DTW</span></td><td>對齊不同速度或長度的時間序列。</td><td>多模態時序前處理。</td><td class="page-ref">3-81</td></tr>
+          <tr><td>視覺－語言融合<span class="term-en">Vision-Language Fusion</span></td><td>聯合處理影像與文字特徵。</td><td>VQA、圖像敘述、跨模態檢索。</td><td class="page-ref">3-75</td></tr>
+          <tr><td>共享表示</td><td>多種模態使用共同的內部語意表徵。</td><td>統一架構與任意模態輸入。</td><td class="page-ref">3-82</td></tr>
+        </tbody></table></div></details>
+
+        <details open data-group><summary>模型、學習與任務（18）</summary><div class="table-wrap"><table class="glossary-table"><thead><tr><th>專有名詞</th><th>講義中的意思</th><th>應用與用處</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>CLIP<span class="term-en">Contrastive Language-Image Pre-training</span></td><td>以對比學習將圖片與文字對齊至共同空間。</td><td>匹配、檢索、標題生成與 Zero-shot。</td><td class="page-ref">3-74～3-76、3-81</td></tr>
+          <tr><td>對比學習<span class="term-en">Contrastive Learning</span></td><td>拉近相符圖文表示、推遠不相符配對。</td><td>跨模態語意對齊。</td><td class="page-ref">3-74～3-76、3-81</td></tr>
+          <tr><td>對比損失<span class="term-en">Contrastive Loss</span></td><td>共同優化圖片與文字編碼器的損失函數。</td><td>訓練 CLIP 的圖文共同空間。</td><td class="page-ref">3-76</td></tr>
+          <tr><td>圖片編碼器</td><td>CLIP 中以 ViT 或 ResNet 將圖片轉成向量。</td><td>建立影像嵌入。</td><td class="page-ref">3-76</td></tr>
+          <tr><td>文字編碼器</td><td>CLIP 中以 Transformer 將文字轉成向量。</td><td>建立文字嵌入。</td><td class="page-ref">3-76</td></tr>
+          <tr><td>零樣本學習<span class="term-en">Zero-shot Learning</span></td><td>無需為特定任務重新訓練即可應用。</td><td>CLIP 的主要優勢。</td><td class="page-ref">3-76</td></tr>
+          <tr><td>圖文匹配<span class="term-en">Image-Text Matching</span></td><td>判斷圖片與描述的語意相符程度。</td><td>圖文內容驗證。</td><td class="page-ref">3-76</td></tr>
+          <tr><td>圖文檢索<span class="term-en">Image-Text Retrieval</span></td><td>以文字找圖片，或由圖片反向找描述。</td><td>跨模態資訊檢索。</td><td class="page-ref">3-76</td></tr>
+          <tr><td>圖片標題生成<span class="term-en">Image Captioning</span></td><td>根據圖片產生語意文字描述。</td><td>圖片轉文字應用。</td><td class="page-ref">3-76</td></tr>
+          <tr><td>BLIP／BLIP-2<span class="term-en">Bootstrapping Language-Image Pre-training</span></td><td>支援圖文雙向理解與多層次對齊。</td><td>VQA 與生成任務。</td><td class="page-ref">3-75、3-77～3-78</td></tr>
+          <tr><td>視覺問答<span class="term-en">Visual Question Answering, VQA</span></td><td>根據圖片內容回答自然語言問題。</td><td>BLIP 系列代表任務。</td><td class="page-ref">3-77</td></tr>
+          <tr><td>Flamingo</td><td>具 Few-shot 能力的多模態模型。</td><td>少量示例快速適應新圖文任務。</td><td class="page-ref">3-75、3-77</td></tr>
+          <tr><td>M3AE<span class="term-en">Masked Multimodal Autoencoder</span></td><td>以統一編碼器對圖文做遮罩預訓練。</td><td>共享語意、多模態特徵與生成。</td><td class="page-ref">3-75、3-78</td></tr>
+          <tr><td>遮罩預訓練<span class="term-en">Masked Pre-training</span></td><td>遮住部分圖文內容，讓模型學習還原與共同結構。</td><td>M3AE 的核心方法。</td><td class="page-ref">3-75、3-78</td></tr>
+          <tr><td>ImageBind</td><td>把影像、聲音、深度、紅外線等映射至統一空間。</td><td>多感知模態共同表示。</td><td class="page-ref">3-73</td></tr>
+          <tr><td>少樣本學習<span class="term-en">Few-shot Learning</span></td><td>使用少量示例適應新任務。</td><td>Flamingo 的強項。</td><td class="page-ref">3-77</td></tr>
+          <tr><td>弱監督學習<span class="term-en">Weakly Supervised Learning</span></td><td>利用較弱、不完整或間接標註進行學習。</td><td>降低多模態人工標註成本。</td><td class="page-ref">3-81</td></tr>
+          <tr><td>自我監督學習<span class="term-en">Self-supervised Learning</span></td><td>從未標註資料本身產生訓練訊號。</td><td>跨模態預訓練、對齊與泛化。</td><td class="page-ref">3-83</td></tr>
+        </tbody></table></div></details>
+
+        <details open data-group><summary>語音、感測與應用指標（18）</summary><div class="table-wrap"><table class="glossary-table"><thead><tr><th>專有名詞</th><th>講義中的意思</th><th>應用與用處</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>自動語音辨識<span class="term-en">Automatic Speech Recognition, ASR</span></td><td>把語音訊號轉換為文字。</td><td>語音助理、搜尋與客服。</td><td class="page-ref">3-76～3-77</td></tr>
+          <tr><td>自然語言理解<span class="term-en">Natural Language Understanding, NLU</span></td><td>解析文字內容並提取意圖或語意。</td><td>語音指令理解與任務執行。</td><td class="page-ref">3-76</td></tr>
+          <tr><td>文字轉語音<span class="term-en">Text-to-Speech, TTS</span></td><td>將文字回應轉為語音輸出。</td><td>語音助理、客服與跨語言互動。</td><td class="page-ref">3-76～3-77</td></tr>
+          <tr><td>Whisper</td><td>講義列舉的 ASR 模型。</td><td>語音輸入轉文字。</td><td class="page-ref">3-76</td></tr>
+          <tr><td>神經機器翻譯<span class="term-en">Neural Machine Translation, NMT</span></td><td>以神經網路進行語言翻譯。</td><td>與 ASR、TTS 結合跨語言互動。</td><td class="page-ref">3-77</td></tr>
+          <tr><td>電子病歷<span class="term-en">Electronic Medical Records, EMR</span></td><td>病患的文字化醫療紀錄。</td><td>與影像、生理訊號共同支援診斷。</td><td class="page-ref">3-78</td></tr>
+          <tr><td>心電圖<span class="term-en">Electrocardiogram, ECG</span></td><td>反映心臟活動的生理訊號。</td><td>心血管風險與 ICU 監控。</td><td class="page-ref">3-78</td></tr>
+          <tr><td>商業智慧儀表板<span class="term-en">BI Dashboard</span></td><td>彙整多模態營運資料的視覺化平台。</td><td>即時監控營運與顧客回應。</td><td class="page-ref">3-79</td></tr>
+          <tr><td>虛擬人偶<span class="term-en">Avatar</span></td><td>依語音、手勢或表情與使用者互動的虛擬角色。</td><td>導覽、展覽、教育與沉浸體驗。</td><td class="page-ref">3-79～3-80</td></tr>
+          <tr><td>準確率<span class="term-en">Accuracy</span></td><td>預測正確樣本占總樣本比例。</td><td>醫療診斷與姿勢辨識。</td><td class="page-ref">3-79～3-80</td></tr>
+          <tr><td>假陽性率<span class="term-en">False Positive Rate, FPR</span></td><td>實際為負例卻被誤判為正例的比例。</td><td>醫療誤報評估。</td><td class="page-ref">3-79</td></tr>
+          <tr><td>ROUGE</td><td>評估生成摘要與參考文本的內容重疊。</td><td>診斷報告品質。</td><td class="page-ref">3-79</td></tr>
+          <tr><td>精確率<span class="term-en">Precision</span></td><td>被模型判為正例者中真正為正例的比例。</td><td>推薦準確性。</td><td class="page-ref">3-79</td></tr>
+          <tr><td>交集聯集比<span class="term-en">Intersection over Union, IoU</span></td><td>預測區域與真實區域的交集除以聯集。</td><td>顧客動線區域分析。</td><td class="page-ref">3-79</td></tr>
+          <tr><td>F1 分數</td><td>綜合 Precision 與 Recall 的分類指標。</td><td>評論情感分析。</td><td class="page-ref">3-79</td></tr>
+          <tr><td>回應延遲<span class="term-en">Latency</span></td><td>輸入至系統回應所需時間。</td><td>沉浸式與即時互動。</td><td class="page-ref">3-80</td></tr>
+          <tr><td>字錯率<span class="term-en">Word Error Rate, WER</span></td><td>語音辨識文字的錯誤率。</td><td>ASR 品質評估。</td><td class="page-ref">3-80</td></tr>
+          <tr><td>跨模態一致性</td><td>不同模態輸出或反應在語意與時間上保持協調。</td><td>Avatar、會議與虛實互動品質。</td><td class="page-ref">3-80</td></tr>
+        </tbody></table></div></details>
+
+        <details open data-group><summary>部署、安全與治理（19）</summary><div class="table-wrap"><table class="glossary-table"><thead><tr><th>專有名詞</th><th>講義中的意思</th><th>應用與用處</th><th>原講義</th></tr></thead><tbody>
+          <tr><td>資料版本控制</td><td>追蹤資料集不同版本與變更。</td><td>提高多模態資料管理效率。</td><td class="page-ref">3-81</td></tr>
+          <tr><td>分散式儲存</td><td>把大量資料分散於多個節點保存。</td><td>因應多模態資料量與維護成本。</td><td class="page-ref">3-81</td></tr>
+          <tr><td>剪枝<span class="term-en">Pruning</span></td><td>移除模型中較不重要的連結或結構。</td><td>模型壓縮與邊緣部署。</td><td class="page-ref">3-81</td></tr>
+          <tr><td>量化<span class="term-en">Quantization</span></td><td>降低模型權重或運算的數值精度。</td><td>減少記憶體與計算負擔。</td><td class="page-ref">3-81</td></tr>
+          <tr><td>知識蒸餾<span class="term-en">Knowledge Distillation</span></td><td>讓小模型學習大型模型的知識。</td><td>維持效能並縮小模型。</td><td class="page-ref">3-81</td></tr>
+          <tr><td>低秩適應<span class="term-en">Low-Rank Adaptation, LoRA</span></td><td>以少量低秩參數調整模型。</td><td>降低訓練與調整成本。</td><td class="page-ref">3-81</td></tr>
+          <tr><td>MobileNet</td><td>講義列舉的輕量化模型架構。</td><td>降低模型參數量與部署成本。</td><td class="page-ref">3-81</td></tr>
+          <tr><td>混合部署</td><td>關鍵任務在邊緣，複雜推理交由雲端。</td><td>平衡延遲、隱私與運算能力。</td><td class="page-ref">3-81</td></tr>
+          <tr><td>NVIDIA TensorRT</td><td>講義列舉的推論硬體加速工具。</td><td>提升模型推論速度。</td><td class="page-ref">3-81</td></tr>
+          <tr><td>Intel OpenVINO</td><td>講義列舉的推論最佳化工具。</td><td>提高部署推論效能。</td><td class="page-ref">3-81</td></tr>
+          <tr><td>端到端加密<span class="term-en">End-to-End Encryption</span></td><td>資料從來源到目的端全程加密。</td><td>保護臉部、聲音與生理訊號。</td><td class="page-ref">3-82</td></tr>
+          <tr><td>匿名化</td><td>移除或遮蔽可識別個人的資訊。</td><td>例如遮罩人臉，降低隱私風險。</td><td class="page-ref">3-82</td></tr>
+          <tr><td>對抗訓練<span class="term-en">Adversarial Training</span></td><td>以對抗樣本提高模型抵抗攻擊的能力。</td><td>強化多模態模型安全。</td><td class="page-ref">3-82</td></tr>
+          <tr><td>生成內容檢測</td><td>辨識 AI 生成或偽造的內容。</td><td>防範 Deepfake 與誤用。</td><td class="page-ref">3-82</td></tr>
+          <tr><td>深偽<span class="term-en">Deepfake</span></td><td>以 AI 偽造人物影像或語音。</td><td>影響社會信任，需檢測與治理。</td><td class="page-ref">3-82～3-83</td></tr>
+          <tr><td>MLOps</td><td>模型開發、部署、監控與維運流程。</td><td>需要安全審查、存取控管與審計。</td><td class="page-ref">3-82</td></tr>
+          <tr><td>自適應推論</td><td>依設備與情境動態調整推論方式。</td><td>支援即時與低資源環境。</td><td class="page-ref">3-83</td></tr>
+          <tr><td>代理式 AI</td><td>具推理與決策能力、可主動感知與回應的系統。</td><td>機器人、助理、教育與客服。</td><td class="page-ref">3-83</td></tr>
+          <tr><td>法規與倫理框架</td><td>規範資料使用、模型訓練與應用過程。</td><td>確保隱私、安全與可信。</td><td class="page-ref">3-82～3-83</td></tr>
+        </tbody></table></div></details>
+      </section>
+
+      <footer>
+        <p><strong>資料來源：</strong>《AI 應用規劃師（中級）學習指引－科目 1 人工智慧技術應用規劃》，第三章 3.4「多模態人工智慧應用」，講義頁碼 3-73～3-83。</p>
+        <p>本頁為依原講義重新編排的學習整理稿，可直接瀏覽或以瀏覽器列印為 PDF。</p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // 取得名詞表與搜尋介面，讓使用者能以中英文、縮寫、模型、融合方式或用途快速篩選。
+    const searchInput = document.querySelector('#termSearch');
+    const searchCount = document.querySelector('#searchCount');
+    const noResults = document.querySelector('#noResults');
+    const glossaryRows = [...document.querySelectorAll('.glossary-table tbody tr')];
+    const glossaryGroups = [...document.querySelectorAll('[data-group]')];
+    const totalTerms = glossaryRows.length;
+    searchCount.textContent = `共 ${totalTerms} 個名詞`;
+
+    // 依搜尋字串切換名詞列；搜尋時自動展開含有結果的分類。
+    function filterGlossary() {
+      const keyword = searchInput.value.trim().toLocaleLowerCase('zh-Hant');
+      let visibleCount = 0;
+      glossaryRows.forEach((row) => {
+        const matched = row.textContent.toLocaleLowerCase('zh-Hant').includes(keyword);
+        row.hidden = !matched;
+        if (matched) visibleCount += 1;
+      });
+      glossaryGroups.forEach((group) => {
+        const hasVisibleRow = [...group.querySelectorAll('tbody tr')].some((row) => !row.hidden);
+        group.hidden = !hasVisibleRow;
+        if (keyword && hasVisibleRow) group.open = true;
+      });
+      searchCount.textContent = keyword ? `符合 ${visibleCount} 個` : `共 ${totalTerms} 個名詞`;
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+    searchInput.addEventListener('input', filterGlossary);
+
+    // 列印前展開所有名詞分類，避免 PDF 版本遺漏收合內容；列印後恢復原狀態。
+    let detailsState = [];
+    window.addEventListener('beforeprint', () => {
+      detailsState = glossaryGroups.map((group) => group.open);
+      glossaryGroups.forEach((group) => { group.open = true; });
+    });
+    window.addEventListener('afterprint', () => {
+      glossaryGroups.forEach((group, index) => { group.open = detailsState[index]; });
+    });
+  </script>
+</body>
+</html>

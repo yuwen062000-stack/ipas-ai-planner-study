@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <!--
+    本檔案負責將科目一 4.2「AI 導入規劃」整理成可閱讀、搜尋與列印的單頁講義。
+    官方學習指引為主架構，iSpan 講義僅作重點補充，兩者均以來源標籤清楚區分。
+  -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="iPAS AI 應用規劃師中級－科目一 4.2 AI 導入規劃整理">
+  <title>4.2 AI 導入規劃｜科目一講義整理</title>
+  <style>
+    :root{color-scheme:light;--ink:#16263d;--muted:#5d6d80;--paper:#f5f8fb;--surface:#fff;--line:#d9e2ec;--navy:#0d2c4a;--blue:#126e82;--cyan:#20a4b8;--yellow:#f4c95d;--purple:#7657a8;--soft-blue:#eaf5f7;--soft-yellow:#fff7dd;--soft-purple:#f3eefb;--danger:#a54b4b;--radius:18px;--shadow:0 16px 40px rgba(13,44,74,.08)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:radial-gradient(circle at 95% 2%,rgba(32,164,184,.12),transparent 22rem),var(--paper);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;font-size:16px;line-height:1.75}a{color:inherit}button,input{font:inherit}.layout{display:grid;grid-template-columns:270px minmax(0,1fr);min-height:100vh}.sidebar{position:sticky;top:0;height:100vh;padding:28px 22px;overflow-y:auto;color:#eef8fa;background:var(--navy)}.brand{display:flex;align-items:center;gap:12px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.16)}.brand-mark{display:grid;width:42px;height:42px;place-items:center;border:2px solid var(--yellow);border-radius:12px;color:var(--yellow);font-weight:900}.brand small,.eyebrow,.meta{letter-spacing:.08em}.brand small{display:block;color:#9ecbd3;font-size:.72rem}.brand strong{display:block;font-size:.98rem}.toc-title{margin:26px 10px 10px;color:#8abdc6;font-size:.75rem;font-weight:800}.toc{display:grid;gap:5px}.toc a{padding:9px 12px;border-radius:9px;color:#dcecef;font-size:.88rem;text-decoration:none}.toc a:hover,.toc a:focus-visible{color:#fff;background:rgba(255,255,255,.1);outline:0}.sidebar-note{margin-top:26px;padding:14px;border:1px solid rgba(244,201,93,.35);border-radius:12px;color:#dcecef;background:rgba(244,201,93,.08);font-size:.78rem}main{width:min(1180px,100%);margin:0 auto;padding:54px 48px 96px}.hero{position:relative;padding:44px;overflow:hidden;border-radius:28px;color:#fff;background:linear-gradient(135deg,#0d2c4a 0%,#10536a 66%,#14889a 100%);box-shadow:var(--shadow)}.hero::after{content:"PLAN";position:absolute;right:-8px;bottom:-52px;color:rgba(255,255,255,.065);font-size:clamp(6rem,16vw,11rem);font-weight:900;line-height:1;letter-spacing:-.08em}.eyebrow{margin:0 0 10px;color:#8fe2ea;font-size:.8rem;font-weight:900;text-transform:uppercase}h1,h2,h3,h4{line-height:1.3}h1{position:relative;z-index:1;max-width:800px;margin:0;font-size:clamp(2rem,4.6vw,4rem);letter-spacing:-.045em}.hero p:not(.eyebrow){position:relative;z-index:1;max-width:770px;margin:22px 0 0;color:#d9eff2;font-size:1.08rem}.hero-meta{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}.chip{display:inline-flex;padding:7px 11px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(255,255,255,.08);font-size:.78rem}.source-banner{margin:22px 0 42px;padding:16px 18px;border-left:5px solid var(--yellow);border-radius:0 12px 12px 0;background:var(--soft-yellow);font-size:.9rem}.source-banner strong{color:#795a00}.source-key{display:flex;flex-wrap:wrap;gap:9px;margin-top:10px}.source-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:999px;font-size:.75rem;font-weight:900}.official{color:#075565;background:#dff4f7}.ispan{color:#5b3a86;background:var(--soft-purple)}section{scroll-margin-top:22px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:58px 0 20px;padding-bottom:13px;border-bottom:2px solid var(--line)}.section-head h2{margin:0;color:var(--navy);font-size:clamp(1.45rem,2.5vw,2.05rem);letter-spacing:-.025em}.meta{flex:none;color:var(--blue);font-size:.72rem;font-weight:900}.lead{max-width:920px;color:#40536a}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{padding:22px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:0 8px 24px rgba(13,44,74,.05)}.card .number{display:grid;width:38px;height:34px;place-items:center;border-radius:10px;color:#fff;background:var(--blue);font-size:.78rem;font-weight:900}.card h3{margin:15px 0 8px;font-size:1.08rem}.card p{margin:0;color:var(--muted);font-size:.9rem}.flow{display:grid;grid-template-columns:repeat(7,minmax(130px,1fr));gap:10px;margin:22px 0;overflow-x:auto;padding-bottom:8px}.flow-step{position:relative;min-width:135px;padding:18px 16px;border:1px solid #bcd9df;border-radius:14px;background:var(--soft-blue)}.flow-step:not(:last-child)::after{content:"→";position:absolute;top:50%;right:-13px;z-index:2;width:16px;color:var(--blue);font-weight:900;transform:translateY(-50%)}.flow-step b{display:block;color:var(--navy);font-size:.92rem}.flow-step span{display:block;margin-top:5px;color:var(--muted);font-size:.78rem}.table-wrap{margin:18px 0 28px;overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}table{width:100%;border-collapse:collapse;font-size:.88rem}th,td{padding:13px 15px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:#eaf7f9;background:var(--navy);font-size:.79rem;letter-spacing:.04em;white-space:nowrap}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#f5fbfc}td:first-child{color:var(--navy);font-weight:800}.page-ref{white-space:nowrap;color:var(--blue);font-size:.75rem;font-weight:800}.comparison,.callout-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:18px 0}.comparison .card{border-top:5px solid var(--cyan)}.comparison .card:nth-child(even){border-top-color:var(--yellow)}.callout{padding:18px 20px;border-left:5px solid var(--cyan);border-radius:0 14px 14px 0;background:var(--surface);box-shadow:0 8px 24px rgba(13,44,74,.05)}.callout.ispan-note{border-left-color:var(--purple);background:linear-gradient(135deg,var(--soft-purple),#fff)}.callout h3{margin:0 0 6px;color:var(--navy);font-size:1rem}.callout p,.callout ul{margin:0;color:var(--muted);font-size:.88rem}.callout ul{padding-left:1.2rem}.study-note{padding:22px;border:1px solid #bcd9df;border-radius:var(--radius);background:linear-gradient(135deg,var(--soft-blue),#fff)}.study-note h3{margin-top:0;color:var(--navy)}.formula{display:block;margin:9px 0;padding:10px 13px;border-radius:10px;color:var(--navy);background:var(--soft-yellow);font-weight:900}.confusion-table td:nth-child(2){color:var(--danger);font-weight:800}.confusion-table td:nth-child(3) strong{color:var(--blue)}.memory-cue{display:inline-block;margin-top:7px;padding:3px 8px;border-radius:999px;color:#684d00;background:var(--soft-yellow);font-size:.76rem;font-weight:800}.search-panel{position:sticky;top:10px;z-index:8;display:flex;align-items:center;gap:12px;margin:20px 0;padding:12px 14px;border:1px solid #bcd9df;border-radius:14px;background:rgba(255,255,255,.94);box-shadow:0 10px 30px rgba(13,44,74,.08);backdrop-filter:blur(12px)}.search-panel input{width:100%;min-height:44px;padding:10px 13px;border:1px solid var(--line);border-radius:10px;color:var(--ink);background:#fff;outline:0}.search-panel input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(32,164,184,.15)}.search-count{min-width:6em;color:var(--muted);font-size:.82rem;text-align:right}details{margin:14px 0;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:var(--surface)}summary{padding:16px 18px;cursor:pointer;color:var(--navy);font-weight:900;background:#f4f9fa}details .table-wrap{margin:0;border:0;border-radius:0}.term-en{display:block;color:var(--muted);font-size:.73rem;font-weight:600}.no-results{display:none;padding:28px;color:var(--muted);text-align:center;background:var(--surface);border-radius:14px}footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem}
+    @media(max-width:980px){.layout{display:block}.sidebar{position:relative;width:100%;height:auto}.toc{grid-template-columns:repeat(3,1fr)}.sidebar-note{display:none}main{padding:34px 24px 72px}}@media(max-width:720px){.toc{grid-template-columns:repeat(2,1fr)}.hero{padding:30px 24px;border-radius:20px}.cards,.comparison,.callout-grid{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column;gap:4px}.search-panel{align-items:stretch;flex-direction:column}.search-count{text-align:left}}@media print{@page{size:A4;margin:14mm 12mm}body{background:#fff;font-size:10.5pt}.layout{display:block}.sidebar,.search-panel{display:none!important}main{width:100%;max-width:none;padding:0}.hero{padding:26px;box-shadow:none;break-after:page}.section-head{margin-top:30px}.card,.table-wrap,details{break-inside:avoid;box-shadow:none}details>*{display:block!important}summary{list-style:none}.flow{grid-template-columns:repeat(3,1fr);overflow:visible}.cards{grid-template-columns:repeat(3,1fr)}a{text-decoration:none}footer{break-before:page}}
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" aria-label="本頁目錄">
+      <div class="brand"><div class="brand-mark">4.2</div><div><small>iPAS 中級・科目一</small><strong>AI 導入規劃</strong></div></div>
+      <div class="toc-title">章節導覽</div>
+      <nav class="toc">
+        <a href="#overview">01 整體架構</a><a href="#principles">02 規劃原則</a><a href="#resources">03 資源盤點</a>
+        <a href="#management">04 任務與時程</a><a href="#collaboration">05 協作與工具</a><a href="#modes">06 導入模式</a>
+        <a href="#poc">07 POC 與交付</a><a href="#confusions">08 易混淆與題型</a><a href="#glossary">09 名詞總表</a>
+      </nav>
+      <div class="sidebar-note">官方學習指引 4-15～4-28 為主；iSpan 講義約 PDF 143～151 頁為補充。紫色標籤代表 iSpan 補充。</div>
+    </aside>
+
+    <main>
+      <header class="hero">
+        <p class="eyebrow">Chapter 04 · Section 4.2</p>
+        <h1>AI 導入規劃</h1>
+        <p>把「值得做、做得到」轉成可執行計畫：排定人力與資源、拆解任務與時程、選擇導入模式，再以 POC 驗證技術、效益與使用者接受度。</p>
+        <div class="hero-meta"><span class="chip">官方 4-15～4-28</span><span class="chip">iSpan 143～151 補充</span><span class="chip">9 個學習區塊</span><span class="chip">名詞可搜尋</span></div>
+      </header>
+      <div class="source-banner">
+        <strong>雙講義整理原則：</strong>官方學習指引決定章節骨架與定義；iSpan 講義用來補強記憶口訣、流程濃縮與情境題。若表述角度不同，以官方版本為準。
+        <div class="source-key"><span class="source-tag official">官方主軸</span><span class="source-tag ispan">iSpan 補充</span></div>
+      </div>
+
+      <section id="overview">
+        <div class="section-head"><h2>01｜4.2 整體架構</h2><span class="meta">官方 P. 4-15～4-28</span></div>
+        <p class="lead">AI 導入規劃不是套用固定模板，而是依產業、資料、技術、治理文化與預算，把前一節的可行性與價值評估，轉換成具體的任務、負責人、資源、時程、驗證方式與決策依據。</p>
+        <div class="flow" aria-label="AI 導入規劃流程">
+          <div class="flow-step"><b>需求與目標</b><span>定義問題、範圍與成功條件</span></div>
+          <div class="flow-step"><b>資源盤點</b><span>人力、硬體、工具、環境</span></div>
+          <div class="flow-step"><b>任務拆解</b><span>用 WBS 定義工作與產出</span></div>
+          <div class="flow-step"><b>時程安排</b><span>甘特圖或 Sprint 推進</span></div>
+          <div class="flow-step"><b>POC 驗證</b><span>技術、效益、使用者回饋</span></div>
+          <div class="flow-step"><b>成果整合</b><span>計畫、預算、摘要與時程</span></div>
+          <div class="flow-step"><b>審查決策</b><span>Go／No-Go 與擴大導入</span></div>
+        </div>
+        <div class="callout ispan-note"><h3><span class="source-tag ispan">iSpan 補充</span> 三階段定位</h3><p><strong>評估：</strong>要不要導入？　<strong>規劃：</strong>如何導入？　<strong>風險管理：</strong>如何安全、合規地導入？</p></div>
+      </section>
+
+      <section id="principles">
+        <div class="section-head"><h2>02｜三項核心規劃原則</h2><span class="meta">官方 P. 4-15～4-16</span></div>
+        <div class="cards">
+          <article class="card"><span class="number">01</span><h3>情境與目的導向</h3><p>先回答要解決什麼問題、改善哪個流程與 KPI，再決定技術、團隊與時程；不是先有工具才找用途。</p></article>
+          <article class="card"><span class="number">02</span><h3>資源盤點與匹配</h3><p>同時檢視人力、運算、資料、工具、環境、預算與外部支援，確保計畫與可用條件相符。</p></article>
+          <article class="card"><span class="number">03</span><h3>彈性調整與迭代</h3><p>AI 專案不確定性高，需透過小範圍驗證、短週期回饋與階段審查，持續調整範圍與作法。</p></article>
+        </div>
+        <div class="study-note"><h3>一句話背法</h3><span class="formula">目標明確 × 資源匹配 × 彈性迭代</span><p>這個 iSpan 濃縮句可用來回想官方三項原則，但作答時仍要展開說明「問題／KPI、資源盤點、依回饋調整」。</p></div>
+      </section>
+
+      <section id="resources">
+        <div class="section-head"><h2>03｜人力、技術與環境資源盤點</h2><span class="meta">官方 P. 4-16～4-18</span></div>
+        <h3>3.1 角色分工</h3>
+        <div class="table-wrap"><table><thead><tr><th>角色</th><th>主要責任</th><th>規劃時要確認</th><th>來源</th></tr></thead><tbody>
+          <tr><td>專案經理 PM</td><td>範圍、時程、資源、風險與跨部門協調。</td><td>誰統一窗口、誰追蹤里程碑與變更。</td><td class="page-ref">官方 4-16</td></tr>
+          <tr><td>資料工程師</td><td>資料蒐集、清理、整合、管線與品質管理。</td><td>資料來源、更新頻率、權限與可追溯性。</td><td class="page-ref">官方 4-16</td></tr>
+          <tr><td>AI 模型開發者</td><td>模型設計、訓練、評估、優化與技術驗證。</td><td>基準模型、指標、硬體與部署限制。</td><td class="page-ref">官方 4-16</td></tr>
+          <tr><td>系統架構師</td><td>既有系統整合、架構、介面、部署與擴展性。</td><td>API、資安、雲端／地端與維運責任。</td><td class="page-ref">官方 4-16</td></tr>
+          <tr><td>UI／UX 設計師</td><td>使用流程、介面、可用性與人機協作體驗。</td><td>使用者如何理解、採用及回饋 AI 結果。</td><td class="page-ref">官方 4-16</td></tr>
+          <tr><td>業務顧問／領域專家</td><td>釐清需求、流程與商業規則，判定輸出是否有用。</td><td>驗收標準是否連結業務價值。</td><td class="page-ref">官方 4-16</td></tr>
+          <tr><td>測試工程師</td><td>功能、效能、整合、例外與驗收測試。</td><td>測試資料、案例、門檻與回歸機制。</td><td class="page-ref">官方 4-16</td></tr>
+        </tbody></table></div>
+        <h3>3.2 技術資源</h3>
+        <div class="cards">
+          <article class="card"><span class="number">HW</span><h3>硬體與算力</h3><p>GPU 伺服器、雲端運算與儲存、地端工作站；依資料量、訓練負載、延遲與資安要求選擇。</p></article>
+          <article class="card"><span class="number">SW</span><h3>開發與資料工具</h3><p>Python、TensorFlow、PyTorch、Spark、Hadoop，以及 Git 等版本控制工具。</p></article>
+          <article class="card"><span class="number">ENV</span><h3>環境</h3><p>開發、測試、部署與資料管理環境需分工清楚，並規劃存取權限、移轉與維運方式。<span class="source-tag ispan">iSpan 補充</span></p></article>
+        </div>
+      </section>
+
+      <section id="management">
+        <div class="section-head"><h2>04｜任務拆解與時程管理</h2><span class="meta">官方 P. 4-18～4-22</span></div>
+        <div class="comparison">
+          <article class="card"><h3>甘特圖 Gantt Chart</h3><p>橫軸是時間、縱軸是任務，顯示開始／結束、重疊、相依與里程碑。適合看整體進度與關鍵路徑。</p><span class="memory-cue">需求 → 資料 → 模型 → 測試 → 部署</span></article>
+          <article class="card"><h3>工作分解結構 WBS</h3><p>由上而下把專案拆成可管理的工作包；每項子任務都要定義負責角色、預期成果、所需資源與估計工期。</p><span class="memory-cue">負責人 × 成果 × 資源 × 時程</span></article>
+          <article class="card"><h3>Sprint／Scrum</h3><p>以 1～4 週的短週期交付可檢驗增量，常見為 2 週。適合需求與模型效果可能持續變動的 AI 專案。</p><span class="memory-cue">小步開發 → 快速驗證 → 持續回饋</span></article>
+          <article class="card"><h3>方法搭配</h3><p>WBS 負責「拆什麼」、甘特圖負責「何時做與相依關係」、Scrum 負責「如何短週期執行與改善」，可同時使用。</p><span class="memory-cue">拆解、排程、迭代各司其職</span></article>
+        </div>
+        <h3>4.1 WBS 範例：資料準備</h3>
+        <div class="table-wrap"><table><thead><tr><th>工作包</th><th>可再拆解的任務</th><th>預期產出</th><th>來源</th></tr></thead><tbody>
+          <tr><td>資料來源盤點</td><td>列出內外部來源、擁有者、格式、頻率與權限。</td><td>資料清冊與缺口。</td><td class="page-ref">官方 4-19</td></tr>
+          <tr><td>清理與標準化</td><td>處理遺漏、異常、重複、格式與欄位定義。</td><td>可用且一致的資料集。</td><td class="page-ref">官方 4-19</td></tr>
+          <tr><td>對齊與標註</td><td>依任務設計標籤規則、抽查品質與版本。</td><td>訓練／驗證資料與標註規範。</td><td class="page-ref">官方 4-19</td></tr>
+        </tbody></table></div>
+        <h3>4.2 Scrum 的角色、活動與產物</h3>
+        <div class="table-wrap"><table><thead><tr><th>類別</th><th>項目</th><th>作用</th><th>來源</th></tr></thead><tbody>
+          <tr><td>角色</td><td>Product Owner</td><td>管理產品價值與 Product Backlog 的優先順序。</td><td class="page-ref">官方 4-20～4-21</td></tr>
+          <tr><td>角色</td><td>Scrum Master</td><td>促進 Scrum 落實、移除障礙與協助團隊改善。</td><td class="page-ref">官方 4-20～4-21</td></tr>
+          <tr><td>角色</td><td>Development Team</td><td>跨職能完成 Sprint 目標並交付可用增量。</td><td class="page-ref">官方 4-20～4-21</td></tr>
+          <tr><td>活動</td><td>Sprint Planning</td><td>決定本次目標、選入工作與執行方式。</td><td class="page-ref">官方 4-20～4-21</td></tr>
+          <tr><td>活動</td><td>Daily Scrum</td><td>每日約 15 分鐘同步進度、下一步與障礙。</td><td class="page-ref">官方 4-20～4-21</td></tr>
+          <tr><td>活動</td><td>Sprint Review</td><td>檢視增量並取得利害關係人回饋。</td><td class="page-ref">官方 4-20～4-21</td></tr>
+          <tr><td>活動</td><td>Sprint Retrospective</td><td>回顧合作與流程，提出下一輪改善。</td><td class="page-ref">官方 4-20～4-21</td></tr>
+          <tr><td>產物</td><td>Product Backlog／Sprint Backlog／Increment</td><td>分別代表產品待辦、當期待辦與可檢驗成果。</td><td class="page-ref">官方 4-20～4-21</td></tr>
+        </tbody></table></div>
+        <div class="study-note"><h3>Sprint 循環</h3><span class="formula">Planning → Sprint → Review → Retrospective → 下一次 Planning</span><p>Review 看「做出的成果與價值」；Retrospective 看「團隊做事方式如何改善」，兩者不可混淆。</p></div>
+      </section>
+
+      <section id="collaboration">
+        <div class="section-head"><h2>05｜跨部門協作與追蹤工具</h2><span class="meta">官方 P. 4-22～4-24</span></div>
+        <div class="cards">
+          <article class="card"><span class="number">R</span><h3>責任清楚</h3><p>明確定義誰提供資料、誰開發模型、誰整合系統、誰驗收成果與誰作最終決策。</p></article>
+          <article class="card"><span class="number">T</span><h3>資訊透明</h3><p>共用任務看板、文件與決策紀錄，避免需求、版本與風險只存在個人訊息中。</p></article>
+          <article class="card"><span class="number">S</span><h3>定期同步</h3><p>透過每日站會、週會或階段審查，及早處理資料、模型、整合與決策障礙。</p></article>
+        </div>
+        <div class="table-wrap"><table><thead><tr><th>工具</th><th>強項</th><th>適合情境</th><th>留意事項</th></tr></thead><tbody>
+          <tr><td>Trello</td><td>Kanban 看板直覺、上手快。</td><td>小型團隊、原型或流程單純專案。</td><td>複雜工作流、相依與報表能力較有限。</td></tr>
+          <tr><td>Asana</td><td>任務階層、Timeline、跨專案管理。</td><td>跨職能協作與多工作流整合。</td><td>初期結構設計與維護成本較高。</td></tr>
+          <tr><td>Jira</td><td>Issue、客製流程、Scrum／Kanban 支援完整。</td><td>軟體與技術團隊、迭代開發。</td><td>非技術人員可能有學習門檻。</td></tr>
+          <tr><td>ClickUp</td><td>看板、目標、清單、里程碑與整合集中。</td><td>中型跨部門團隊。</td><td>功能多，若未建立規則可能顯得複雜。</td></tr>
+          <tr><td>Notion／Confluence</td><td>需求、會議、規格、知識與決策文件。</td><td>建立共享文件與可追溯脈絡。</td><td>需有命名、權限與版本規範。</td></tr>
+          <tr><td>Slack／Teams</td><td>即時溝通、頻道與通知整合。</td><td>日常協調與快速排除障礙。</td><td>重要決策仍要回寫正式文件或看板。</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section id="modes">
+        <div class="section-head"><h2>06｜三種 AI 導入模式</h2><span class="meta">官方 P. 4-24～4-25</span></div>
+        <div class="table-wrap"><table><thead><tr><th>模式</th><th>優勢</th><th>挑戰／風險</th><th>較適合</th><th>快選口訣</th></tr></thead><tbody>
+          <tr><td>商業 Low-code／No-code</td><td>導入快、技術門檻低、可快速涵蓋多種情境。</td><td>客製彈性有限、訂閱成本、雲端資料隱私與平台綁定。</td><td>需求較標準、希望快速驗證或上線。</td><td><strong>快速導入</strong></td></tr>
+          <tr><td>內部自行開發</td><td>高度客製、資料與技術掌控強、可累積自主能力。</td><td>需較多時間、人才、算力與長期維運投入。</td><td>已有內部能力、核心需求獨特且有長期 AI 策略。</td><td><strong>高度客製</strong></td></tr>
+          <tr><td>委外開發</td><td>取得外部專業、縮短摸索與建置時間。</td><td>範圍與時程契約、資料安全、供應商管理、依賴與知識移轉。</td><td>缺乏人才但有預算，且能清楚管理需求與驗收。</td><td><strong>缺乏人才</strong></td></tr>
+        </tbody></table></div>
+        <div class="callout-grid">
+          <article class="callout"><h3>模式不是永久標籤</h3><p>可先用商業服務或委外完成 POC，再把核心能力逐步內製；關鍵是資料敏感度、客製程度、上市速度、總成本與長期能力。</p></article>
+          <article class="callout"><h3>委外仍不能外包責任</h3><p>組織仍需掌握需求、資料治理、驗收指標、契約、資安、知識移轉與上線後維運責任。</p></article>
+        </div>
+      </section>
+
+      <section id="poc">
+        <div class="section-head"><h2>07｜POC 驗證與規劃交付物</h2><span class="meta">官方 P. 4-25～4-28</span></div>
+        <h3>7.1 POC 三個關鍵</h3>
+        <div class="cards">
+          <article class="card"><span class="number">01</span><h3>明確目標</h3><p>限定情境、資料、對象與成功門檻，例如推薦系統使銷售額提升 5%，避免範圍無限擴大。</p></article>
+          <article class="card"><span class="number">02</span><h3>快速迭代</h3><p>以小範圍、現成工具與 1～2 週短週期，涵蓋資料準備到模型測試，快速找出可行與不可行。</p></article>
+          <article class="card"><span class="number">03</span><h3>多面向驗證</h3><p>同時看技術表現、業務價值與使用者回饋；準確率高但沒有價值或沒人願意用，仍不算成功。</p></article>
+        </div>
+        <div class="callout ispan-note"><h3><span class="source-tag ispan">iSpan 補充</span> POC 真正要回答</h3><p><strong>技術做得到嗎？有價值嗎？使用者願意用嗎？</strong>重點不是在小型測試裡追求「最強模型」，而是用最低合理成本取得繼續／停止／調整的證據。</p></div>
+        <h3>7.2 三類驗證指標</h3>
+        <div class="table-wrap"><table><thead><tr><th>面向</th><th>指標示例</th><th>回答的問題</th><th>來源</th></tr></thead><tbody>
+          <tr><td>技術表現</td><td>準確率、召回率、錯誤率、延遲、穩定性。</td><td>模型與系統是否達到可用門檻？</td><td class="page-ref">官方 4-26</td></tr>
+          <tr><td>業務價值</td><td>成本節省、效率提升、營收增加、工時降低。</td><td>導入是否產生可衡量效益？</td><td class="page-ref">官方 4-26</td></tr>
+          <tr><td>使用者回饋</td><td>滿意度、採用率、操作負擔、信任與意見。</td><td>真實使用者是否願意使用並融入流程？</td><td class="page-ref">官方 4-26</td></tr>
+        </tbody></table></div>
+        <h3>7.3 規劃階段交付物</h3>
+        <div class="table-wrap"><table><thead><tr><th>交付物</th><th>應包含內容</th><th>用途</th><th>來源</th></tr></thead><tbody>
+          <tr><td>導入計畫書</td><td>背景、目標、策略、範圍、任務、時程、團隊、預算與資源。</td><td>作為正式執行與治理基準。</td><td class="page-ref">官方 4-27</td></tr>
+          <tr><td>規劃摘要</td><td>關鍵決策、原型／POC、指標、團隊與風險。</td><td>讓決策者快速掌握全貌。</td><td class="page-ref">官方 4-27</td></tr>
+          <tr><td>甘特圖／時程表</td><td>階段、任務、相依、里程碑、負責人與資源配置。</td><td>追蹤進度、依賴與交付節點。</td><td class="page-ref">官方 4-27</td></tr>
+          <tr><td>資源與成本預算</td><td>人力、硬體、軟體、委外、資金來源、時點與變動空間。</td><td>確認資源承諾與財務可行性。</td><td class="page-ref">官方 4-27</td></tr>
+          <tr><td>利害關係人審查</td><td>技術、業務、法務／資安與高階主管的意見、決議與待辦。</td><td>完成 Go／No-Go 與正式執行決策。</td><td class="page-ref">官方 4-28</td></tr>
+        </tbody></table></div>
+        <div class="study-note"><h3>從 POC 到正式導入</h3><span class="formula">需求與可行性 → 導入模式 → POC → 技術 × 效益 × 使用者評估 → 文件化 → 利害關係人審查 → Go／No-Go → 部署與擴大</span></div>
+      </section>
+
+      <section id="confusions">
+        <div class="section-head"><h2>08｜易混淆辨析與 iSpan 情境題</h2><span class="meta">整合複習</span></div>
+        <div class="table-wrap"><table class="confusion-table"><thead><tr><th>主題</th><th>常見誤判</th><th>正確辨析</th></tr></thead><tbody>
+          <tr><td>評估 vs 規劃</td><td>兩者都是列一份導入清單。</td><td><strong>評估</strong>判斷要不要做與是否可行；<strong>規劃</strong>把已確認的方向轉成任務、資源、時程與交付物。</td></tr>
+          <tr><td>WBS vs 甘特圖</td><td>兩者都只是在畫進度。</td><td><strong>WBS</strong>先拆工作；<strong>甘特圖</strong>再把工作放上時間軸，呈現相依、重疊與里程碑。</td></tr>
+          <tr><td>Review vs Retrospective</td><td>都是回顧同一件事。</td><td><strong>Review</strong>檢視成果與價值；<strong>Retrospective</strong>改善團隊的合作方式與流程。</td></tr>
+          <tr><td>POC vs 正式系統</td><td>POC 達標即可直接全面上線。</td><td><strong>POC</strong>驗證假設；正式上線還需補齊擴展性、資安、整合、監控、維運與治理。</td></tr>
+          <tr><td>技術指標 vs 專案成功</td><td>模型準確率最高就代表成功。</td><td>還要同時證明<strong>業務價值</strong>與<strong>使用者採用</strong>，且成本、延遲與風險可接受。</td></tr>
+          <tr><td>委外開發</td><td>交給廠商後內部不用再配置人力。</td><td>仍需內部產品負責人、領域專家、資料與資安窗口，管理需求、驗收、知識移轉與供應商依賴。</td></tr>
+        </tbody></table></div>
+        <div class="callout-grid">
+          <article class="callout ispan-note"><h3><span class="source-tag ispan">iSpan 題型 1</span> 即時推薦架構</h3><p>情境：電商要即時推薦。合理組合是<strong>批次訓練模型＋REST API 提供推論＋Kafka 串流事件</strong>，並用 Redis／Feature Store 供應低延遲特徵；不宜先把所有即時資料都寫入資料倉儲才推論。</p></article>
+          <article class="callout ispan-note"><h3><span class="source-tag ispan">iSpan 題型 2</span> 少數缺陷與地端限制</h3><p>情境：製造瑕疵影像少、正常樣本多，地端無 GPU、需 100ms。優先考慮<strong>預訓練模型遷移學習／微調＋量化或知識蒸餾＋地端部署</strong>，同時回應資料不足與運算限制。</p></article>
+        </div>
+      </section>
+
+      <section id="glossary">
+        <div class="section-head"><h2>09｜名詞總表</h2><span class="meta">可即時搜尋</span></div>
+        <p class="lead">輸入中文、英文或關鍵字即可篩選；名詞定義以本章脈絡為準。</p>
+        <div class="search-panel"><input id="term-search" type="search" placeholder="搜尋：WBS、Sprint、委外、POC、里程碑……" aria-label="搜尋名詞"><span id="search-count" class="search-count">顯示全部</span></div>
+        <details open><summary>規劃、資源與專案管理</summary><div class="table-wrap"><table><thead><tr><th>名詞</th><th>本章定義</th></tr></thead><tbody class="term-body">
+          <tr class="term"><td>AI 導入規劃<span class="term-en">AI Adoption Planning</span></td><td>把可行性與價值判斷轉換為具體任務、資源、時程、驗證與決策文件。</td></tr>
+          <tr class="term"><td>情境導向<span class="term-en">Context-oriented</span></td><td>依產業、流程、資料與治理條件設計方案，而非套用單一模板。</td></tr>
+          <tr class="term"><td>資源盤點<span class="term-en">Resource Inventory</span></td><td>確認人力、硬體、軟體、資料、環境、預算與外援是否足以支援目標。</td></tr>
+          <tr class="term"><td>專案經理<span class="term-en">Project Manager, PM</span></td><td>管理範圍、時程、資源、風險與跨部門協調的角色。</td></tr>
+          <tr class="term"><td>資料工程師<span class="term-en">Data Engineer</span></td><td>建立資料蒐集、清理、整合與處理管線的角色。</td></tr>
+          <tr class="term"><td>系統架構師<span class="term-en">System Architect</span></td><td>規劃系統整合、介面、部署、擴展與技術架構的角色。</td></tr>
+          <tr class="term"><td>工作分解結構<span class="term-en">Work Breakdown Structure, WBS</span></td><td>由上而下把專案拆成可估算、可指派、可驗收的工作包。</td></tr>
+          <tr class="term"><td>工作包<span class="term-en">Work Package</span></td><td>WBS 中可被估算成本與工期、指派負責人並產生成果的管理單位。</td></tr>
+          <tr class="term"><td>甘特圖<span class="term-en">Gantt Chart</span></td><td>以時間軸呈現任務起訖、重疊、相依、進度與里程碑。</td></tr>
+          <tr class="term"><td>關鍵路徑<span class="term-en">Critical Path</span></td><td>決定專案最短完工時間的一連串關鍵任務，任一延遲都可能拖延整體。</td></tr>
+          <tr class="term"><td>里程碑<span class="term-en">Milestone</span></td><td>代表重要完成點或決策點的零工期標記。</td></tr>
+          <tr class="term"><td>相依關係<span class="term-en">Dependency</span></td><td>一項任務的開始或完成受另一項任務影響的關係。</td></tr>
+        </tbody></table></div></details>
+        <details open><summary>Agile／Scrum</summary><div class="table-wrap"><table><thead><tr><th>名詞</th><th>本章定義</th></tr></thead><tbody class="term-body">
+          <tr class="term"><td>敏捷<span class="term-en">Agile</span></td><td>以短週期交付、回饋與調整來因應不確定性的工作方式。</td></tr>
+          <tr class="term"><td>Scrum</td><td>以明確角色、活動與產物推動迭代式交付的敏捷框架。</td></tr>
+          <tr class="term"><td>Sprint</td><td>通常 1～4 週、產出可檢驗增量的固定短週期。</td></tr>
+          <tr class="term"><td>Product Owner</td><td>最大化產品價值並管理 Product Backlog 優先順序的角色。</td></tr>
+          <tr class="term"><td>Scrum Master</td><td>促進 Scrum 落實、協助排除障礙與改善合作的角色。</td></tr>
+          <tr class="term"><td>Development Team</td><td>跨職能完成 Sprint 工作並交付增量的開發團隊。</td></tr>
+          <tr class="term"><td>Sprint Planning</td><td>決定當期目標、選入工作與規劃執行方式的活動。</td></tr>
+          <tr class="term"><td>Daily Scrum</td><td>每日約 15 分鐘同步進度與障礙的短會議。</td></tr>
+          <tr class="term"><td>Sprint Review</td><td>向利害關係人展示增量、檢查成果與取得回饋。</td></tr>
+          <tr class="term"><td>Sprint Retrospective</td><td>檢討團隊工作方法並決定下一輪改善措施。</td></tr>
+          <tr class="term"><td>Product Backlog</td><td>依價值與優先順序排列的產品需求與工作清單。</td></tr>
+          <tr class="term"><td>Sprint Backlog</td><td>團隊承諾於當期 Sprint 完成的工作與執行計畫。</td></tr>
+          <tr class="term"><td>Increment</td><td>每個 Sprint 結束時可用、可檢驗的產品增量。</td></tr>
+        </tbody></table></div></details>
+        <details open><summary>協作工具與導入模式</summary><div class="table-wrap"><table><thead><tr><th>名詞</th><th>本章定義</th></tr></thead><tbody class="term-body">
+          <tr class="term"><td>Kanban</td><td>以可視化看板呈現工作狀態與流動的管理方法。</td></tr>
+          <tr class="term"><td>Trello</td><td>以簡易 Kanban 看板為核心、適合小型團隊與原型的工具。</td></tr>
+          <tr class="term"><td>Asana</td><td>支援任務階層、時間軸與跨專案協作的管理工具。</td></tr>
+          <tr class="term"><td>Jira</td><td>以 Issue 與客製工作流支援 Scrum／Kanban 的技術專案工具。</td></tr>
+          <tr class="term"><td>ClickUp</td><td>整合任務、目標、清單、里程碑與多種檢視的管理平台。</td></tr>
+          <tr class="term"><td>Low-code</td><td>以視覺化元件減少手寫程式，但仍保留部分客製開發能力。</td></tr>
+          <tr class="term"><td>No-code</td><td>主要透過視覺化設定建立應用，技術門檻較低但彈性通常有限。</td></tr>
+          <tr class="term"><td>內部開發<span class="term-en">In-house Development</span></td><td>由組織內部掌握資料、模型、系統與維運的開發模式。</td></tr>
+          <tr class="term"><td>委外開發<span class="term-en">Outsourcing</span></td><td>由外部供應商提供專業與建置能力，內部仍負責需求、治理與驗收。</td></tr>
+          <tr class="term"><td>供應商依賴<span class="term-en">Vendor Dependency</span></td><td>技術、資料或維運過度綁定特定廠商而降低轉換彈性的風險。</td></tr>
+          <tr class="term"><td>知識移轉<span class="term-en">Knowledge Transfer</span></td><td>把系統、模型、資料與維運知識從外部或特定人員轉交給內部團隊。</td></tr>
+          <tr class="term"><td>版本控制<span class="term-en">Version Control</span></td><td>追蹤程式、設定或文件變更並支援協作與回復的機制。</td></tr>
+        </tbody></table></div></details>
+        <details open><summary>POC、驗證與交付</summary><div class="table-wrap"><table><thead><tr><th>名詞</th><th>本章定義</th></tr></thead><tbody class="term-body">
+          <tr class="term"><td>概念驗證<span class="term-en">Proof of Concept, POC</span></td><td>以有限範圍驗證技術可行性、業務價值與使用者接受度。</td></tr>
+          <tr class="term"><td>成功門檻<span class="term-en">Success Threshold</span></td><td>POC 開始前定義、用來判斷是否達標的量化或質化標準。</td></tr>
+          <tr class="term"><td>技術指標<span class="term-en">Technical Metrics</span></td><td>準確率、延遲、穩定性等反映技術表現的衡量值。</td></tr>
+          <tr class="term"><td>業務指標<span class="term-en">Business Metrics</span></td><td>成本、效率、營收或工時等反映商業價值的衡量值。</td></tr>
+          <tr class="term"><td>使用者回饋<span class="term-en">User Feedback</span></td><td>使用者對可用性、信任、負擔、滿意與採用意願的資訊。</td></tr>
+          <tr class="term"><td>導入計畫書<span class="term-en">Implementation Plan</span></td><td>整合目標、策略、範圍、任務、團隊、時程、資源與預算的正式文件。</td></tr>
+          <tr class="term"><td>規劃摘要<span class="term-en">Planning Summary</span></td><td>供決策者快速掌握關鍵決策、POC、指標、團隊與風險的摘要。</td></tr>
+          <tr class="term"><td>利害關係人審查<span class="term-en">Stakeholder Review</span></td><td>由業務、技術、法務／資安與管理層共同檢視方案並做決策。</td></tr>
+          <tr class="term"><td>Go／No-Go</td><td>依驗證證據決定進入正式執行、調整後再驗證或停止的決策點。</td></tr>
+          <tr class="term"><td>REST API</td><td>以 HTTP 介面提供模型推論或系統服務的常見方式。</td></tr>
+          <tr class="term"><td>Kafka</td><td>用於即時事件串流與資料傳遞的平台。</td></tr>
+          <tr class="term"><td>Feature Store</td><td>集中管理並一致供應訓練與推論特徵的系統。</td></tr>
+          <tr class="term"><td>遷移學習<span class="term-en">Transfer Learning</span></td><td>使用預訓練模型知識適應資料較少的新任務。</td></tr>
+          <tr class="term"><td>量化<span class="term-en">Quantization</span></td><td>降低模型數值精度以縮小模型並加速推論。</td></tr>
+          <tr class="term"><td>知識蒸餾<span class="term-en">Knowledge Distillation</span></td><td>讓較小模型學習大型模型行為，以降低部署成本。</td></tr>
+        </tbody></table></div></details>
+        <div id="no-results" class="no-results">找不到符合的名詞，請換一個關鍵字。</div>
+      </section>
+
+      <footer>科目一・4.2 AI 導入規劃｜官方學習指引為主，iSpan 講義為補充。建議先掌握「目標—資源—拆解—時程—POC—審查」主線，再比較工具、模式與 Scrum 名詞。</footer>
+    </main>
+  </div>
+  <script>
+    // 本段控制名詞總表的即時搜尋，只隱藏不符合的列，不修改講義內容。
+    const searchInput = document.querySelector('#term-search');
+    const terms = [...document.querySelectorAll('.term')];
+    const detailsGroups = [...document.querySelectorAll('#glossary details')];
+    const countLabel = document.querySelector('#search-count');
+    const noResults = document.querySelector('#no-results');
+
+    // 依輸入關鍵字篩選名詞，並同步顯示符合筆數與空結果提示。
+    function filterTerms() {
+      const keyword = searchInput.value.trim().toLocaleLowerCase('zh-Hant');
+      let visibleCount = 0;
+      terms.forEach((row) => {
+        const matched = !keyword || row.textContent.toLocaleLowerCase('zh-Hant').includes(keyword);
+        row.hidden = !matched;
+        if (matched) visibleCount += 1;
+      });
+      detailsGroups.forEach((group) => {
+        const hasVisibleRow = [...group.querySelectorAll('.term')].some((row) => !row.hidden);
+        group.hidden = !hasVisibleRow;
+        if (keyword && hasVisibleRow) group.open = true;
+      });
+      countLabel.textContent = keyword ? `${visibleCount} 筆符合` : `共 ${terms.length} 筆`;
+      noResults.style.display = visibleCount ? 'none' : 'block';
+    }
+    searchInput.addEventListener('input', filterTerms);
+    filterTerms();
+  </script>
+</body>
+</html>
