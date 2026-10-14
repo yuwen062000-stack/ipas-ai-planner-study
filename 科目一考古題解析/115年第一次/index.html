@@ -87,6 +87,29 @@
         </table>
         <p class="concept-memory">記憶：分類只報名；Detection 畫方框；Semantic 同類塗同色；Instance 連同類的不同個體也要分開塗。</p>
       </section>
+      <section class="concept-guide" aria-labelledby="matrix-detector-guide-title">
+        <h2 id="matrix-detector-guide-title">第 9～10 題名詞好記版</h2>
+        <p><strong>混淆矩陣</strong>是「一條門檻下的成績單」；<strong>ROC／AUC</strong>是「調過很多條門檻後的總成績」。</p>
+        <table class="concept-table">
+          <thead><tr><th>名詞</th><th>白話記法</th><th>關鍵區別</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Precision</strong></td><td>「我說有」時準不準？</td><td>TP／(TP＋FP)；誤報 FP 變多就下降</td></tr>
+            <tr><td><strong>Recall</strong></td><td>「真的有」被我抓到多少？</td><td>TP／(TP＋FN)；漏報 FN 變多就下降</td></tr>
+            <tr><td><strong>Accuracy</strong></td><td>整份考卷總共答對多少？</td><td>(TP＋TN)／全部樣本</td></tr>
+            <tr><td><strong>ROC AUC</strong></td><td>調整很多個門檻後，模型整體會不會區分正負類？</td><td>單一混淆矩陣只有一個門檻，無法直接算整條曲線的面積</td></tr>
+          </tbody>
+        </table>
+        <p><strong>YOLO</strong> 可記成 <em>You Only Look Once</em>：像保全「看一眼就直接報出人在哪裡」。<strong>Faster R-CNN</strong> 像保全「先圈出幾個可疑區域，再逐一確認是什麼」。</p>
+        <table class="concept-table">
+          <thead><tr><th>模型</th><th>流程</th><th>生活化理解</th><th>考題線索</th></tr></thead>
+          <tbody>
+            <tr><td><strong>YOLO</strong><br>單階段 One-stage</td><td>整張影像 → 直接預測類別與 Bounding Box</td><td>看一眼，直接說「那裡有什麼」</td><td>快速、即時、高頻影像流</td></tr>
+            <tr><td><strong>Faster R-CNN</strong><br>兩階段 Two-stage</td><td>先產生候選區域 → 再分類並修正邊界框</td><td>先圈可疑地點，再一個一個詳細確認</td><td>候選區域、區域提議、第二階段確認</td></tr>
+            <tr><td><strong>Region Proposal</strong><br>候選區域</td><td colspan="3">不是最終答案，而是先挑出「這幾塊可能有物體」，交給後續階段分類與調整位置。</td></tr>
+          </tbody>
+        </table>
+        <p class="concept-memory">記憶：YOLO 一次直接答，速度通常較快；Faster R-CNN 先圈再認，是兩階段。「候選區域」是 Faster R-CNN 的重要線索，不是 YOLO 靠增加候選區域提升準確率。</p>
+      </section>
       <div class="controls">
         <input id="search" type="search" placeholder="搜尋題號、名詞或情境，例如：LoRA、漂移、Q21">
         <select id="topicFilter" aria-label="依主題篩選"></select>
@@ -216,7 +239,7 @@
       {
         id:10, answer:'A', topic:'電腦視覺', title:'YOLO 與 Faster R-CNN',
         stem:'高頻影像流需要快速推論；YOLO 與 Faster R-CNN 的偵測流程有何差異？',
-        clue:'YOLO 是單階段；Faster R-CNN 是兩階段，先產生候選區域再分類與修正框。',
+        clue:'先找動作數：YOLO 「一次直接答」，從整張圖同時預測類別與位置；Faster R-CNN 「先圈再認」，先產生候選區域，再分類並修正框。',
         source:'講義 3.2｜目標檢測模型｜講義第 3-50 頁', basis:'講義直接對應',
         options:{
           A:['YOLO 單階段；Faster R-CNN 先候選區域再分類','正確。這也是 YOLO 通常較適合即時偵測的重要原因。'],
