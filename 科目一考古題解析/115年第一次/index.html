@@ -47,6 +47,7 @@
     .key{margin:0 0 16px;padding:12px 14px;border-left:4px solid var(--gold);background:var(--warn-bg);font-size:.88rem}.key strong{color:var(--warn)}
     .options{display:grid;gap:9px}.option{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;padding:12px 13px;border:1px solid var(--line);border-radius:12px}.option.correct{border-color:#99d3c0;background:var(--good-bg)}.option.wrong{background:#fff}.letter{display:grid;width:30px;height:30px;place-items:center;border-radius:9px;font-weight:900}.correct .letter{color:#fff;background:var(--good)}.wrong .letter{color:var(--bad);background:var(--bad-bg)}.option p{margin:0}.option .choice{display:block;color:var(--ink);font-weight:750;white-space:pre-line}.option .reason{display:block;margin-top:7px;padding-top:6px;border-top:1px dashed rgba(100,116,139,.28);color:var(--muted);font-size:.86rem}.correct .reason{color:#286b59}.reason strong{color:inherit}
     .meta-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:15px}.tag{padding:4px 8px;border-radius:999px;color:#426176;background:#edf4f7;font-size:.72rem;font-weight:750}.tag.supplement{color:#785d12;background:var(--warn-bg)}
+    .memory-box{margin-top:14px;padding:14px 16px;border:1px solid #9fd7d3;border-radius:12px;background:#edfafa}.memory-box>strong{display:block;margin-bottom:5px;color:#0f6f70}.memory-box ul{margin:0;padding-left:1.3rem}.memory-box li+li{margin-top:4px}
     .empty{display:none;padding:40px;text-align:center;color:var(--muted);background:#fff;border-radius:14px}
     footer{margin-top:42px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.8rem}
     @media(max-width:900px){.layout{display:block}aside{position:relative;height:auto}.topic-nav{grid-template-columns:repeat(2,1fr)}.side-note{display:none}main{padding:30px 20px 70px}.controls{grid-template-columns:1fr 1fr}.controls input{grid-column:1/-1}}
@@ -192,6 +193,7 @@
         id:6, answer:'C', topic:'電腦視覺', title:'語義分割與實例分割',
         stem:'道路、建築、行人都要逐像素分類，且需區分兩名相鄰行人；兩種分割的根本差異為何？',
         clue:'兩者都有像素級分類；差別在「同一類別的不同個體是否分開」。',
+        memory:['Bounding Box 是長方形方框，只框出大概位置；Mask 是沿著物體輪廓逐像素塗滿。','Semantic 可記成「分種類」：兩名行人都塗成相同的行人類別。','Instance 可記成「分個體」：行人 #1 與行人 #2 會有獨立 Mask。','口訣：Semantic 同類同色；Instance 同類也要分開塗。'],
         source:'講義 3.2｜影像分割｜講義第 3-46、3-51 頁', basis:'講義直接對應',
         options:{
           A:['實例分割無框、語義分割產生框','兩者的核心都不是互換 Bounding Box；語義／實例分割都著重像素遮罩。'],
@@ -204,6 +206,7 @@
         id:7, answer:'C', topic:'電腦視覺', title:'需要像素遮罩且區分個體',
         stem:'超市防損系統要為每個購物籃、手機與商品做精確像素遮罩，並區分不同個體，應選哪項技術？',
         clue:'「Pixel-level Mask＋區分每一個物件」直接指向實例分割。',
+        memory:['Image Classification 只回答整張圖有什麼，不說物件在哪裡。','Object Detection 回答「有什麼＋在哪裡」，輸出類別與 Bounding Box。','Semantic Segmentation 做逐像素分類，但不拆開同類別的不同物件。','Instance Segmentation 同時做到精確 Mask 與區分個體；題幹同時出現這兩個要求就選它。'],
         source:'講義 3.2｜電腦視覺任務｜講義第 3-46、3-51 頁', basis:'講義直接對應',
         options:{
           A:['影像分類','只判斷整張影像有哪些類別，不能定位每個物件。'],
@@ -228,6 +231,7 @@
         id:9, answer:'D', topic:'電腦視覺', title:'混淆矩陣不能直接得到什麼',
         stem:'只有一個分類門檻下的混淆矩陣，哪一項不能直接計算？',
         clue:'混淆矩陣提供 TP、FP、TN、FN，可算 Accuracy、Precision、Recall；AUC 需要掃描多個門檻形成整條 ROC。',
+        memory:['P／N 看模型怎麼猜：Positive 猜有，Negative 猜沒有。T／F 看猜得對不對。','TP：真的有且成功抓到；FP：其實沒有卻誤報；TN：沒有且正確放行；FN：真的有卻漏掉。','Precision：我說「有」時準不準，誤報 FP 會拉低它。Recall：真的「有」被我抓到多少，漏報 FN 會拉低它。','Accuracy 是全部判斷的總答對率。','單一混淆矩陣像「某一條門檻的成績單」；AUC 要改變多個門檻、畫出整條 ROC 後才能算面積。'],
         source:'講義 2｜分類模型評估｜講義第 3-58 頁', basis:'補充理解',
         options:{
           A:['Precision','可由 TP／(TP＋FP) 直接算出。'],
@@ -240,6 +244,7 @@
         id:10, answer:'A', topic:'電腦視覺', title:'YOLO 與 Faster R-CNN',
         stem:'高頻影像流需要快速推論；YOLO 與 Faster R-CNN 的偵測流程有何差異？',
         clue:'先找動作數：YOLO 「一次直接答」，從整張圖同時預測類別與位置；Faster R-CNN 「先圈再認」，先產生候選區域，再分類並修正框。',
+        memory:['YOLO 就是 You Only Look Once：整張圖看一次，直接輸出物件類別與 Bounding Box，因此是單階段。','Faster R-CNN 是兩階段：第一階段先圈出可能有物體的候選區域，第二階段再分類與修正方框。','Region Proposal／候選區域只是「可疑區塊」，不是最終判斷。','名稱有 Faster 不代表一定比 YOLO 快；它是相對於早期 R-CNN 家族較快。','口訣：YOLO 一次直接答；Faster R-CNN 先圈再認。'],
         source:'講義 3.2｜目標檢測模型｜講義第 3-50 頁', basis:'講義直接對應',
         options:{
           A:['YOLO 單階段；Faster R-CNN 先候選區域再分類','正確。這也是 YOLO 通常較適合即時偵測的重要原因。'],
@@ -775,14 +780,15 @@
     }
 
     // 將單一題目渲染為可收合卡片，先完整呈現原題，再放入另外標注的解題重點。
-    function renderQuestion(question) {
+      function renderQuestion(question) {
       const optionHtml = Object.entries(question.options).map(([letter, data]) => {
         const correct = letter === question.answer;
         const originalOption = question.originalOptions[letter];
         return `<div class="option ${correct ? 'correct' : 'wrong'}"><span class="letter">${letter}</span><p><span class="choice">${escapeHtml(originalOption)}</span><span class="reason"><strong>判斷重點｜${correct ? '正確：' : '錯誤：'}</strong>${escapeHtml(data[1])}</span></p></div>`;
       }).join('');
       const supplement = question.basis.includes('補充');
-      return `<article class="question" data-id="${question.id}" data-topic="${escapeHtml(question.topic)}"><div class="question-header"><span class="qno">${question.id}</span><span class="summary-text"><b>${escapeHtml(question.title)}</b><span>${escapeHtml(question.topic)}・原題第 ${question.id} 題</span></span><span class="answer-badge">答案 ${question.answer}</span></div><div class="question-body"><div class="original-block"><span class="section-label">原始題目</span><p class="original-stem">${escapeHtml(question.originalStem)}</p>${renderQuestionTable(question)}</div><h3 class="analysis-title">題目與選項標注</h3><p class="stem"><strong>題目重點：</strong>${escapeHtml(question.stem)}</p><div class="key"><strong>判斷關鍵：</strong>${escapeHtml(question.clue)}</div><div class="options">${optionHtml}</div><div class="meta-row"><span class="tag">${escapeHtml(question.source)}</span><span class="tag ${supplement ? 'supplement' : ''}">${escapeHtml(question.basis)}</span></div></div></article>`;
+      const memoryHtml = question.memory?.length ? `<div class="memory-box"><strong>白話理解＋好記口訣</strong><ul>${question.memory.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>` : '';
+      return `<article class="question" data-id="${question.id}" data-topic="${escapeHtml(question.topic)}"><div class="question-header"><span class="qno">${question.id}</span><span class="summary-text"><b>${escapeHtml(question.title)}</b><span>${escapeHtml(question.topic)}・原題第 ${question.id} 題</span></span><span class="answer-badge">答案 ${question.answer}</span></div><div class="question-body"><div class="original-block"><span class="section-label">原始題目</span><p class="original-stem">${escapeHtml(question.originalStem)}</p>${renderQuestionTable(question)}</div><h3 class="analysis-title">題目與選項標注</h3><p class="stem"><strong>題目重點：</strong>${escapeHtml(question.stem)}</p><div class="key"><strong>判斷關鍵：</strong>${escapeHtml(question.clue)}</div><div class="options">${optionHtml}</div>${memoryHtml}<div class="meta-row"><span class="tag">${escapeHtml(question.source)}</span><span class="tag ${supplement ? 'supplement' : ''}">${escapeHtml(question.basis)}</span></div></div></article>`;
     }
 
     // 根據搜尋字與主題篩選題目，並同步更新結果數量與空白狀態。
@@ -790,7 +796,7 @@
       const keyword = search.value.trim().toLocaleLowerCase('zh-Hant');
       const topic = topicFilter.value;
       const filtered = questions.filter((question) => {
-        const text = `q${question.id} ${question.id} ${question.title} ${question.stem} ${question.originalStem} ${question.clue} ${question.topic} ${Object.values(question.originalOptions).join(' ')} ${Object.values(question.options).flat().join(' ')}`.toLocaleLowerCase('zh-Hant');
+        const text = `q${question.id} ${question.id} ${question.title} ${question.stem} ${question.originalStem} ${question.clue} ${(question.memory || []).join(' ')} ${question.topic} ${Object.values(question.originalOptions).join(' ')} ${Object.values(question.options).flat().join(' ')}`.toLocaleLowerCase('zh-Hant');
         return (!keyword || text.includes(keyword)) && (topic === '全部主題' || question.topic === topic);
       });
       const sorted = [...filtered].sort((a, b) => sortMode.value === 'topic'
