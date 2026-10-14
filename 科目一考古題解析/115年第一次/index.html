@@ -33,6 +33,7 @@
     .hero:after{content:"50";position:absolute;right:12px;bottom:-58px;color:rgba(255,255,255,.07);font-size:12rem;font-weight:900;line-height:1}
     .eyebrow{margin:0;color:#8ee1df;font-size:.8rem;font-weight:900;letter-spacing:.1em}.hero h1{position:relative;z-index:1;margin:8px 0 14px;font-size:clamp(2rem,4vw,3.4rem);line-height:1.2;letter-spacing:-.04em}.hero p{position:relative;z-index:1;max-width:760px;margin:0;color:#dbf0f2}.chips{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}.chip{padding:6px 10px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(255,255,255,.08);font-size:.78rem}
     .notice{margin:20px 0 26px;padding:14px 16px;border-left:5px solid var(--gold);border-radius:0 12px 12px 0;background:var(--warn-bg);font-size:.88rem}.notice strong{color:var(--warn)}
+    .concept-guide{margin:20px 0 26px;padding:20px;border:1px solid #b8d7df;border-radius:16px;background:#fff;box-shadow:0 8px 24px rgba(16,42,67,.05)}.concept-guide h2{margin:0 0 6px;color:var(--navy);font-size:1.18rem}.concept-guide>p{margin:0 0 14px;color:var(--muted);font-size:.9rem}.concept-table{width:100%;border-collapse:collapse;font-size:.88rem}.concept-table th,.concept-table td{padding:9px 10px;border:1px solid var(--line);text-align:left;vertical-align:top}.concept-table th{color:var(--navy);background:#eaf3f6}.concept-table strong{color:var(--blue)}.concept-memory{margin:14px 0 0;padding:11px 13px;border-left:4px solid var(--cyan);background:#edfafa;font-weight:750}
     .controls{position:sticky;top:10px;z-index:10;display:grid;grid-template-columns:minmax(230px,1fr) 190px 190px;gap:9px;margin:24px 0;padding:12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.95);box-shadow:0 10px 28px rgba(16,42,67,.09);backdrop-filter:blur(10px)}
     .controls input,.controls select{min-width:0;padding:10px 12px;border:1px solid var(--line);border-radius:9px;color:var(--ink);background:#fff}.controls input:focus,.controls select:focus{outline:3px solid rgba(26,166,166,.15);border-color:var(--cyan)}
     .controls button{padding:9px 12px;border:0;border-radius:9px;color:#fff;background:var(--blue);font-size:.84rem;font-weight:800}.controls button.secondary{color:var(--navy);background:#e9f2f5}
@@ -70,6 +71,22 @@
         <div class="chips"><span class="chip">原題完整保留</span><span class="chip">官方答案</span><span class="chip">A～D 逐項解析</span><span class="chip">原順序／主題排序</span></div>
       </header>
       <div class="notice"><strong>閱讀方式：</strong>50 題已全部直接展開。每題先列出原題與完整選項；「題目重點」及每個選項下方的「判斷重點」是另外加上的研讀標注，不會取代原文。</div>
+      <section class="concept-guide" aria-labelledby="vision-guide-title">
+        <h2 id="vision-guide-title">第 6～7 題名詞白話對照</h2>
+        <p>想像同一張照片裡有「兩名顧客，一人拿一支手機」，不同任務會交出不同程度的答案。</p>
+        <table class="concept-table">
+          <thead><tr><th>名稱</th><th>白話問法</th><th>模型會交什麼</th><th>考題關鍵字</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Image Classification</strong><br>影像分類</td><td>這張圖整體是什麼？</td><td>只給類別，例如「有顧客」</td><td>整張圖、不需定位</td></tr>
+            <tr><td><strong>Object Detection</strong><br>物件／目標偵測</td><td>有什麼？在哪裡？</td><td>類別＋長方形 Bounding Box</td><td>定位、邊界框、不需精確輪廓</td></tr>
+            <tr><td><strong>Bounding Box</strong><br>邊界框</td><td>物件大概佔哪個區域？</td><td>用長方形框住物件，框內可含背景</td><td>方框、座標、位置</td></tr>
+            <tr><td><strong>Semantic Segmentation</strong><br>語義分割</td><td>每個像素屬於哪一類？</td><td>將兩名顧客都塗成同一個「人」類別</td><td>逐像素、只分種類、不分個體</td></tr>
+            <tr><td><strong>Instance Segmentation</strong><br>實例分割</td><td>每個像素是哪一個物件？</td><td>精確塗出顧客 #1、顧客 #2 的獨立 Mask</td><td>逐像素＋區分同類個體</td></tr>
+            <tr><td><strong>Mask</strong><br>像素遮罩</td><td>物件精確輪廓到哪裡？</td><td>沿著物件形狀把所有像素塗出來</td><td>Pixel-level、精確區域、輪廓</td></tr>
+          </tbody>
+        </table>
+        <p class="concept-memory">記憶：分類只報名；Detection 畫方框；Semantic 同類塗同色；Instance 連同類的不同個體也要分開塗。</p>
+      </section>
       <div class="controls">
         <input id="search" type="search" placeholder="搜尋題號、名詞或情境，例如：LoRA、漂移、Q21">
         <select id="topicFilter" aria-label="依主題篩選"></select>
