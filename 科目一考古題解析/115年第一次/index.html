@@ -257,6 +257,7 @@
         id:11, answer:'B', topic:'深度學習與 LLM', title:'Self-Attention 的核心功能',
         stem:'Transformer 的自注意力為何能建模序列中的長距離依賴？',
         clue:'重點是每個 token 都能直接參照其他 token，並依關聯程度加權。',
+        memory:['局部運算是「只看附近」，例如小型 CNN 卷積核一次只掃描一小塊；這正是 C 的描述。','標準 Self-Attention 是「全場互看」：句子中的每個 token 都可與其他 token 計算關聯，不只限於相鄰詞。','例如「小明把書給了小華，因為他明天要考試」，「他」可直接參照前面較遠的「小明」與「小華」，分配不同注意力權重。','口訣：CNN 像手電筒，先照附近；Self-Attention 像全場開燈，每個位置都能看其他位置。','補充：實務上也有 Local／Sparse Attention 變體，但本題問的是 Transformer 標準 Self-Attention 的核心功能。'],
         source:'講義 3.1｜Transformer｜講義第 3-25～3-26 頁', basis:'講義直接對應',
         options:{
           A:['靠隱藏狀態遞迴傳遞','這是 RNN 的序列處理方式，Transformer 不依賴逐步遞迴。'],
