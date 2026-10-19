@@ -660,6 +660,7 @@
         id:44, answer:'B', topic:'部署與監控', title:'影像推論 API 的請求設計',
         stem:'RESTful API 接收平均 5MB 高解析度影像，HTTP 方法與格式的最佳實踐是什麼？',
         clue:'大型二進位資料應放 Request Body；POST 適合提交推論工作，multipart 或 octet-stream 適合檔案／位元流。',
+        memory:['先把題目翻成日常情境：使用者要把一張 5MB 照片「寄給伺服器，請它判斷內容」。這是提交一份工作，不是查詢網址上的小參數，所以優先選 POST。','Request Body 像包裹裡面的內容，適合放大型資料；Query String 像寫在包裹外面的備註，適合搜尋字詞、頁碼、篩選條件等小型參數，不適合塞整張影像。','multipart/form-data 像有多個分隔欄位的包裹，可同時放 image 檔案、使用者編號、模型版本等資料；application/octet-stream 則是只把原始二進位影像直接送出，結構更單純。','A 的 GET 主要用來取得／查詢資源；把影像轉成 Base64 塞進 URL，不但受 URL 長度限制，Base64 通常還會讓資料體積增加約三分之一，所以 5MB 影像更不適合。','C 的 PUT 通常用在指定網址上建立或完整替換某個資源；本題只是提交影像做一次分類，POST 語意更合適。XML 是文字格式，影像是二進位檔案，若硬放進 XML 還得額外編碼，沒有效率。','D 的本地推論不是傳輸格式，而是把整個部署架構改成由客戶端執行模型，沒有回答題目所問的伺服器 API 如何收影像。','考試判斷順序：先看動作——提交推論選 POST；再看資料放哪裡——大檔放 Body；最後看格式——檔案加欄位選 multipart，只傳原始檔選 octet-stream。','口訣：GET 拿資料，POST 送工作；小參數放網址，大檔案放 Body。'],
         source:'講義 5.2｜API 部署｜講義第 5-15～5-16 頁', basis:'補充理解',
         options:{
           A:['GET＋Base64 放 Query String','URL 長度有限、Base64 增加體積，且 GET 不適合在查詢字串承載大型上傳內容。'],
